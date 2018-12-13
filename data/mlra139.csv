@@ -1,0 +1,348 @@
+LRU,Site,Rows,SiteName,SiteID
+139A,A1 Wet Acid Depression,168,Wet Acidic Depression,F139XY012OH
+139A,A2 Acid Depression,370,Moist Acidic Slopes,F139XY004OH
+139A,A3 Moist Acid Plains,436,Moist Acidic Slopes,F139XY004OH
+139A,A4 Acid Plains,214,Dry Acidic Till Plains,F139XY005OH
+139A,A5 Acid Slopes,123,Moist Acidic Slopes,F139XY004OH
+139A,Bedrock,21,Shallow Acidic Slopes,F139XY007OH
+139A,BH1 Wet Shale Depression,15,Wet Acidic Depression,F139XY012OH
+139A,BH2 Moist Shale,13,Moist Acidic Slopes,F139XY004OH
+139A,BH2 Shale Depression,26,Moist Acidic Slopes,F139XY004OH
+139A,BH5 Shale Slopes,54,Moist Acidic Slopes,F139XY004OH
+139A,BH6 Shallow Shale,10,Shallow Acidic Slopes,F139XY007OH
+139A,BL1 Wet Limestone Depression,2,Wet Calcareous Depression,F139XY011OH
+139A,BS1 Wet Sandstone Depression,1,Wet Acidic Depression,F139XY012OH
+139A,BS2 Sandstone Depression,44,Moist Acidic Slopes,F139XY004OH
+139A,BS3 Moist Sandstone,16,Moist Acidic Slopes,F139XY004OH
+139A,BS4 Sandstone Residuum,5,Shallow Acidic Slopes,F139XY007OH
+139A,BS5 Sandstone Slopes,108,Shallow Acidic Slopes,F139XY007OH
+139A,BS6 Shallow Sandstone,77,Shallow Acidic Slopes,F139XY007OH
+139A,C1 Wet Loamy Depression,463,Wet Calcareous Depression,F139XY011OH
+139A,C2 Loamy Depression,477,Moist Calcareous Till Flats,F139XY002OH
+139A,C3 Moist Loamy Plains,384,Moist Calcareous Till Flats,F139XY002OH
+139A,C4 Loamy Plains,264,Dry Calcareous Till Plains,F139XY003OH
+139A,C5 Loamy Slopes,166,Moist Calcareous Till Flats,F139XY002OH
+139A,CP2 Moist Loamy Prairie,2,Moist Calcareous Till Flats,F139XY002OH
+139A,F1 Floodplain,258,Moist Floodplain,F139XY008OH
+139A,F2 Wet Floodplain,226,Wet Floodplain,F139XY009OH
+139A,M2 Mucky Depression,31,Mucky Depression,F139XY013OH
+139A,Shoreline Complex,3,Coastal Dune Complex,F139XY001OH
+139A,Water,27,,
+139B,A1 Wet Acid Depression,104,Wet Acidic Depression,F139XY012OH
+139B,A2 Acid Depression,260,Moist Till Highlands,F139XY006OH
+139B,A3 Moist Acid Plains,305,Moist Till Highlands,F139XY006OH
+139B,A4 Acid Plains,184,Moist Till Highlands,F139XY006OH
+139B,A5 Acid Slopes,60,Moist Till Highlands,F139XY006OH
+139B,Bedrock,54,Shallow Acidic Slopes,F139XY007OH
+139B,BH2 Shale Depression,6,Moist Till Highlands,F139XY006OH
+139B,BH5 Shale Slopes,4,Shallow Acidic Slopes,F139XY007OH
+139B,BS4 Sandstone Residuum,2,Shallow Acidic Slopes,F139XY007OH
+139B,BS5 Sandstone Slopes,24,Shallow Acidic Slopes,F139XY007OH
+139B,BS6 Shallow Sandstone,9,Shallow Acidic Slopes,F139XY007OH
+139B,C1 Wet Loamy Depression,157,Wet Calcareous Depression,F139XY011OH
+139B,C2 Loamy Depression,113,Moist Calcareous Till Flats,F139XY002OH
+139B,C3 Moist Loamy Plains,26,Moist Calcareous Till Flats,F139XY002OH
+139B,C4 Loamy Plains,10,Dry Calcareous Till Plains,F139XY003OH
+139B,C5 Loamy Slopes,2,Moist Calcareous Till Flats,F139XY002OH
+139B,F1 Floodplain,103,Moist Floodplain,F139XY008OH
+139B,F2 Wet Floodplain,98,Wet Floodplain,F139XY009OH
+139B,M2 Mucky Depression,20,Mucky Depression,F139XY013OH
+139B,Water,12,,
+94AA,BH2 Shale Depression,1,,
+94AA,BL5 Limestone Slopes,1,,
+94AA,C1 Wet Loamy Depression,191,Snowy Wet Loamy Depression ,F094AA004MI
+94AA,C2 Loamy Depression,145,Snowy Loamy Depression ,F094AA003MI
+94AA,C3 Moist Loamy Plains,87,Snowy Loamy Depression ,F094AA003MI
+94AA,C4 Loamy Plains,292,Snowy Loamy Till ,F094AA002MI
+94AA,C5 Loamy Slopes,173,Snowy Loamy Till ,F094AA002MI
+94AA,CP3 Moist Loamy Prairie,2,Snowy Loamy Depression ,F094AA003MI
+94AA,F1 Floodplain,20,Snowy Floodplain ,F094AA011MI
+94AA,F2 Wet Floodplain,75,Snowy Wet Floodplain ,F094AA012MI
+94AA,M1 Acidic Peaty Depression,24,Snowy Acidic Peaty Depression ,F094AA014MI
+94AA,M2 Mucky Depression,170,Snowy Mucky Depression ,F094AA013MI
+94AA,S1 Wet Sandy Depression,163,Snowy Wet Sandy Depression ,F094AA010MI
+94AA,S2 Sandy Depression,72,Snowy Sandy Depression ,F094AA009MI
+94AA,S3 Moist Sandy Plains,12,Snowy Sandy Depression ,F094AA009MI
+94AA,S4 Sandy Plains,71,Snowy Sandy Drift ,F094AA006MI
+94AA,S5 Sandy Slopes,50,Snowy Sandy Drift ,F094AA006MI
+94AA,SA1 Wet Acidic Sandy Depression,24,Snowy Wet Acidic Sandy Depression ,F094AA008MI
+94AA,SA2 Acidic Depression,284,Snowy Acidic Sandy Depression ,F094AA007MI
+94AA,SA3 Moist Acidic Plains,221,Snowy Acidic Sandy Depression ,F094AA007MI
+94AA,SR4 Rich Sandy Plains,181,Snowy Sandy Drift ,F094AA006MI
+94AA,SR5 Rich Sandy Slopes,71,Snowy Sandy Drift ,F094AA006MI
+94AA,SRS4 Rich Spodic Plains,177,Snowy Rich Sandy Drift ,F094AA005MI
+94AA,SRS5 Rich Spodic Slopes,125,Snowy Rich Sandy Drift ,F094AA005MI
+94AA,SS4 Spodic Plains,515,Snowy Sandy Drift ,F094AA006MI
+94AA,SS5 Spodic Slopes,319,Snowy Sandy Drift ,F094AA006MI
+94AA,Water,7,,
+94AB,BL2 Limestone Depression,2,Loamy Depression ,F094AB016MI
+94AB,BL5 Limestone Slopes,2,Shallow Limestone Drift ,F094CY038MI
+94AB,BL6 Shallow Limestone,12,Shallow Limestone Drift ,F094CY038MI
+94AB,C1 Wet Loamy Depression,418,Wet Loamy Depression ,F094AB017MI
+94AB,C2 Loamy Depression,283,Loamy Depression ,F094AB016MI
+94AB,C3 Moist Loamy Plains,178,Loamy Depression ,F094AB016MI
+94AB,C4 Loamy Plains,170,Loamy Till ,F094AB015MI
+94AB,C5 Loamy Slopes,130,Loamy Till ,F094AB015MI
+94AB,CP2 Moist Loamy Prairie,9,Loamy Depression ,F094AB016MI
+94AB,F1 Floodplain,39,Floodplain ,F094AB024MI
+94AB,F2 Wet Floodplain,101,Wet Floodplain ,F094AB025MI
+94AB,M1 Acidic Peaty Depression,110,Acidic Peaty Depression ,F094AB027MI
+94AB,M2 Mucky Depression,287,Mucky Depression ,F094AB026MI
+94AB,S1 Wet Sandy Depression,414,Wet Sandy Depression ,F094AB023MI
+94AB,S2 Sandy Depression,14,Sandy Depression ,F094AB022MI
+94AB,S3 Moist Sandy Plains,24,Sandy Depression ,F094AB022MI
+94AB,S4 Sandy Plains,391,Sandy Drift ,F094AB019MI
+94AB,S5 Sandy Slopes,170,Sandy Drift ,F094AB019MI
+94AB,SA1 Wet Acidic Sandy Depression,64,Wet Acidic Sandy Depression ,F094AB021MI
+94AB,SA2 Acidic Depression,644,Acidic Sandy Depression ,F094AB020MI
+94AB,SA3 Moist Acidic Plains,388,Acidic Sandy Depression ,F094AB020MI
+94AB,SR4 Rich Sandy Plains,149,Rich Sandy Drift ,F094AB018MI
+94AB,SR5 Rich Sandy Slopes,100,Rich Sandy Drift ,F094AB018MI
+94AB,SRS4 Rich Spodic Plains,41,Rich Sandy Drift ,F094AB018MI
+94AB,SRS5 Rich Spodic Slopes,6,Rich Sandy Drift ,F094AB018MI
+94AB,SS4 Spodic Plains,646,Rich Sandy Drift ,F094AB018MI
+94AB,SS5 Spodic Slopes,235,Rich Sandy Drift ,F094AB018MI
+94AB,Water,13,,
+94C,Bedrock,2,Shallow Limestone Drift ,F094CY038MI
+94C,BL1 Wet Limestone Depression,6,Shallow Limestone Drift ,F094CY038MI
+94C,BL2 Limestone Depression,19,Shallow Limestone Drift ,F094CY038MI
+94C,BL4 Limestone Residuum,1,Shallow Limestone Drift ,F094CY038MI
+94C,BL5 Limestone Slopes,2,Shallow Limestone Drift ,F094CY038MI
+94C,BL6 Shallow Limestone,33,Shallow Limestone Drift ,F094CY038MI
+94C,C1 Wet Loamy Depression,124,Cool Wet Loamy Depression ,F094CY030MI
+94C,C2 Loamy Depression,84,Cool Loamy Depression ,F094CY029MI
+94C,C3 Moist Loamy Plains,59,Cool Loamy Depression ,F094CY029MI
+94C,C4 Loamy Plains,91,Cool Loamy Till ,F094CY028MI
+94C,C5 Loamy Slopes,31,Cool Loamy Till ,F094CY028MI
+94C,CP2 Moist Loamy Prairie,20,Cool Loamy Depression ,F094CY029MI
+94C,CP3 Moist Loamy Prairie,2,Cool Loamy Depression ,F094CY029MI
+94C,F1 Floodplain,8,Cool Floodplain ,F094CY036MI
+94C,F2 Wet Floodplain,21,Cool Wet Floodplain ,F094CY037MI
+94C,M1 Acidic Peaty Depression,15,Acidic Peaty Depression ,F094AB027MI
+94C,M2 Mucky Depression,122,Mucky Depression ,F094AB026MI
+94C,S1 Wet Sandy Depression,118,Cool Wet Sandy Depression ,F094CY035MI
+94C,S2 Sandy Depression,7,Cool Sandy Depression ,F094CY034MI
+94C,S4 Sandy Plains,32,Sandy Drift ,F094AB019MI
+94C,S5 Sandy Slopes,17,Sandy Drift ,F094AB019MI
+94C,SA1 Wet Acidic Sandy Depression,9,Cool Wet Acidic Sandy Depression ,F094CY033MI
+94C,SA2 Acidic Depression,189,Cool Acidic Sandy Depression ,F094CY032MI
+94C,SA3 Moist Acidic Plains,133,Cool Acidic Sandy Depression ,F094CY032MI
+94C,Shoreline Complex,7,Cobble Shore and Fen Complex ,R094CY001MI
+94C,SR4 Rich Sandy Plains,41,Cool Rich Sandy Drift ,F094CY031MI
+94C,SR5 Rich Sandy Slopes,12,Cool Rich Sandy Drift ,F094CY031MI
+94C,SRS4 Rich Spodic Plains,60,Cool Rich Sandy Drift ,F094CY031MI
+94C,SRS5 Rich Spodic Slopes,17,Cool Rich Sandy Drift ,F094CY031MI
+94C,SS4 Spodic Plains,239,Cool Rich Sandy Drift ,F094CY031MI
+94C,SS5 Spodic Slopes,67,Cool Rich Sandy Drift ,F094CY031MI
+94C,Water,5,,
+96A,BH2 Shale Depression,1,Snowy Loamy Depression ,F096XA004MI
+96A,BL1 Wet Limestone Depression,4,Snowy Wet Loamy Depression ,F096XA005MI
+96A,BL6 Shallow Limestone,2,Shallow Limestone Drift ,F094CY038MI
+96A,C1 Wet Loamy Depression,90,Snowy Wet Loamy Depression ,F096XA005MI
+96A,C2 Loamy Depression,63,Snowy Loamy Depression ,F096XA004MI
+96A,C3 Moist Loamy Plains,31,Snowy Loamy Depression ,F096XA004MI
+96A,C4 Loamy Plains,120,Snowy Loamy Till,F096XA003MI
+96A,C5 Loamy Slopes,150,Snowy Loamy Till,F096XA003MI
+96A,CP3 Moist Loamy Prairie,2,Snowy Loamy Depression ,F096XA004MI
+96A,F1 Floodplain,8,Snowy Floodplain ,F096XA012MI
+96A,F2 Wet Floodplain,16,Snowy Wet Floodplain ,F096XA013MI
+96A,M1 Acidic Peaty Depression,1,Snowy Acidic Peaty Depression ,F096XA015MI
+96A,M2 Mucky Depression,69,Snowy Mucky Depression ,F096XA014MI
+96A,S1 Wet Sandy Depression,64,Snowy Wet Sandy Depression ,F096XA011MI
+96A,S2 Sandy Depression,12,Snowy Sandy Depression ,F096XA010MI
+96A,S3 Moist Sandy Plains,29,Snowy Sandy Depression ,F096XA010MI
+96A,S4 Sandy Plains,41,Snowy Sandy Drift ,F096XA007MI
+96A,S5 Sandy Slopes,49,Snowy Sandy Drift ,F096XA007MI
+96A,SA1 Wet Acidic Sandy Depression,6,Snowy Wet Acidic Sandy Depression ,F096XA009MI
+96A,SA2 Acidic Depression,117,Snowy Acidic Sandy Depression ,F096XA008MI
+96A,SA3 Moist Acidic Plains,80,Snowy Acidic Sandy Depression ,F096XA008MI
+96A,Shoreline Complex,8,Coastal Dune Complex ,R096XY001MI
+96A,SR4 Rich Sandy Plains,72,Snowy Sandy Drift ,F096XA007MI
+96A,SR5 Rich Sandy Slopes,49,Snowy Sandy Drift ,F096XA007MI
+96A,SRS4 Rich Spodic Plains,138,Snowy Rich Sandy Drift ,F096XA006MI
+96A,SRS5 Rich Spodic Slopes,125,Snowy Rich Sandy Drift ,F096XA006MI
+96A,SS4 Spodic Plains,203,Snowy Sandy Drift ,F096XA007MI
+96A,SS5 Spodic Slopes,155,Snowy Sandy Drift ,F096XA007MI
+96A,Water,5,,
+96B,C1 Wet Loamy Depression,99,Wet Loamy Depression ,F096XB018MI
+96B,C2 Loamy Depression,100,Loamy Depression ,F096XB017MI
+96B,C3 Moist Loamy Plains,15,Loamy Depression ,F096XB017MI
+96B,C4 Loamy Plains,197,Loamy Till ,F096XB016MI
+96B,C5 Loamy Slopes,66,Loamy Till ,F096XB016MI
+96B,F1 Floodplain,30,Floodplain ,F096XB025MI
+96B,F2 Wet Floodplain,63,Wet Floodplain ,F096XB026MI
+96B,M1 Acidic Peaty Depression,78,Acidic Peaty Depression ,F096XB028MI
+96B,M2 Mucky Depression,134,Mucky Depression ,F096XB027MI
+96B,S1 Wet Sandy Depression,211,Wet Sandy Depression ,F096XB024MI
+96B,S2 Sandy Depression,102,Sandy Depression ,F096XB023MI
+96B,S3 Moist Sandy Plains,87,Sandy Depression ,F096XB023MI
+96B,S4 Sandy Plains,154,Sandy Drift ,F096XB020MI
+96B,S5 Sandy Slopes,51,Sandy Drift ,F096XB020MI
+96B,SA1 Wet Acidic Sandy Depression,57,Wet Acidic Sandy Depression ,F096XB022MI
+96B,SA2 Acidic Depression,232,Acidic Sandy Depression ,F096XB021MI
+96B,SA3 Moist Acidic Plains,143,Acidic Sandy Depression ,F096XB021MI
+96B,Shoreline Complex,9,Coastal Dune Complex ,R096XY001MI
+96B,SR4 Rich Sandy Plains,374,Rich Sandy Drift ,F096XB019MI
+96B,SR5 Rich Sandy Slopes,135,Rich Sandy Drift ,F096XB019MI
+96B,SRS4 Rich Spodic Plains,25,Rich Sandy Drift ,F096XB019MI
+96B,SRS5 Rich Spodic Slopes,12,Rich Sandy Drift ,F096XB019MI
+96B,SS4 Spodic Plains,231,Rich Sandy Drift ,F096XB019MI
+96B,SS5 Spodic Slopes,124,Rich Sandy Drift ,F096XB019MI
+96B,Water,6,,
+97A,C1 Wet Loamy Depression,331,Wet Clayey Depression,F097XA023MI
+97A,C2 Loamy Depression,336,Clayey Depression,F097XA022MI
+97A,C3 Moist Loamy Plains,94,Clayey Depression,F097XA022MI
+97A,C4 Loamy Plains,277,Loamy Drift,F097XA018MI
+97A,C5 Loamy Slopes,125,Loamy Ravines,F097XA017MI
+97A,CP4 Loamy Prairie,3,Clayey Depression,F097XA022MI
+97A,F1 Floodplain,58,Sandy Floodplain,F097XA025MI
+97A,F2 Wet Floodplain,84,Wet Floodplain,F097XA027MI
+97A,M1 Acidic Peaty Depression,3,Acidic Peaty Depression,F097XA031MI
+97A,M2 Mucky Depression,337,Mucky Depression,F097XA030MI
+97A,S1 Wet Sandy Depression,176,Wet Sandy Flatwoods,F097XA008MI
+97A,S2 Sandy Depression,153,Sandy Depression,F097XA012MI
+97A,S3 Moist Sandy Plains,20,Sandy Depression,F097XA012MI
+97A,S4 Sandy Plains,357,Sandy Lake Plain,F097XA004MI
+97A,S5 Sandy Slopes,54,Sand Hills,F097XA010MI
+97A,SA1 Wet Acidic Sandy Depression,16,Wet Acidic Sandy Flatwoods,F097XA007MI
+97A,SA2 Acidic Depression,74,Acidic Sandy Flatwoods,F097XA006MI
+97A,SA3 Moist Acidic Plains,76,Acidic Sandy Flatwoods,F097XA006MI
+97A,Shoreline Complex,13,Beach And Foredune,R097XA001MI
+97A,SR5 Rich Sandy Slopes,75,Sand Hills,F097XA010MI
+97A,Water,6,,
+97B,BL1 Wet Limestone Depression,5,Chicago Dolomite Prairie,R097XB052IL
+97B,BL6 Shallow Limestone,7,Chicago Dolomite Prairie,R097XB052IL
+97B,C1 Wet Loamy Depression,249,Chicago Wet Clayey Flats,R097XB047IL
+97B,C2 Loamy Depression,39,Chicago Clayey Flats,R097XB046IL
+97B,C3 Moist Loamy Plains,109,Chicago Clayey Flats,R097XB046IL
+97B,C4 Loamy Plains,117,Chicago Clayey Lake Plain,R097XB045IL
+97B,C5 Loamy Slopes,2,Chicago Loamy Ravine,F097XB041IN
+97B,CP2 Moist Loamy Prairie,47,Chicago Clayey Flats,R097XB046IL
+97B,CP3 Moist Loamy Prairie,3,Chicago Clayey Flats,R097XB046IL
+97B,CP4 Loamy Prairie,8,Chicago Clayey Lake Plain,R097XB045IL
+97B,F1 Floodplain,5,Chicago Floodplain,F097XB044MI
+97B,F2 Wet Floodplain,77,Chicago Wet Floodplain,F097XB049IN
+97B,M2 Mucky Depression,73,Chicago Mucky Depression,R097XB051IL
+97B,S1 Wet Sandy Depression,31,Chicago Wet Sandy Swale,R097XB036IN
+97B,S2 Sandy Depression,34,Chicago Sandy Swale,F097XB035IN
+97B,S3 Moist Sandy Plains,4,Chicago Sandy Swale,F097XB035IN
+97B,S4 Sandy Plains,38,Chicago Sandy Lake Plain,F097XB033IN
+97B,S5 Sandy Slopes,3,Chicago Sand Hills,F097XB040IN
+97B,SA1 Wet Acidic Sandy Depression,14,Wet Acidic Sandy Flatwoods,F097XA007MI
+97B,SA2 Acidic Depression,15,Acidic Sandy Flatwoods,F097XA006MI
+97B,SA3 Moist Acidic Plains,6,Acidic Sandy Flatwoods,F097XA006MI
+97B,Shoreline Complex,7,Beach And Foredune,R097XA001MI
+97B,SR5 Rich Sandy Slopes,3,Chicago Sand Hills,F097XB040IN
+97B,Water,42,,
+98A,BL1 Wet Limestone Depression,1,Wet Till Depression ,F098XA012MI
+98A,BL2 Limestone Depression,1,Till Flats ,F098XA011MI
+98A,BL6 Shallow Limestone,2,Limestone Drift Plains,F098XA024MI
+98A,BS5 Sandstone Slopes,2,Sandstone Drift Plains,F098XA023MI
+98A,BS6 Shallow Sandstone,9,Sandstone Drift Plains,F098XA023MI
+98A,C1 Wet Loamy Depression,1090,Wet Till Depression ,F098XA012MI
+98A,C2 Loamy Depression,1125,Till Flats ,F098XA011MI
+98A,C3 Moist Loamy Plains,289,Till Flats ,F098XA011MI
+98A,C4 Loamy Plains,1143,Loamy Drift Plains ,F098XA015MI
+98A,C5 Loamy Slopes,416,Loamy Drift Backslopes,F098XA022MI
+98A,CP2 Moist Loamy Prairie,4,Loamy Drift Prairie ,F098XA016MI
+98A,CP3 Moist Loamy Prairie,2,Loamy Drift Prairie ,F098XA016MI
+98A,CP4 Loamy Prairie,65,Loamy Drift Prairie ,F098XA016MI
+98A,F1 Floodplain,86,Floodplains,F098XA003MI
+98A,F2 Wet Floodplain,159,Wet Floodplains,F098XA004MI
+98A,M1 Acidic Peaty Depression,11,Acidic Peaty Depressions ,F098XA007MI
+98A,M2 Mucky Depression,693,Mucky Depressions,F098XA006MI
+98A,S1 Wet Sandy Depression,294,Wet Drift Depressions,F098XA020MI
+98A,S2 Sandy Depression,223,Drift Flats ,F098XA019MI
+98A,S3 Moist Sandy Plains,65,Drift Flats ,F098XA019MI
+98A,S4 Sandy Plains,1094,Sandy Drift Plains ,F098XA014MI
+98A,S5 Sandy Slopes,324,Sandy Drift Backslopes,F098XA021MI
+98A,SA1 Wet Acidic Sandy Depression,1,Wet Acid Drift Depressions,F098XA018MI
+98A,SA2 Acidic Depression,35,Acid Drift Flats ,F098XA017MI
+98A,SA3 Moist Acidic Plains,4,Acid Drift Flats ,F098XA017MI
+98A,Water,23,,
+98A2,C1 Wet Loamy Depression,241,Wet Till Depression ,F098XA012MI
+98A2,C2 Loamy Depression,201,Till Flats ,F098XA011MI
+98A2,C3 Moist Loamy Plains,39,Till Flats ,F098XA011MI
+98A2,C4 Loamy Plains,248,Pine Loamy Till Knolls ,F098XA008MI
+98A2,C5 Loamy Slopes,115,Loamy Drift Backslopes,F098XA022MI
+98A2,F1 Floodplain,43,Floodplains,F098XA003MI
+98A2,F2 Wet Floodplain,75,Wet Floodplains,F098XA004MI
+98A2,M1 Acidic Peaty Depression,3,Acidic Peaty Depressions ,F098XA007MI
+98A2,M2 Mucky Depression,384,Mucky Depressions,F098XA006MI
+98A2,S1 Wet Sandy Depression,183,Wet Drift Depressions,F098XA020MI
+98A2,S2 Sandy Depression,186,Drift Flats ,F098XA019MI
+98A2,S3 Moist Sandy Plains,23,Drift Flats ,F098XA019MI
+98A2,S4 Sandy Plains,482,Pine Sandy Drift Plains ,F098XA013MI
+98A2,S5 Sandy Slopes,171,Sandy Drift Backslopes,F098XA021MI
+98A2,SA2 Acidic Depression,55,Wet Acid Drift Depressions,F098XA018MI
+98A2,SA3 Moist Acidic Plains,61,Acid Drift Flats ,F098XA017MI
+98A2,Water,7,,
+98B,BL1 Wet Limestone Depression,14,Wet Kankakee Drift Flats,F098XB034IN
+98B,BL2 Limestone Depression,2,Kankakee Drift Flats,F098XB033IN
+98B,BL4 Limestone Residuum,1,Kankakee Limestone Prairies,F098XB035IN
+98B,BL6 Shallow Limestone,6,Kankakee Limestone Prairies,F098XB035IN
+98B,BS1 Wet Sandstone Depression,8,Kankakee Limestone Prairies,F098XB035IN
+98B,C1 Wet Loamy Depression,354,Wet Kankakee Drift Flats,F098XB034IN
+98B,C2 Loamy Depression,108,Kankakee Drift Flats,F098XB033IN
+98B,C3 Moist Loamy Plains,54,Kankakee Drift Flats,F098XB033IN
+98B,C4 Loamy Plains,110,,
+98B,CP2 Moist Loamy Prairie,30,Kankakee Drift Flats,F098XB033IN
+98B,CP3 Moist Loamy Prairie,2,Kankakee Drift Flats,F098XB033IN
+98B,CP4 Loamy Prairie,29,Kankakee Drift Flats,F098XB033IN
+98B,F1 Floodplain,20,Kankakee Floodplains,F098XB025IN
+98B,F2 Wet Floodplain,69,Wet Kankakee Floodplains,F098XB026IN
+98B,M1 Acidic Peaty Depression,2,Kankakee Acidic Peaty Depressions,F098XB029IN
+98B,M2 Mucky Depression,356,Kankakee Mucky Depressions,F098XB028IN
+98B,S1 Wet Sandy Depression,129,Wet Kankakee Drift Flats,F098XB034IN
+98B,S2 Sandy Depression,75,Kankakee Drift Flats,F098XB033IN
+98B,S3 Moist Sandy Plains,71,Kankakee Drift Flats,F098XB033IN
+98B,S4 Sandy Plains,276,Kankakee Sand Dunes,F098XB030IN
+98B,S5 Sandy Slopes,8,Kankakee Sand Dunes,F098XB030IN
+98B,SA1 Wet Acidic Sandy Depression,22,Wet Kankakee Acid Interdunes,F098XB032IN
+98B,SA2 Acidic Depression,23,Kankakee Acid Interdunes,F098XB031IN
+98B,SA3 Moist Acidic Plains,16,Kankakee Acid Interdunes,F098XB031IN
+98B,Water,31,,
+99A,Bedrock,3,Shallow Limestone Drift,F099XY002MI
+99A,BL1 Wet Limestone Depression,14,Wet Lake Plain Flats,F099XY013MI
+99A,BL2 Limestone Depression,10,Lake Plain Flats,F099XY007MI
+99A,BL4 Limestone Residuum,3,Shallow Limestone Drift,F099XY002MI
+99A,BL5 Limestone Slopes,1,Shallow Limestone Drift,F099XY002MI
+99A,BL6 Shallow Limestone,48,Shallow Limestone Drift,F099XY002MI
+99A,C1 Wet Loamy Depression,754,Wet Lake Plain Flats,F099XY013MI
+99A,C2 Loamy Depression,1064,Lake Plain Flats,F099XY007MI
+99A,C3 Moist Loamy Plains,354,Lake Plain Flats,F099XY007MI
+99A,C4 Loamy Plains,200,Lake Plain Flats,F099XY007MI
+99A,C5 Loamy Slopes,21,Lake Plain Flats,F099XY007MI
+99A,CP2 Moist Loamy Prairie,30,Lake Plain Flats,F099XY007MI
+99A,F1 Floodplain,234,Moist Floodplain ,F099XY008MI
+99A,F2 Wet Floodplain,213,Wet Floodplain ,F099XY009MI
+99A,M2 Mucky Depression,87,Mucky Depression,F099XY014MI
+99A,S1 Wet Sandy Depression,152,Warm Wet Sandy Depression,F099XY011MI
+99A,S2 Sandy Depression,453,Warm Moist Sandy Depression,F099XY003MI
+99A,S3 Moist Sandy Plains,136,Warm Moist Sandy Depression,F099XY003MI
+99A,S4 Sandy Plains,222,Warm Dry Sandy Ridge,F099XY004MI
+99A,S5 Sandy Slopes,18,Warm Dry Sandy Ridge,F099XY004MI
+99A,Shoreline Complex,2,Coastal Dune Complex,F099XY001MI
+99A,Water,20,,
+99B,Bedrock,5,Sandstone Drift Plains,F098XA023MI
+99B,BL6 Shallow Limestone,10,Sandstone Drift Plains,F098XA023MI
+99B,BS2 Sandstone Depression,3,Sandstone Drift Plains,F098XA023MI
+99B,BS6 Shallow Sandstone,2,Sandstone Drift Plains,F098XA023MI
+99B,C1 Wet Loamy Depression,777,Wet Lake Plain Flats,F099XY013MI
+99B,C2 Loamy Depression,631,Lake Plain Flats,F099XY007MI
+99B,C3 Moist Loamy Plains,79,Lake Plain Flats,F099XY007MI
+99B,C4 Loamy Plains,185,Lake Plain Flats,F099XY007MI
+99B,C5 Loamy Slopes,36,Lake Plain Flats,F099XY007MI
+99B,CP2 Moist Loamy Prairie,25,Lake Plain Flats,F099XY007MI
+99B,CP3 Moist Loamy Prairie,10,Lake Plain Flats,F099XY007MI
+99B,F1 Floodplain,60,Moist Floodplain ,F099XY008MI
+99B,F2 Wet Floodplain,148,Wet Floodplain ,F099XY009MI
+99B,M1 Acidic Peaty Depression,8,Acidic Peaty Depression,F099XY015MI
+99B,M2 Mucky Depression,149,Mucky Depression,F099XY014MI
+99B,S1 Wet Sandy Depression,469,Cool Wet Sandy Depression,F099XY012MI
+99B,S2 Sandy Depression,665,Cool Moist Sandy Depression,F099XY005MI
+99B,S3 Moist Sandy Plains,149,Cool Moist Sandy Depression,F099XY005MI
+99B,S4 Sandy Plains,387,Cool Dry Sandy Ridge,F099XY006MI
+99B,S5 Sandy Slopes,37,Cool Dry Sandy Ridge,F099XY006MI
+99B,Shoreline Complex,6,Coastal Dune Complex,F099XY001MI
+99B,Water,11,,
