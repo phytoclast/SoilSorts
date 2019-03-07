@@ -1,5 +1,6 @@
 # load required libraries
-devtools::install_github("ncss-tech/soilDB", dependencies=FALSE, upgrade_dependencies=FALSE, force=T)
+#devtools::install_github("ncss-tech/soilDB", dependencies=FALSE, upgrade_dependencies=FALSE, force=T)
+#remotes::install_github("ncss-tech/soilDB", dependencies=FALSE, upgrade=FALSE, build=FALSE) #20190101
 library(soilDB)
 library(plyr)
 library(foreign)
@@ -89,6 +90,7 @@ pmmissing2 <- c(unique(pmmissing$compname))
 xOSD <- fetchOSD(pmmissing2[1:50], extended = TRUE) #Get OSD pmorigin for only bedrock soils lacking data for this field, only 50 at a time
 OSD.pmorigin <- xOSD$pmorigin
 OSD.pmkind <- xOSD$pmkind
+
 if(length(pmmissing2)>50){ 
   for(i in 2:floor(length(pmmissing2)/50+1)){ #loop through by 50 and add to list so as not to overwhelm internet query
     xOSD <- fetchOSD(pmmissing2[(i*50-49):(i*50)], extended = TRUE)
@@ -97,8 +99,10 @@ if(length(pmmissing2)>50){
     OSD.pmkind1 <- xOSD$pmkind
     OSD.pmkind <- rbind(OSD.pmkind, OSD.pmkind1)
   }}
-OSD.pmorigin$q_param <- tolower(OSD.pmorigin$q_param) #change case to match later comparison
-OSD.pmkind$q_param <- tolower(OSD.pmkind$q_param) #change case to match later comparison
+OSD.pmorigin$q_param <- tolower(OSD.pmorigin$pmorigin) #change case to match later comparison
+OSD.pmkind$q_param <- tolower(OSD.pmkind$pmkind) #change case to match later comparison
+OSD.pmkind <- subset(OSD.pmkind, select= -c(pmkind))
+OSD.pmorigin <- subset(OSD.pmorigin, select= -c(pmorigin))
 OSD.pm <- rbind(OSD.pmorigin, OSD.pmkind[grepl('stone', OSD.pmkind$q_param)|grepl('shale', OSD.pmkind$q_param)|grepl('igneous', OSD.pmkind$q_param),])#add in pmkind only if it contains bedrock info
 pm$compname <- toupper(pm$compname)
 pm <- merge(pm, OSD.pm[,c('series','q_param')], by.x = 'compname', by.y = 'series', all.x = TRUE)
@@ -302,7 +306,7 @@ s$Site<-ifelse(s$Site %in% "Not",
                ifelse(s$muname %in% c("flooded") | s$compname %in% c("Alluvial land")|grepl("flood",s$landform_string)|s$flood %in% 'flood' | grepl('flood', s$landform_string),
                       ifelse(s$Water_Table>=50,"F1 Floodplain","F2 Wet Floodplain"),
                       ifelse((s$Water_Table<0 & s$T150_OM >=20)|((grepl("Histic",s$taxsubgrp)|grepl("ists",s$taxsubgrp)|grepl("ists",s$taxclname))& s$Water_Table<=0),"Muck",
-                             ifelse(s$rockdepth < 150 ,"Bedrock","Not")))
+                             ifelse(s$rockdepth < 150 & s$Water_Table >100,"Bedrock","Not")))
                ,s$Site)
 #3 Sand-Till---------------_____________________________________________________________  
 s$Site<-ifelse(s$Site %in% "Not",
