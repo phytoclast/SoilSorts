@@ -15,16 +15,24 @@ t07 <- read.dbf("testmlra/ZonalTestt07.dbf")
 t01 <- read.dbf("testmlra/ZonalTestt01.dbf")
 MAP <- read.dbf("testmlra/ZonalTestPrecip.dbf")
 MAAT <- read.dbf("testmlra/ZonalTestMAAT.dbf")
+winterP <- read.dbf("testmlra/ZonalTestwinterP.dbf")
 s <- read.dbf("testmlra/s.dbf")
-
+s <- unique(subset(s, select= -c(LRU, Site)))
 t07$t07 <- t07$MEAN
 t01$t01 <- t01$MEAN
 MAP$MAP <- MAP$MEAN
-MAAT$MAAT <- MAAT$MEAN
+MAP$MAPMIN <- MAP$MIN
+MAP$MAPMAX <- MAP$MAX
+MAAT$MAAT <- MAAT$MEAN 
+MAAT$MAATMAX <- MAAT$MAX 
+MAAT$MAATMIN <- MAAT$MIN
+winterP$winterP <- winterP$MEAN
 
 MLRAclim <- merge(t07[,c('Unit','t07')], t01[,c('Unit','t01')], by='Unit')
-MLRAclim <- merge(MLRAclim, MAAT[,c('Unit','MAAT')], by='Unit')
-MLRAclim <- merge(MLRAclim, MAP[,c('Unit','MAP')], by='Unit')
+MLRAclim <- merge(MLRAclim, MAAT[,c('Unit','MAAT', 'MAATMAX','MAATMIN')], by='Unit')
+MLRAclim <- merge(MLRAclim, MAP[,c('Unit','MAP', 'MAPMAX','MAPMIN')], by='Unit')
+MLRAclim <- merge(MLRAclim, winterP[,c('Unit','winterP')], by='Unit')
+
 
 MLRAsoil <- merge(mlra_testunits[,c('Unit','Value')], mlra_testcomb[,c('MLRA_TESTU','MapunitRas','Count')], by.x='Value', by.y='MLRA_TESTU')
 MLRAsoil <- merge(MLRAsoil, s, by.x = 'MapunitRas', by.y = 'lmapunitii')
@@ -32,24 +40,73 @@ MLRAsoil <- merge(MLRAsoil, s, by.x = 'MapunitRas', by.y = 'lmapunitii')
 #by subgroup----
 SubgrpTotal <- aggregate(MLRAsoil[,c('Count')], by=list(MLRAsoil$Unit), FUN='sum')
 colnames(SubgrpTotal) <- c('Unit','totalCount')
-MLRAsoil <- merge(MLRAsoil, SubgrpTotal, by='Unit')
-MLRAsoil$percent <- MLRAsoil$Count/MLRAsoil$totalCount*100
-MLRAsoil <- subset(MLRAsoil, !is.na(percent) & !is.na(taxsubgrp) & !is.na(Unit))
-MLRAsoil$Unit1 <-  as.character(paste('M',MLRAsoil$Unit))
-lrumatrix <- makecommunitydataset(MLRAsoil, row = 'Unit1', column = 'taxsubgrp', value = 'percent')
+MLRAsoil2 <- merge(MLRAsoil, SubgrpTotal, by='Unit')
+MLRAsoil2$percent <- MLRAsoil2$Count/MLRAsoil2$totalCount*100
+MLRAsoil2 <- subset(MLRAsoil2, !is.na(percent) & !is.na(taxsubgrp) & !is.na(Unit))
+MLRAsoil2$Unit1 <-  as.character(paste0('M',MLRAsoil2$Unit))
+lrumatrix <- makecommunitydataset(MLRAsoil2, row = 'Unit1', column = 'taxsubgrp', value = 'percent')
 
 lrudist <- vegdist(lrumatrix,method='bray', na.rm=T)
 lrutree <- agnes(lrudist, method='average')
 
-lrudisttab <- as.data.frame(as.matrix(lrudist))
-plot(as.phylo(as.hclust(lrutree)), main='Relationships among MLRA Units based on soil subgroup composition',label.offset=0.125, direction='right', font=1, cex=0.85)
+plot(as.phylo(as.hclust(lrutree)), main='Units by subgroup',label.offset=0.125, direction='right', font=1, cex=0.85)
 
 lrutree2 <- nj(lrudist)
-plot(as.phylo((lrutree2)), main='Relationships among MLRA Units based on soil subgroup composition',label.offset=0.125, direction='right', font=1, cex=0.85)
-rownames(MLRAclim) <- MLRAclim$Unit
-gowerdist <- vegdist(MLRAclim[,2:5], method='gower')
+plot(as.phylo((lrutree2)), main='Units by subgroup',label.offset=0.125, direction='right', font=1, cex=0.85)
+#distmatrix
+matrixtable <- as.data.frame(as.matrix(lrudist))
+
+matrixtable <- matrixtable[c('M98.1', 'M98.2', 'M111C', 'M98.111B','M98.111C','M111B.1','M111B.2'),
+                           c('M98.1', 'M98.2', 'M111C', 'M98.111B','M98.111C','M111B.1','M111B.2')]
+#by series----
+SubgrpTotal <- aggregate(MLRAsoil[,c('Count')], by=list(MLRAsoil$Unit), FUN='sum')
+colnames(SubgrpTotal) <- c('Unit','totalCount')
+MLRAsoil2 <- merge(MLRAsoil, SubgrpTotal, by='Unit')
+MLRAsoil2$percent <- MLRAsoil2$Count/MLRAsoil2$totalCount*100
+MLRAsoil2$Unit1 <-  as.character(paste0('M',MLRAsoil2$Unit))
+MLRAsoil2 <- subset(MLRAsoil2, !is.na(percent) & !is.na(compname) & !is.na(Unit1))
+lrumatrix <- makecommunitydataset(MLRAsoil2, row = 'Unit1', column = 'compname', value = 'percent')
+
+lrudist <- vegdist(lrumatrix,method='bray', na.rm=T)
+lrutree <- agnes(lrudist, method='average')
+
+plot(as.phylo(as.hclust(lrutree)), main='Units by compname',label.offset=0.125, direction='right', font=1, cex=0.85)
+#distmatrix
+matrixtable <- as.data.frame(as.matrix(lrudist))
+
+matrixtable <- matrixtable[c('M98.1', 'M98.2', 'M111C', 'M98.111B','M98.111C','M111B.1','M111B.2'),
+                           c('M98.1', 'M98.2', 'M111C', 'M98.111B','M98.111C','M111B.1','M111B.2')]
+#top series
+MLRAsoil3<- aggregate(MLRAsoil2[,c('percent')], by=list(MLRAsoil2$Unit, MLRAsoil2$compname), FUN='sum')
+colnames(MLRAsoil3) <- c('Unit','compname','percent')
+MLRAsoil3 <- MLRAsoil3[with(MLRAsoil3, order(Unit, -percent)),]
+MLRAsoil3$rownumber <-  1:nrow(MLRAsoil3)
+MLRArnk <- aggregate(MLRAsoil3$rownumber, by=list(MLRAsoil3$Unit), FUN='min')
+colnames(MLRArnk) <- c('Unit', 'rowmin')
+MLRAsoil3 <- merge(MLRAsoil3, MLRArnk, by='Unit')
+MLRAsoil3$rank <- MLRAsoil3$rownumber-MLRAsoil3$rowmin+1
+topten <- MLRAsoil3[MLRAsoil3$rank <= 10,]
+topten$Unit <- as.character(topten$Unit)
+topten$compname <- as.character(topten$compname)
+units <- unique(topten$Unit)
+
+topten2 <- topten[topten$Unit %in% units[1] &  topten$rank %in% c(1:10),c('compname')]
+for (n in 2:length(unique(topten$Unit))){
+toptenn <- topten[topten$Unit %in% units[n] &  topten$rank %in% c(1:10),c('compname')]
+topten2 <- cbind(topten2,  toptenn)
+}
+
+colnames(topten2) <- paste0('M',units)
+write.csv(topten2,'testmlra/toptencompbyMLRA.csv')
+topten2a <- topten2[,c('M98-1', 'M98-2', 'M111C', 'M98-111B','M98-111C','M111B-1','M111B-2')]
+#clim
+rownames(MLRAclim) <- paste0('M',MLRAclim$Unit)
+gowerdist <- vegdist(MLRAclim[,2:ncol(MLRAclim)], method='gower')
 
 gwoertree <- agnes(gowerdist, method='average')
-plot(as.phylo(as.hclust(gwoertree)), main='Relationships among MLRA Units based on soil subgroup composition',label.offset=0.125, direction='right', font=1, cex=0.85)
-
+plot(as.phylo(as.hclust(gwoertree)), main='Units by climate',label.offset=0.125, direction='right', font=1, cex=0.85)
+matrixtable <- as.data.frame(as.matrix(gowerdist))
+combdist <- gowerdist+lrudist
+combtree <- agnes(combdist, method='average')
+plot(as.phylo(as.hclust(combtree)), main='Units by subgroup and climate',label.offset=0.125, direction='right', font=1, cex=0.85)
 
