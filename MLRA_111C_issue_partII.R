@@ -31,7 +31,7 @@ winterP$winterP <- winterP$MEAN
 MLRAclim <- merge(t07[,c('Unit','t07')], t01[,c('Unit','t01')], by='Unit')
 MLRAclim <- merge(MLRAclim, MAAT[,c('Unit','MAAT', 'MAATMAX','MAATMIN')], by='Unit')
 MLRAclim <- merge(MLRAclim, MAP[,c('Unit','MAP', 'MAPMAX','MAPMIN')], by='Unit')
-MLRAclim <- merge(MLRAclim, winterP[,c('Unit','winterP')], by='Unit')
+MLRAclim <- merge(MLRAclim, winterP[,c('Unit','winterP','COUNT')], by='Unit')
 
 
 MLRAsoil <- merge(mlra_testunits[,c('Unit','Value')], mlra_testcomb[,c('MLRA_TESTU','MapunitRas','Count')], by.x='Value', by.y='MLRA_TESTU')
@@ -58,6 +58,30 @@ matrixtable <- as.data.frame(as.matrix(lrudist))
 
 matrixtable <- matrixtable[c('M98.1', 'M98.2', 'M111C', 'M98.111B','M98.111C','M111B.1','M111B.2'),
                            c('M98.1', 'M98.2', 'M111C', 'M98.111B','M98.111C','M111B.1','M111B.2')]
+
+
+#regroup 
+MLRAsoil$Unit <- as.character(MLRAsoil$Unit)
+MLRAsoil$Unit2 <- MLRAsoil$Unit
+MLRAsoil$Unit2 <- ifelse(MLRAsoil$Unit %in% c('98-1', '98-2', '98-3'), '98', MLRAsoil$Unit2)
+MLRAsoil$Unit2 <- ifelse(MLRAsoil$Unit %in% c('98-111C', '98-111B'), '98-111', MLRAsoil$Unit2)
+MLRAsoil$Unit2 <- ifelse(MLRAsoil$Unit %in% c('97','97-98', '97-110'), '97', MLRAsoil$Unit2)
+MLRAsoil$Unit2 <- ifelse(MLRAsoil$Unit %in% c('96','96-98','96-94A'), '96', MLRAsoil$Unit2)
+
+SubgrpTotal <- aggregate(MLRAsoil[,c('Count')], by=list(MLRAsoil$Unit2), FUN='sum')
+colnames(SubgrpTotal) <- c('Unit2','totalCount')
+MLRAsoil2 <- merge(MLRAsoil, SubgrpTotal, by='Unit2')
+MLRAsoil2 <- subset(MLRAsoil2, !Unit2 %in% c('110-98','98-110-1','98-111C-2'))
+MLRAsoil2$percent <- MLRAsoil2$Count/MLRAsoil2$totalCount*100
+MLRAsoil2 <- subset(MLRAsoil2, !is.na(percent) & !is.na(taxsubgrp) & !is.na(Unit2))
+MLRAsoil2$Unit1 <-  as.character(paste0('M',MLRAsoil2$Unit2))
+lrumatrix <- makecommunitydataset(MLRAsoil2, row = 'Unit1', column = 'taxsubgrp', value = 'percent')
+
+lrudist <- vegdist(lrumatrix,method='bray', na.rm=T)
+lrutree <- agnes(lrudist, method='average')
+
+plot(as.phylo(as.hclust(lrutree)), main='Units by subgroup',label.offset=0.125, direction='right', font=1, cex=0.85)
+
 #by series----
 SubgrpTotal <- aggregate(MLRAsoil[,c('Count')], by=list(MLRAsoil$Unit), FUN='sum')
 colnames(SubgrpTotal) <- c('Unit','totalCount')
@@ -102,6 +126,27 @@ topten2a <- topten2[,c('M98-1', 'M98-2', 'M111C', 'M98-111B','M98-111C','M111B-1
 #clim
 rownames(MLRAclim) <- paste0('M',MLRAclim$Unit)
 gowerdist <- vegdist(MLRAclim[,2:ncol(MLRAclim)], method='gower')
+
+gwoertree <- agnes(gowerdist, method='average')
+plot(as.phylo(as.hclust(gwoertree)), main='Units by climate',label.offset=0.125, direction='right', font=1, cex=0.85)
+matrixtable <- as.data.frame(as.matrix(gowerdist))
+combdist <- gowerdist+lrudist
+combtree <- agnes(combdist, method='average')
+plot(as.phylo(as.hclust(combtree)), main='Units by subgroup and climate',label.offset=0.125, direction='right', font=1, cex=0.85)
+
+#clim regroup
+
+MLRAclim$Unit <- as.character(MLRAclim$Unit)
+MLRAclim$Unit2 <- MLRAclim$Unit
+MLRAclim$Unit2 <- ifelse(MLRAclim$Unit %in% c('98-1', '98-2', '98-3'), '98', MLRAclim$Unit2)
+MLRAclim$Unit2 <- ifelse(MLRAclim$Unit %in% c('98-111C', '98-111B'), '98-111', MLRAclim$Unit2)
+MLRAclim$Unit2 <- ifelse(MLRAclim$Unit %in% c('97','97-98', '97-110'), '97', MLRAclim$Unit2)
+MLRAclim$Unit2 <- ifelse(MLRAclim$Unit %in% c('96','96-98','96-94A'), '96', MLRAclim$Unit2)
+MLRAclim2 <- aggregate(MLRAclim[c('t07','t01','MAAT','MAATMAX','MAATMIN','MAP','MAPMAX','MAPMIN','winterP')], by=list(MLRAclim$Unit2), FUN = 'mean', weight=MLRAclim$COUNT)
+colnames(MLRAclim2) <- c('Unit2','t07','t01','MAAT','MAATMAX','MAATMIN','MAP','MAPMAX','MAPMIN','winterP')
+rownames(MLRAclim2) <- paste0('M',MLRAclim2$Unit2)
+MLRAclim2 <- subset(MLRAclim2, !Unit2 %in% c('110-98','98-110-1','98-111C-2'))
+gowerdist <- vegdist(MLRAclim2[,2:ncol(MLRAclim2)], method='gower')
 
 gwoertree <- agnes(gowerdist, method='average')
 plot(as.phylo(as.hclust(gwoertree)), main='Units by climate',label.offset=0.125, direction='right', font=1, cex=0.85)
