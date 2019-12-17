@@ -45,6 +45,18 @@ MLRAsoil2$percent <- MLRAsoil2$Count/MLRAsoil2$totalCount*100
 MLRAsoil2 <- subset(MLRAsoil2, !is.na(percent) & !is.na(taxsubgrp) & !is.na(Unit))
 MLRAsoil2$Unit1 <-  as.character(paste0('M',MLRAsoil2$Unit))
 lrumatrix <- makecommunitydataset(MLRAsoil2, row = 'Unit1', column = 'taxsubgrp', value = 'percent')
+#----count soils
+MLRAsoil2$mlra <- strsplit(as.character(MLRAsoil2$Unit), split='-')
+MLRAsoil2$mlra2 <- as.character(lapply(MLRAsoil2$mlra, "[[",1))
+
+selected <- subset(MLRAsoil2, mlra2 %in% c('94A','94C','96','97','98','99','139'))
+MLRAsoilsubgroups <- aggregate(selected$Count, by=list(selected$mlra2, selected$taxsubgrp), FUN='sum')
+colnames(MLRAsoilsubgroups) <- c('MLRA','subgroup','percent')
+MLRAsoilcompname <- aggregate(selected$Count, by=list(selected$mlra2, selected$compname), FUN='sum')
+colnames(MLRAsoilcompname) <- c('MLRA','compname','percent')
+write.csv(MLRAsoilsubgroups, 'MLRAsoilsubgroups.csv',row.names = F)
+write.csv(MLRAsoilcompname, 'MLRAsoilcompname.csv',row.names = F)
+#----
 
 lrudist <- vegdist(lrumatrix,method='bray', na.rm=T)
 lrutree <- agnes(lrudist, method='average')
