@@ -4,6 +4,9 @@
 library(soilDB)
 library(plyr)
 library(foreign)
+library(aqp)
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
 
 ######################################----
 
@@ -57,8 +60,8 @@ pm <- readRDS(file='fy2020/pm.RDS')
 #saveRDS(fc, file='fy2020/fc.RDS')
 fc <- readRDS(file='fy2020/fc.RDS')
 
-
-fc.site <- site(fc)
+fc.site <- aqp::rebuildSPC(fc)
+fc.site <- aqp::site(fc.site)
 fc.hz <- horizons(fc)
 fc.hz$rock <- 'Not'
 fc.hz$rock <- ifelse(fc.hz$texture %in% c('UWB','WB','BR')|grepl('Cr', fc.hz$hzname), 'BR','Soil')
