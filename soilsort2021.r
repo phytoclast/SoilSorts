@@ -6,21 +6,28 @@ library(foreign)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 #establish dominant MRLA per lmukey ----
 mlra <- read.csv('data/mlrarastertab.csv')
+mlra <- subset(mlra, Count > 100000)
+mu <- readRDS(file='fy2020/mu.RDS')
 mlra$MLRA.total <- mlra$Count
 mlra$MLRA.value <- mlra$Value
 mlra.mu <- read.csv('data/mlramapunitraster.csv')
 mlra.mu <- merge(mlra[,c('MLRA.value','LRU', 'MLRA.total')], mlra.mu[,c('Value', 'Count', 'Feature_MLRA1', 'ncnesoil30m')], by.x='MLRA.value', by.y='Feature_MLRA1')
+mlra.mu <- merge(mlra.mu, mu[,c('lmapunitiid', 'muiid')], by.x='ncnesoil30m', by.y='lmapunitiid')
 mlra.mu$percentmlra <- mlra.mu$Count/mlra.mu$MLRA.total*100
-mlra.mu.totals <- aggregate(list(mu.total=mlra.mu$percentmlra), by= list(mu = mlra.mu$ncnesoil30m), FUN ='sum')
-mlra.mu <- merge(mlra.mu, mlra.mu.totals, by.x='ncnesoil30m', by.y='mu')
-mlra.mu$affinity <- mlra.mu$percentmlra/mlra.mu$mu.total * 100
+mlra.mu.agg <- aggregate(list(pmlra = mlra.mu$percentmlra), by=list(muiid = mlra.mu$muiid, LRU = mlra.mu$LRU), FUN='sum')
+mlra.mu <- merge(mlra.mu, mlra.mu.agg, by=c('muiid', 'LRU'))
+mlra.mu.totals <- aggregate(list(mu.total=mlra.mu.agg$pmlra), by= list(mu = mlra.mu.agg$muiid), FUN ='sum')
+mlra.mu <- merge(mlra.mu, mlra.mu.totals, by.x='muiid', by.y='mu')
+mlra.mu$affinity <- mlra.mu$pmlra/mlra.mu$mu.total * 100
 
-mlra.best <- aggregate(list(best=mlra.mu$affinity), by= list(mu = mlra.mu$ncnesoil30m), FUN ='max')
-mlra.mu <- merge(mlra.mu, mlra.best, by.x='ncnesoil30m', by.y='mu')
+mlra.best <- aggregate(list(best=mlra.mu$affinity), by= list(mu = mlra.mu$muiid), FUN ='max')
+mlra.mu <- merge(mlra.mu, mlra.best, by.x='muiid', by.y='mu')
 mlra.mu$ofbest <- mlra.mu$affinity / mlra.mu$best *100
-
-
-
+mlra.mu.mlra <- unique(mlra.mu[,c('muiid', 'LRU')])
+mlra.mu.counts <-  aggregate(list(count=mlra.mu.mlra$LRU), by= list(mu = mlra.mu.mlra$muiid), FUN ='length')
+grrmu <-  subset(mlra.mu, ofbest > 85 & LRU %in% c('98A1','98A2', '98B', '97A', '97B', '99A', '99B', '96A', '96B', '94AA', '94AB', '94C'))
+not111 <- subset(mlra.mu, ofbest < 15 & LRU %in% c('111', '111B', '111C') & ncnesoil30m %in% grrmu$ncnesoil30m)
+write.csv(not111, 'output/not111.csv')
 ######################################----
 #comp <- get_component_data_from_NASIS_db(SS=F)
 #saveRDS(comp, file='fy2020/comp.RDS')
@@ -200,10 +207,9 @@ rm(compsorts, fc.hz.bedrock,  fc.hz.bedrock.min, fc.hz.carb, fc.hz50.total, fc.h
 
 summarydrcl <- aggregate(s[,c('drainagecl')], by=list(s$drainagecl, s$hydricrating,s$Water_Table), FUN = 'length')
 
-s <- merge(s, unique(LRUdupoutmu[,c('lmapunitiid', 'LRU')]), by.x='lmapunitiid', by.y = 'lmapunitiid', all.x = F)
 s <- merge(mlra.mu, s, by.x = 'ncnesoil30m', by.y = 'lmapunitiid')
-
-
+s.lmu <- unique(subset(s, select =c(muiid, ncnesoil30m)))
+s <- unique(subset(s, select = -c(ncnesoil30m, Value, Count, percentmlra, MLRA.value, MLRA.total, mu.total)))
 Appalachia <- c("124", "126", "127", "130A", "136", "139A", "139B", "140", "141", "142", "143", "144A", "144B", "145", "146", "147", "148", "149A", "149B", "153C", "153D")
 Plains <- c("101", "108", "110", "111A", "111B", "111C", "111D", "111E", "114A", "90A", "93B","94AA", "94AB", "94B",  "94C",  "95B",  "96A",  "96B",  "97A", "97B", "98A1", "98A2", "98B", "99A", "99B")
 Northern <- c("94AA", "94AB", "94B",  "94C",  "95B",  "96A",  "96B")
@@ -356,7 +362,7 @@ s$Site111<-ifelse(s$Site111 %in% "Not",
                          ifelse(s$compname %in% c("Beaches","Lake beach","Lake bluffs", "Dune land")| s$muname %in% c("Beach and Dune sand","Stony lake beaches","Dune land","Sand dunes"),"Shoreline Complex","Not"))
                   ,s$Site111)
 #2  Mucks ---------------------------------------------------------               
-s$Site111 <- ifelse(s$Site111 %in% "Not", ifelse(grepl("Histosols",s$compname)|grepl("ists",s$taxsubgrp)|grepl("ists",s$taxclname),"Muck",s$Site111),s$Site111)
+s$Site111 <- ifelse(s$Site111 %in% "Not", ifelse(grepl("Histosols",s$compname)|grepl("ists",s$taxsubgrp)|grepl("ists",s$taxclname)|grepl("organic",s$pmkind),"Muck",s$Site111),s$Site111)
 
 s$Site111 <- ifelse(s$Site111 %in% "Muck", ifelse(grepl("Terric",s$compname)|grepl("Terric",s$taxsubgrp)|grepl("Terric",s$taxclname),"Mineral Muck",s$Site111),s$Site111)
 s$Site111 <- ifelse(s$Site111 %in% "Muck", ifelse(grepl("Limnic",s$compname)|grepl("Limnic",s$taxsubgrp)|grepl("Limnic",s$taxclname),"Limnic Muck", "Deep Muck"),s$Site111)
@@ -364,7 +370,7 @@ s$Site111 <- ifelse(s$Site111 %in% "Muck", ifelse(grepl("Limnic",s$compname)|gre
 
 #3 lacustrine Parent Material  --------------------------------------------------------- 
 s$Site111<-ifelse(s$Site111 %in% "Not",
-                  ifelse(grepl("lacustrine",s$pmkind), 'lacustrine', s$Site111), s$Site111)
+                  ifelse(grepl("lacustrine",s$pmkind)|grepl("lake plain",s$pmkind), 'lacustrine', s$Site111), s$Site111)
 
 s$Site111<-ifelse(s$Site111 %in% "lacustrine",
                   ifelse(s$drainagecl %in% c("very poorly", "poorly"), 'Lacustrine Flatwood', 'Lacustrine Forest'), s$Site111)
@@ -388,8 +394,62 @@ s$Site111<-ifelse(s$Site111 %in% "bedrock",
                          ifelse(s$drainagecl %in% c("very poorly", "poorly", "somewhat poorly"), 'Mesic Bedrock Forest', 'Dry Bedrock Forest'))
                   , s$Site111)
 
+#5 outwash Parent Material  --------------------------------------------------------- 
+s$Site111<-ifelse(s$Site111 %in% "Not",
+                  ifelse(grepl("outwash",s$pmkind)|grepl("fluv",s$pmkind), 'outwash', s$Site111), s$Site111)
+
+s$Site111<-ifelse(s$Site111 %in% "outwash",
+                  ifelse(grepl("Mollisols",s$compname)|grepl("olls",s$taxsubgrp)|grepl("olls",s$taxclname), 
+                         ifelse((grepl("aquic",s$taxsubgrp) & !grepl("oxy",s$taxsubgrp))|
+                                  (grepl("Aquic",s$taxclname) & !grepl("Oxy",s$taxclname))| s$drainagecl %in% c("very poorly", "poorly"),
+                                'Wet Outwash Mollisol', 'Dry Outwash Intergrade'),
+                         ifelse(s$drainagecl %in% c("very poorly", "poorly", "somewhat poorly"), 'Outwash Upland', 'Dry Outwash Upland'))
+                  , s$Site111)
+
+#5 till Parent Material  --------------------------------------------------------- 
+s$Site111<-ifelse(s$Site111 %in% "Not",
+                  ifelse(grepl("till",s$pmkind)|grepl("drift",s$pmkind), 'till', s$Site111), s$Site111)
+
+s$Site111<-ifelse(s$Site111 %in% "till",
+                  ifelse(s$drainagecl %in% c("very poorly", "poorly"),'Till Depression',
+                         ifelse(s$drainagecl %in% c("very poorly", "poorly"),'Wet Till Ridge','Till Ridge'))
+                  , s$Site111)
+
+s <- merge(s.lmu, s, by='muiid')
+
+#### ---- exports2 
+muck <- subset(s, ofbest >= 99 & majcompflag %in% 'TRUE' & Site %in% 'M2 Mucky Depression' )
+m98 <- unique(muck[muck$LRU %in% c('98A1', '98A2') ,]$ncnesoil30m)
+m98B <- unique(muck[muck$LRU %in% c('98B') ,]$ncnesoil30m)
+m99 <- unique(muck[muck$LRU %in% c('99A', '99B') ,]$ncnesoil30m)
+m97 <- unique(muck[muck$LRU %in% c('97A') ,]$ncnesoil30m)
+m97B <- unique(muck[muck$LRU %in% c('97B') ,]$ncnesoil30m)
+m96 <- unique(muck[muck$LRU %in% c('96A','96B') ,]$ncnesoil30m)
+m94 <- unique(muck[muck$LRU %in% c('94AA', '94AB', '94C') ,]$ncnesoil30m)
+m111 <- unique(muck[muck$LRU %in% c('111', '111C', '111B') ,]$ncnesoil30m)
+write.dbf(muck, "output/s.dbf") 
+library(terra)
+soilrast <- rast('C:/a/Ecological_Sites/GIS/Soil/ncnesoil30m.tif')
+soil90 <- aggregate(soilrast, fact=3, fun='modal', na.rm=T)
+
+soil90[soil90 %in% m97] <- 970
+soil90[soil90 %in% m97B] <- 971
+soil90[soil90 %in% m99] <- 990
+soil90[soil90 %in% m98] <- 980
+soil90[soil90 %in% m98B] <- 981
+soil90[soil90 %in% m96] <- 960
+soil90[soil90 %in% m94] <- 940
+soil90[soil90 %in% m111] <- 1110
+soil90[!soil90 %in% c(940,960,970,971,980,990,1110)] <- 0
+writeRaster(soil90, 'output/mucks.tif', overwrite=T)
 
 
+muck98 <- subset(s, ofbest >= 99 & LRU %in% c('98A1','98A2') & Site %in% 'M2 Mucky Depression' )
+write.csv(muck98, 'output/muck98.csv', na='', row.names = F)
+muck97 <- subset(s, ofbest >= 99 & LRU %in% c('97A') & Site %in% 'M2 Mucky Depression' )
+write.csv(muck97, 'output/muck97.csv', na='', row.names = F)
+muck99 <- subset(s, ofbest >= 99 & LRU %in% c('99A','99B') & Site %in% 'M2 Mucky Depression' )
+write.csv(muck99, 'output/muck99.csv', na='', row.names = F)
 #### ---- exports
 sitesummary <- aggregate(s[,c('Site')], by = list(s$LRU, s$Site), FUN = 'length')
 colnames(sitesummary) <- c('LRU', 'Site', 'Rows')
