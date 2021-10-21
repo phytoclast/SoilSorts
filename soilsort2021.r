@@ -435,12 +435,12 @@ soil90 <- aggregate(soilrast, fact=3, fun='modal', na.rm=T)
 soil90[soil90 %in% m97] <- 970
 soil90[soil90 %in% m97B] <- 971
 soil90[soil90 %in% m99] <- 990
-soil90[soil90 %in% m98] <- 980
 soil90[soil90 %in% m98B] <- 981
+soil90[soil90 %in% m98] <- 980
 soil90[soil90 %in% m96] <- 960
 soil90[soil90 %in% m94] <- 940
 soil90[soil90 %in% m111] <- 1110
-soil90[!soil90 %in% c(940,960,970,971,980,990,1110)] <- 0
+soil90[!soil90 %in% c(940,960,970,971,980,981,990,1110)] <- 0
 writeRaster(soil90, 'output/mucks.tif', overwrite=T)
 
 

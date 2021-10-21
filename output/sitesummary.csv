@@ -1,61 +1,311 @@
 "LRU","Site","Rows"
-"139A","A1 Wet Acid Depression",158
-"139B","A1 Wet Acid Depression",65
-"139A","A2 Acid Depression",360
-"139B","A2 Acid Depression",249
-"139A","A3 Moist Acid Plains",406
-"139B","A3 Moist Acid Plains",276
-"139A","A4 Acid Plains",169
-"139B","A4 Acid Plains",167
-"139A","A5 Acid Slopes",100
-"139B","A5 Acid Slopes",52
-"139A","Bedrock",12
-"139B","Bedrock",1
-"139A","BH5 Shale Slopes",44
-"139B","BH5 Shale Slopes",1
-"139A","BH6 Shallow Shale",4
+"139A","A1 Wet Acid Depression",279
+"139B","A1 Wet Acid Depression",203
+"139A","A2 Acid Depression",508
+"139B","A2 Acid Depression",388
+"139A","A3 Moist Acid Plains",898
+"139B","A3 Moist Acid Plains",535
+"139A","A4 Acid Plains",311
+"139B","A4 Acid Plains",384
+"139A","A5 Acid Slopes",227
+"139B","A5 Acid Slopes",109
+"139A","Bedrock",93
+"139B","Bedrock",12
+"139A","BH4 Shale Residuum",13
+"139B","BH4 Shale Residuum",12
+"139A","BH5 Shale Slopes",120
+"139B","BH5 Shale Slopes",36
+"99A","BH5 Shale Slopes",4
+"139A","BH6 Shallow Shale",66
+"139B","BH6 Shallow Shale",44
+"98B","BH6 Shallow Shale",1
+"99A","BH6 Shallow Shale",1
+"94C","BL4 Limestone Residuum",1
+"98B","BL4 Limestone Residuum",2
 "99A","BL4 Limestone Residuum",3
+"139A","BL5 Limestone Slopes",1
+"94AA","BL5 Limestone Slopes",2
+"94AB","BL5 Limestone Slopes",2
+"94C","BL5 Limestone Slopes",2
+"98B","BL5 Limestone Slopes",4
 "99A","BL5 Limestone Slopes",1
-"99A","BL6 Shallow Limestone",40
-"139A","BS4 Sandstone Residuum",5
-"139B","BS4 Sandstone Residuum",1
-"139A","BS5 Sandstone Slopes",93
-"139B","BS5 Sandstone Slopes",12
-"139A","BS6 Shallow Sandstone",67
-"139B","BS6 Shallow Sandstone",2
-"139A","C1 Wet Loamy Depression",408
-"139B","C1 Wet Loamy Depression",140
-"99A","C1 Wet Loamy Depression",219
-"139A","C2 Loamy Depression",432
-"139B","C2 Loamy Depression",106
-"99A","C2 Loamy Depression",333
-"139A","C3 Moist Loamy Plains",362
-"139B","C3 Moist Loamy Plains",26
-"99A","C3 Moist Loamy Plains",195
-"139A","C4 Loamy Plains",238
-"139B","C4 Loamy Plains",8
-"99A","C4 Loamy Plains",33
-"139A","C5 Loamy Slopes",147
-"139B","C5 Loamy Slopes",2
-"99A","C5 Loamy Slopes",6
-"139A","CP2 Moist Loamy Prairie",1
-"99A","CP2 Moist Loamy Prairie",23
-"139A","F1 Floodplain",222
-"139B","F1 Floodplain",55
-"99A","F1 Floodplain",146
-"139A","F2 Wet Floodplain",182
-"139B","F2 Wet Floodplain",62
-"99A","F2 Wet Floodplain",126
-"139A","M2 Mucky Depression",21
-"139B","M2 Mucky Depression",19
-"99A","M2 Mucky Depression",12
-"99A","S1 Wet Sandy Depression",31
-"99A","S2 Sandy Depression",59
-"99A","S3 Moist Sandy Plains",34
-"99A","S4 Sandy Plains",39
-"99A","S5 Sandy Slopes",6
+"139A","BL6 Shallow Limestone",1
+"94AA","BL6 Shallow Limestone",2
+"94AB","BL6 Shallow Limestone",27
+"94C","BL6 Shallow Limestone",35
+"98B","BL6 Shallow Limestone",24
+"99A","BL6 Shallow Limestone",54
+"139A","BS4 Sandstone Residuum",47
+"139B","BS4 Sandstone Residuum",41
+"139A","BS5 Sandstone Slopes",220
+"139B","BS5 Sandstone Slopes",51
+"139A","BS6 Shallow Sandstone",178
+"139B","BS6 Shallow Sandstone",59
+"99A","BS6 Shallow Sandstone",3
+"99B","BS6 Shallow Sandstone",2
+"139A","C1 Wet Loamy Depression",695
+"139B","C1 Wet Loamy Depression",243
+"94AA","C1 Wet Loamy Depression",393
+"94AB","C1 Wet Loamy Depression",727
+"94C","C1 Wet Loamy Depression",183
+"96A","C1 Wet Loamy Depression",128
+"96B","C1 Wet Loamy Depression",224
+"97A","C1 Wet Loamy Depression",504
+"97B","C1 Wet Loamy Depression",195
+"98A2","C1 Wet Loamy Depression",486
+"98B","C1 Wet Loamy Depression",783
+"99A","C1 Wet Loamy Depression",1351
+"99B","C1 Wet Loamy Depression",1165
+"139A","C2 Loamy Depression",650
+"139B","C2 Loamy Depression",214
+"94AA","C2 Loamy Depression",287
+"94AB","C2 Loamy Depression",503
+"94C","C2 Loamy Depression",139
+"96A","C2 Loamy Depression",69
+"96B","C2 Loamy Depression",187
+"97A","C2 Loamy Depression",509
+"97B","C2 Loamy Depression",67
+"98A2","C2 Loamy Depression",425
+"98B","C2 Loamy Depression",304
+"99A","C2 Loamy Depression",1661
+"99B","C2 Loamy Depression",1001
+"139A","C3 Moist Loamy Plains",472
+"139B","C3 Moist Loamy Plains",108
+"94AA","C3 Moist Loamy Plains",136
+"94AB","C3 Moist Loamy Plains",217
+"94C","C3 Moist Loamy Plains",72
+"96A","C3 Moist Loamy Plains",44
+"96B","C3 Moist Loamy Plains",55
+"97A","C3 Moist Loamy Plains",168
+"97B","C3 Moist Loamy Plains",106
+"98A2","C3 Moist Loamy Plains",108
+"98B","C3 Moist Loamy Plains",282
+"99A","C3 Moist Loamy Plains",710
+"99B","C3 Moist Loamy Plains",152
+"139A","C4 Loamy Plains",300
+"139B","C4 Loamy Plains",22
+"94AA","C4 Loamy Plains",444
+"94AB","C4 Loamy Plains",299
+"94C","C4 Loamy Plains",182
+"96A","C4 Loamy Plains",140
+"96B","C4 Loamy Plains",311
+"97A","C4 Loamy Plains",434
+"97B","C4 Loamy Plains",91
+"98A2","C4 Loamy Plains",335
+"98B","C4 Loamy Plains",321
+"99A","C4 Loamy Plains",428
+"99B","C4 Loamy Plains",397
+"139A","C5 Loamy Slopes",238
+"139B","C5 Loamy Slopes",19
+"94AA","C5 Loamy Slopes",245
+"94AB","C5 Loamy Slopes",174
+"94C","C5 Loamy Slopes",93
+"96A","C5 Loamy Slopes",163
+"96B","C5 Loamy Slopes",150
+"97A","C5 Loamy Slopes",168
+"97B","C5 Loamy Slopes",3
+"98A2","C5 Loamy Slopes",124
+"98B","C5 Loamy Slopes",40
+"99A","C5 Loamy Slopes",87
+"99B","C5 Loamy Slopes",78
+"139A","CP2 Moist Loamy Prairie",4
+"94AA","CP2 Moist Loamy Prairie",1
+"94AB","CP2 Moist Loamy Prairie",21
+"94C","CP2 Moist Loamy Prairie",28
+"97B","CP2 Moist Loamy Prairie",15
+"98B","CP2 Moist Loamy Prairie",111
+"99A","CP2 Moist Loamy Prairie",34
+"99B","CP2 Moist Loamy Prairie",28
+"139A","CP3 Moist Loamy Prairie",1
+"94C","CP3 Moist Loamy Prairie",5
+"98B","CP3 Moist Loamy Prairie",38
+"99B","CP3 Moist Loamy Prairie",10
+"139A","CP4 Loamy Prairie",4
+"97A","CP4 Loamy Prairie",21
+"97B","CP4 Loamy Prairie",8
+"98B","CP4 Loamy Prairie",65
+"139A","F1 Floodplain",388
+"139B","F1 Floodplain",130
+"94AA","F1 Floodplain",33
+"94AB","F1 Floodplain",47
+"94C","F1 Floodplain",9
+"96A","F1 Floodplain",9
+"96B","F1 Floodplain",31
+"97A","F1 Floodplain",64
+"97B","F1 Floodplain",9
+"98A2","F1 Floodplain",55
+"98B","F1 Floodplain",43
+"99A","F1 Floodplain",331
+"99B","F1 Floodplain",59
+"139A","F2 Wet Floodplain",293
+"139B","F2 Wet Floodplain",95
+"94AA","F2 Wet Floodplain",72
+"94AB","F2 Wet Floodplain",119
+"94C","F2 Wet Floodplain",31
+"96A","F2 Wet Floodplain",22
+"96B","F2 Wet Floodplain",83
+"97A","F2 Wet Floodplain",127
+"97B","F2 Wet Floodplain",39
+"98A2","F2 Wet Floodplain",85
+"98B","F2 Wet Floodplain",121
+"99A","F2 Wet Floodplain",297
+"99B","F2 Wet Floodplain",157
+"94AA","M1 Acidic Peaty Depression",42
+"94AB","M1 Acidic Peaty Depression",123
+"94C","M1 Acidic Peaty Depression",20
+"96A","M1 Acidic Peaty Depression",4
+"96B","M1 Acidic Peaty Depression",80
+"97A","M1 Acidic Peaty Depression",6
+"98A2","M1 Acidic Peaty Depression",6
+"98B","M1 Acidic Peaty Depression",2
+"99B","M1 Acidic Peaty Depression",8
+"139A","M2 Mucky Depression",80
+"139B","M2 Mucky Depression",23
+"94AA","M2 Mucky Depression",592
+"94AB","M2 Mucky Depression",579
+"94C","M2 Mucky Depression",222
+"96A","M2 Mucky Depression",340
+"96B","M2 Mucky Depression",460
+"97A","M2 Mucky Depression",547
+"97B","M2 Mucky Depression",125
+"98A2","M2 Mucky Depression",456
+"98B","M2 Mucky Depression",414
+"99A","M2 Mucky Depression",224
+"99B","M2 Mucky Depression",645
+"94AA","S1 Wet Sandy Depression",369
+"94AB","S1 Wet Sandy Depression",652
+"94C","S1 Wet Sandy Depression",152
+"96A","S1 Wet Sandy Depression",194
+"96B","S1 Wet Sandy Depression",302
+"97A","S1 Wet Sandy Depression",312
+"97B","S1 Wet Sandy Depression",55
+"98A2","S1 Wet Sandy Depression",352
+"98B","S1 Wet Sandy Depression",155
+"99A","S1 Wet Sandy Depression",187
+"99B","S1 Wet Sandy Depression",702
+"94AA","S2 Sandy Depression",170
+"94AB","S2 Sandy Depression",129
+"94C","S2 Sandy Depression",7
+"96A","S2 Sandy Depression",40
+"96B","S2 Sandy Depression",143
+"97A","S2 Sandy Depression",224
+"97B","S2 Sandy Depression",31
+"98A2","S2 Sandy Depression",309
+"98B","S2 Sandy Depression",70
+"99A","S2 Sandy Depression",520
+"99B","S2 Sandy Depression",915
+"94AA","S3 Moist Sandy Plains",47
+"94AB","S3 Moist Sandy Plains",58
+"94C","S3 Moist Sandy Plains",1
+"96A","S3 Moist Sandy Plains",28
+"96B","S3 Moist Sandy Plains",112
+"97A","S3 Moist Sandy Plains",41
+"97B","S3 Moist Sandy Plains",21
+"98A2","S3 Moist Sandy Plains",56
+"98B","S3 Moist Sandy Plains",87
+"99A","S3 Moist Sandy Plains",178
+"99B","S3 Moist Sandy Plains",262
+"94AA","S4 Sandy Plains",244
+"94AB","S4 Sandy Plains",445
+"94C","S4 Sandy Plains",124
+"96A","S4 Sandy Plains",85
+"96B","S4 Sandy Plains",225
+"97A","S4 Sandy Plains",731
+"97B","S4 Sandy Plains",148
+"98A2","S4 Sandy Plains",854
+"98B","S4 Sandy Plains",417
+"99A","S4 Sandy Plains",390
+"99B","S4 Sandy Plains",955
+"94AA","S5 Sandy Slopes",92
+"94AB","S5 Sandy Slopes",178
+"94C","S5 Sandy Slopes",25
+"96A","S5 Sandy Slopes",57
+"96B","S5 Sandy Slopes",101
+"97A","S5 Sandy Slopes",72
+"97B","S5 Sandy Slopes",3
+"98A2","S5 Sandy Slopes",182
+"98B","S5 Sandy Slopes",27
+"99A","S5 Sandy Slopes",56
+"99B","S5 Sandy Slopes",66
+"94AA","SA1 Wet Acidic Sandy Depression",34
+"94AB","SA1 Wet Acidic Sandy Depression",71
+"94C","SA1 Wet Acidic Sandy Depression",15
+"96A","SA1 Wet Acidic Sandy Depression",7
+"96B","SA1 Wet Acidic Sandy Depression",62
+"97A","SA1 Wet Acidic Sandy Depression",25
+"97B","SA1 Wet Acidic Sandy Depression",13
+"98A2","SA1 Wet Acidic Sandy Depression",3
+"98B","SA1 Wet Acidic Sandy Depression",21
+"94AA","SA2 Acidic Depression",449
+"94AB","SA2 Acidic Depression",829
+"94C","SA2 Acidic Depression",289
+"96A","SA2 Acidic Depression",205
+"96B","SA2 Acidic Depression",296
+"97A","SA2 Acidic Depression",132
+"97B","SA2 Acidic Depression",29
+"98A2","SA2 Acidic Depression",147
+"98B","SA2 Acidic Depression",32
+"94AA","SA3 Moist Acidic Plains",347
+"94AB","SA3 Moist Acidic Plains",490
+"94C","SA3 Moist Acidic Plains",218
+"96A","SA3 Moist Acidic Plains",208
+"96B","SA3 Moist Acidic Plains",247
+"97A","SA3 Moist Acidic Plains",126
+"97B","SA3 Moist Acidic Plains",29
+"98A2","SA3 Moist Acidic Plains",163
+"98B","SA3 Moist Acidic Plains",17
 "139A","Shoreline Complex",3
-"99A","Shoreline Complex",1
-"139A","Water",14
-"139B","Water",2
-"99A","Water",12
+"94AB","Shoreline Complex",1
+"94C","Shoreline Complex",7
+"96A","Shoreline Complex",8
+"96B","Shoreline Complex",16
+"97A","Shoreline Complex",13
+"97B","Shoreline Complex",6
+"98B","Shoreline Complex",1
+"99A","Shoreline Complex",2
+"99B","Shoreline Complex",6
+"94AA","SR4 Rich Sandy Plains",329
+"94AB","SR4 Rich Sandy Plains",268
+"94C","SR4 Rich Sandy Plains",71
+"96A","SR4 Rich Sandy Plains",113
+"96B","SR4 Rich Sandy Plains",476
+"94AA","SR5 Rich Sandy Slopes",120
+"94AB","SR5 Rich Sandy Slopes",128
+"94C","SR5 Rich Sandy Slopes",30
+"96A","SR5 Rich Sandy Slopes",50
+"96B","SR5 Rich Sandy Slopes",237
+"97A","SR5 Rich Sandy Slopes",112
+"97B","SR5 Rich Sandy Slopes",2
+"94AA","SRS4 Rich Spodic Plains",292
+"94AB","SRS4 Rich Spodic Plains",94
+"94C","SRS4 Rich Spodic Plains",176
+"96A","SRS4 Rich Spodic Plains",202
+"96B","SRS4 Rich Spodic Plains",121
+"94AA","SRS5 Rich Spodic Slopes",180
+"94AB","SRS5 Rich Spodic Slopes",31
+"94C","SRS5 Rich Spodic Slopes",85
+"96A","SRS5 Rich Spodic Slopes",165
+"96B","SRS5 Rich Spodic Slopes",40
+"94AA","SS4 Spodic Plains",743
+"94AB","SS4 Spodic Plains",865
+"94C","SS4 Spodic Plains",420
+"96A","SS4 Spodic Plains",337
+"96B","SS4 Spodic Plains",333
+"94AA","SS5 Spodic Slopes",395
+"94AB","SS5 Spodic Slopes",301
+"94C","SS5 Spodic Slopes",140
+"96A","SS5 Spodic Slopes",227
+"96B","SS5 Spodic Slopes",166
+"139A","Water",25
+"139B","Water",8
+"94AA","Water",16
+"94AB","Water",18
+"94C","Water",8
+"96A","Water",5
+"96B","Water",8
+"97A","Water",12
+"97B","Water",5
+"98A2","Water",8
+"98B","Water",15
+"99A","Water",25
+"99B","Water",15
