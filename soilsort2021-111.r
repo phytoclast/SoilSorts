@@ -42,6 +42,11 @@ cm <- readRDS("fy2021-111/cm.RDS")
 #saveRDS(pm, file='fy2021-111/pm.RDS')
 pm <- readRDS(file='fy2021-111/pm.RDS')
 
+#gm <- get_component_cogeomorph_data_from_NASIS_db(SS=F)
+#saveRDS(gm, file='fy2021-111/gm.RDS')
+gm <- readRDS(file='fy2021-111/gm.RDS')
+
+
 #mu <- get_component_correlation_data_from_NASIS_db(SS=F)
 #saveRDS(mu, file='fy2021-111/mu.RDS')
 mu <- readRDS(file='fy2021-111/mu.RDS')
@@ -417,6 +422,78 @@ s$Site111<-ifelse(s$Site111 %in% "till",
                   , s$Site111)
 
 s <- merge(s.lmu, s, by='muiid')
+
+ES111A.list <- list(
+F111AY001IN = c('Palms', 'Linwood', 'Adrian'),
+R111AY002IN = c('Warners', 'Wallkill', 'Muskego', 'Martisco', 'Edwards', 'Benadum'),
+F111AY003IN = c('Houghton', 'Carlisle'),
+F111AY004IN = c('Aetna', 'Algiers', 'Banlic', 'Bartle', 'Beaucoup', 'Bellcreek', 'Ceresco', 'Cohoctah', 'Euclid', 'Evansville', 'Henshaw', 'Holton', 'Orrville', 'Piopolis', 'Rockmill', 'Saranac', 'Shoals', 'Sloan', 'Southwest', 'Stendal', 'Vincennes', 'Wakeland', 'Washtenaw', 'Wilhite', 'Henshaw Variant', 'Shoals Variant', 'Sloan Variant'), # add 'Henshaw Variant', 'Shoals Variant', 'Sloan Variant'
+F111AY005IN = c('Wirt', 'Wilbur', 'Uniontown', 'Tremont', 'Stonelick', 'Steff', 'Skidmore', 'Sardinia', 'Rossburg', 'Ross', 'Romeo', 'Pekin', 'Otwell', 'Oldenburg', 'Moundhaven', 'Millstone', 'Medway', 'Lobdell', 'Lash', 'Lanier', 'Landes', 'Kinn', 'Haymond', 'Gessie', 'Genesee', 'Elkinsville', 'Eel', 'Dearborn', 'Cuba', 'Clifty', 'Chagrin', 'Beckville', 'Armiesburg', 'Abscota Variant', 'Medway Variant', 'Riverwash', 'Ross Variant'),# add 'Abscota Variant', 'Medway Variant', 'Riverwash', 'Ross Variant'
+F111AY006IN = c('Wetzel', 'Reesville', 'Nappanee', 'Haskins', 'Condit', 'Blount'),
+F111AY007IN = c('Treaty', 'Sidell', 'Pewamo', 'Millsdale', 'Marengo', 'Kokomo', 'Cyclone', 'Brookston'),
+F111AY008IN = c('Westboro', 'Vigo', 'Sugarvalley', 'Schaffer', 'Randolph', 'Pyrmont', 'Fincastle', 'Crosby', 'Cobbsfork', 'Bennington', 'Avonburg', 'Randolph variant'), #add 'Randolph variant'
+F111AY009IN = c('Xenia', 'Wynn', 'Williamstown', 'Wapahani', 'Tuscola', 'Thrifton', 'Tarlton', 'Strawn', 'Senachwine', 'Ryker', 'Russell', 'Rossmoyne', 'Rockfield', 'Ritchey', 'Rawson', 'Rainsville', 'Nabb', 'Morningsun', 'Morley', 'Mississinewa', 'Milton', 'Miamian', 'Miami', ' Lybrand', 'Loudonville', 'Losantville', 'Lewisburg', 'Hickory', 'Hennepin', 'Glynwood', 'Cliftycreek', 'Cincinnati', 'Celina', 'Cardington', 'Cana', 'Bonnell', 'Blocher', 'Birkbeck', 'Ava', 'Amanda', 'Alexandria', 'Kendallville', 'Cana Variant', 'Celina Variant', 'Miamian Variant', 'Milton variant'),# add 'Kendallville', 'Cana Variant', 'Celina Variant', 'Miamian Variant', 'Milton variant'
+R111AY010IN = c('Raub', 'Odell', 'Dana', 'Corwin'),
+F111AY011IN = c('Zipp', 'Peoga', 'Paulding', 'Patton', 'Montgomery', 'Minster', 'Milford', 'Latty'),
+F111AY012IN = c('Wyatt', 'Tyler', 'Shinrock', 'Omulga', 'Mentor', 'McGary', 'Markland', 'Lauer', 'Haubstadt', 'Glenford', 'Fulton', 'Dubois', 'Del Rey', 'Del Rey Variant'), # add 'Del Rey', 'Del Rey Variant'
+F111AY013IN = c('Sable', 'Ragsdale', 'Muren', 'Iva', 'Alford'),
+F111AY014IN = c('Whitaker', 'Waynetown', 'Thackery', 'Taggart', 'Starks', 'Sleeth', 'Shadeland', 'Savona', 'Roby', 'Rainsboro', 'Libre', 'Ionia', 'Homer', 'Haney', 'Fitchville', 'Digby', 'Thackery Variant'), # add 'Thackery Variant'
+F111AY015IN = c('Williamsburg', 'Wawaka', 'Spargus', 'Sisson', 'Shelocta', 'Rush', 'Pike', 'Parke', 'Ockley', 'Negley', 'Muncie', 'Mountpleasant', 'Martinsville', 'Gallman', 'Fox', 'Eldean', 'Chili', 'Chetwynd', 'Casco', 'Camden', 'Belmore'),
+R111AY016IN = c('Westland', 'Sebewa', 'Rensselaer', 'Pella', 'Millgrove', 'Mahalasville', 'Lippincott', 'Kane', 'Dunham', 'Drummer', 'Crane'),
+R111AY017IN = c('Wea', 'Waupecan', 'Warsaw', 'Tippecanoe', 'Rodman', 'Plattville', 'Nineveh', 'Lorenzo', 'Lickcreek', 'Eldean', 'Donnelsville', 'Warsaw Variant', 'Wea Variant'), # add 'Warsaw Variant', 'Wea Variant'
+F111AY018IN = c('Weikert', 'Rohan', 'Opequon', 'Gasconade', 'Corydon','Fairmount', 'Rock outcrop'),#add 'Fairmount', 'Rock outcrop'
+F111AY019IN = c('Muskingum', 'Lily', 'Latham', 'Jessietown', 'Gilwood', 'Gilpin', 'Edenton', 'Eden', 'Dekalb', 'Caneyville', 'Brownstown', 'Bratton', 'Berks'),
+F111AY020IN = c('Zenas', 'Zanesville', 'Wrays', 'Westmoreland', 'Wellston', 'Wellrock', 'Tarhollow', 'Stonehead', 'Muscatatuck', 'Grayford', 'Cruze', 'Coolville', 'Carmel', 'Brownsville', 'Boston'),
+F111AY021IN = c('Lyles', 'Bobtown', 'Ayrshire', 'Aquents'),
+F111AY022IN = c('Princeton', 'Boyer', 'Bloomfield', 'Alvin')
+)
+
+
+
+for(i in 1:length(ES111A.list)){
+ES111A.df0 <- as.data.frame(merge(names(ES111A.list[i]),ES111A.list[i])); colnames(ES111A.df0) <- c('ES','Series')
+if(i == 1){ES111A <- ES111A.df0}else{ES111A <- rbind(ES111A.df0, ES111A)}};rm(ES111A.df0) 
+
+s.111A <- merge(ES111A, s,  by.x = 'Series', by.y = 'compname', all.y = T)
+s.111A.missing <- subset(s.111A, ofbest >= 50 & majcompflag %in% 'TRUE' & MLRARSYM %in% '111A' & is.na(ES))
+
+s.111A.select <- unique(subset(s.111A, ofbest >= 50 & majcompflag %in% 'TRUE' & MLRARSYM %in% '111A', select= c(ES, MLRARSYM, Series, coiid, muname)))
+write.csv(s.111A.select, 'output/s.111A.select.csv', row.names = F)
+
+#111B ----
+#
+
+ES111B.list <- list(
+  F111BY101IN = c('Toledo', 'Sebring', 'Patton', 'Minster', 'Milford', 'Luray', 'Lenawee', 'Latty', 'Hoytville', 'Bono'),
+  F111BY102IN = c('Toledo', 'Sebring', 'Patton', 'Minster', 'Milford', 'Luray', 'Lenawee', 'Latty', 'Hoytville', 'Bono'),
+  F111BY201IN = c('Tice', 'Sloan', 'Saranac', 'Harrod', 'Glendora', 'Cohoctah', 'Ceresco'),
+  F111BY202IN = c('Spencerville', 'Rossburg', 'Ross', 'Medway', 'Landes', 'Armiesburg'),
+  F111BY203IN = c('Washtenaw', 'Wabasha', 'Shoals', 'Orrville', 'Newark', 'Defiance', 'Coesse', 'Algiers'),
+  F111BY204IN = c('Tioga', 'Stonelick', 'Nolin', 'Lobdell', 'Lindside', 'Knoxdale', 'Gessie', 'Genesee', 'Flatrock', 'Eel', 'Chagrin'),
+  F111BY302IN = c('Randolph'),
+  F111BY303IN = c('Weikert', 'Ritchey', 'Newglarus', 'Milton', 'Latham', 'Heverlo', 'Eleva', 'Castalia', 'Brecksville', 'Biglick', 'Berks'),
+  F111BY403IN = c('Whitaker', 'Stone', 'Sleeth', 'Riverdale', 'Matherton', 'Jimtown', 'Homer', 'Digby', 'Bogart', 'Aptakisic'),
+  F111BY404IN = c('Thackery', 'Sisson', 'Scioto', 'Rush', 'Riverdale', 'Oshtemo', 'Ormas', 'Ockley', 'Muncie', 'Martinsville', 'Leoni', 'Kosciusko', 'Kalamazoo', 'Ionia', 'Haney', 'Gallman', 'Fox', 'Eldean', 'Chili', 'Casco', 'Bronson', 'Boyer', 'Belmore'),
+  F111BY501IN = c('Wolcott', 'Wetzel', 'Pewamo', 'Paulding', 'Pandora', 'Mermill', 'Kokomo', 'Brookston', 'Berville', 'Barry', 'Alvada'),
+  F111BY502IN = c('Tiro', 'Rimer', 'Nappanee', 'Metamora', 'Markton', 'Macomb', 'Locke', 'Lamberjack', 'Haskins', 'Elliott', 'Crosier', 'Conover', 'Capac', 'Blount', 'Aubbeenaubbee'),
+  F111BY503IN = c('Williamstown', 'Wawasee', 'Strawn', 'Steamburg', 'Shawtown', 'Seward', 'Russell', 'Riddles', 'Rawson', 'Parr', 'Pacer', 'Owosso', 'Mortimer', 'Morley', 'Mississinewa', 'Miami', 'Metea', 'Marlette', 'Lykens', 'Lybrand', 'Kidder', 'Kendallville', 'Houcktown', 'Hillsdale', 'Hennepin', 'Glynwood', 'Cadmus', 'Amanda'),
+  R111BY001IN = c('Roundhead', 'Palms', 'Olentangy', 'Ogden', 'McGuffey', 'Linwood', 'Kerston', 'Adrian'),
+  R111BY002IN = c('Warners', 'Rollin', 'Muskego', 'Martisco', 'Edwards'),
+  R111BY003IN = c('Napoleon', 'Houghton', 'Carlisle', 'Boots'),
+  R111BY301IN = c('Millsdale', 'Joliet', 'Dunbridge'),
+  R111BY401IN = c('Westland', 'Sebewa', 'Rensselaer', 'Pella', 'Millgrove', 'Lippincott', 'Gilford', 'Colwood'),
+  R111BY402IN = c('Wasepi', 'Warsaw', 'Rodman', 'Nineveh', 'Kane', 'Crane')
+ )
+for(i in 1:length(ES111B.list)){
+  ES111B.df0 <- as.data.frame(merge(names(ES111B.list[i]),ES111B.list[i])); colnames(ES111B.df0) <- c('ES','Series')
+  if(i == 1){ES111B <- ES111B.df0}else{ES111B <- rbind(ES111B.df0, ES111B)}};rm(ES111B.df0) 
+
+s.111B <- merge(ES111B, s,  by.x = 'Series', by.y = 'compname', all.y = T)
+s.111B.missing <- subset(s.111B, ofbest >= 50 & majcompflag %in% 'TRUE' & MLRARSYM %in% '111B' & is.na(ES))
+
+s.111B.select <- unique(subset(s.111B, ofbest >= 50 & majcompflag %in% 'TRUE' & MLRARSYM %in% '111B', select= c(ES, MLRARSYM, Series, coiid, muname)))
+write.csv(s.111B.select, 'output/s.111B.select.csv', row.names = F)
+
 
 #### ---- exports2 
 muck <- subset(s, ofbest >= 99 & majcompflag %in% 'TRUE' & Site %in% 'M2 Mucky Depression' )
