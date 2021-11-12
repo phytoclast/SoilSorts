@@ -229,8 +229,8 @@ rm(compsorts, fc.hz.bedrock,  fc.hz.bedrock.min, fc.hz.carb, fc.hz50.total, fc.h
 
 summarydrcl <- aggregate(s[,c('drainagecl')], by=list(s$drainagecl, s$hydricrating,s$Water_Table), FUN = 'length')
 
-s <- merge(mlra.mu, s, by.x = 'ncnesoil30m', by.y = 'lmapunitiid')
-s.lmu <- unique(subset(s, select =c(muiid, ncnesoil30m)))
+s <- merge(mlra.mu, s, by.x = 'northeast_gssurgo30m', by.y = 'lmapunitiid')
+s.lmu <- unique(subset(s, select =c(muiid, northeast_gssurgo30m)))
 s <- unique(subset(s, select = -c(ncnesoil30m, Value, Count, percentmlra, MLRA.value, MLRA.total, mu.total)))
 Appalachia <- c("124", "126", "127", "130A", "136", "139A", "139B", "140", "141", "142", "143", "144A", "144B", "145", "146", "147", "148", "149A", "149B", "153C", "153D")
 Plains <- c("101", "108", "110", "111A", "111B", "111C", "111D", "111E", "114A", "90A", "93B","94AA", "94AB", "94B",  "94C",  "95B",  "96A",  "96B",  "97A", "97B", "98A1", "98A2", "98B", "99A", "99B")
