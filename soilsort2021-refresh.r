@@ -91,18 +91,25 @@ pmmissing <- pm[is.na(pm$pmorigin),]
 pmmissing <- merge(pmmissing, fc.hz.rock, by='coiid') #restrict to coiids that lack data for the pmorigins field
 
 pmmissing2 <- c(unique(pmmissing$compname))
-xOSD <- fetchOSD(pmmissing2[1:50], extended = TRUE) #Get OSD pmorigin for only bedrock soils lacking data for this field, only 50 at a time
-OSD.pmorigin <- xOSD$pmorigin
-OSD.pmkind <- xOSD$pmkind
+#Enable if need new OSD data ----
+# xOSD <- fetchOSD(pmmissing2[1:50], extended = TRUE) #Get OSD pmorigin for only bedrock soils lacking data for this field, only 50 at a time
+# OSD.pmorigin <- xOSD$pmorigin
+# OSD.pmkind <- xOSD$pmkind
+# 
+# if(length(pmmissing2)>50){ 
+#   for(i in 2:floor(length(pmmissing2)/50+1)){ #loop through by 50 and add to list so as not to overwhelm internet query
+#     xOSD <- fetchOSD(pmmissing2[(i*50-49):(i*50)], extended = TRUE)
+#     OSD.pmorigin1 <- xOSD$pmorigin
+#     OSD.pmorigin <- rbind(OSD.pmorigin, OSD.pmorigin1)
+#     OSD.pmkind1 <- xOSD$pmkind
+#     OSD.pmkind <- rbind(OSD.pmkind, OSD.pmkind1)
+#   }}
+# saveRDS(OSD.pmorigin,'fy2021-refresh/OSD.pmorigin.RDS')
+# saveRDS(OSD.pmkind,'fy2021-refresh/OSD.pmkind.RDS')
+# ----
+OSD.pmorigin <- readRDS('fy2021-refresh/OSD.pmorigin.RDS')
+OSD.pmkind <- readRDS('fy2021-refresh/OSD.pmkind.RDS')
 
-if(length(pmmissing2)>50){ 
-  for(i in 2:floor(length(pmmissing2)/50+1)){ #loop through by 50 and add to list so as not to overwhelm internet query
-    xOSD <- fetchOSD(pmmissing2[(i*50-49):(i*50)], extended = TRUE)
-    OSD.pmorigin1 <- xOSD$pmorigin
-    OSD.pmorigin <- rbind(OSD.pmorigin, OSD.pmorigin1)
-    OSD.pmkind1 <- xOSD$pmkind
-    OSD.pmkind <- rbind(OSD.pmkind, OSD.pmkind1)
-  }}
 OSD.pmorigin$q_param <- tolower(OSD.pmorigin$pmorigin) #change case to match later comparison
 OSD.pmkind$q_param <- tolower(OSD.pmkind$pmkind) #change case to match later comparison
 OSD.pmkind <- subset(OSD.pmkind, select= -c(pmkind))
