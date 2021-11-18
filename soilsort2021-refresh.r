@@ -289,8 +289,10 @@ s0 <- subset(s, s$Site %in% 'F144BY110ME') #replicate
 s0$Site <- 'F144BY120ME';s <- rbind(s,s0) #name duplicate alternative ecoiid
 
 #3 Wetlands ----
+anyuplandsoilscomplex <- unique(s[s$Water_Table >=50 & s$majcompflag %in% 'TRUE',]$muiid)
+
 s$Site<-ifelse(s$Site %in% "Not",
-               ifelse(s$hydricrating %in% "yes",
+               ifelse(s$Water_Table <=25 & !s$muiid %in%  anyuplandsoilscomplex,
                       ifelse(s$Water_Table <= 0 &
                                (grepl("ists",s$taxsubgrp)|grepl("Histosols",s$compname)) &
                                !grepl('terric',s$taxsubgrp) & !grepl('limnic',s$taxsubgrp),
@@ -302,9 +304,9 @@ s$Site<-ifelse(s$Site %in% "Open Wetlands",
 verypoorlycomplex <- unique(s[s$drainagecl %in% 'very poorly' & s$majcompflag %in% 'TRUE',]$muiid)
 
 s$Site<-ifelse(s$Site %in% "Forested Wetlands",
-               ifelse(grepl("histosols",s$taxorder),'F144BY302ME',
-                      ifelse(grepl('Fine,',s$taxclname),'F144BY304ME',
-                             ifelse(grepl('Sand',s$taxclname),'F144BY303ME',
+               ifelse(grepl("histosols",tolower(s$taxclname)),'F144BY302ME',
+                      ifelse(grepl('fine,',tolower(s$taxclname)),'F144BY304ME',
+                             ifelse(grepl('sand',tolower(s$taxclname)),'F144BY303ME',
                                     ifelse((grepl('complex',s$muname) & s$muiid %in% verypoorlycomplex)|s$drainagecl %in% 'very poorly','F144BY301ME','F144BY305ME'))))
                , s$Site)
                              
@@ -329,14 +331,15 @@ s$Site<-ifelse(s$Site %in% "Not",
 #4 deep soils ----
 
 s$Site<-ifelse(s$Site %in% "Not",
-               ifelse(grepl('Sand',s$taxclname),
+               ifelse(grepl('^sand',tolower(s$taxclname)),
                       ifelse(s$Water_Table > 100, 'F144BY601ME', 'F144BY602ME'),
-                      ifelse(grepl('Fine,',s$taxclname)|grepl('Fine-silty',s$taxclname),
+                      ifelse(grepl('^[fine,|^fine-silty]',tolower(s$taxclname)),
                              ifelse(s$Water_Table <= 50, 'F144BY401ME', 'F144BY402ME'),
                              ifelse((s$carbdepth <= 150 & (s$T50_pH > 6.5 & is.na(s$T50_pH)) | (s$carbdepth <= 100 & (s$T50_pH > 6 | is.na(s$T50_pH))),
                                      ifelse(s$Water_Table <= 50, 'F144BY507ME', 'F144BY506ME'),
-                             
+                                     ifelse(grepl('loamy.* over .*sand',tolower(s$taxclname)),'F144BY505ME',
+                                            ifelse(s$Water_Table <= 50,
                              ,s$Site)
-
+                             
 
 #s <- merge(s.lmu, s, by='muiid')
