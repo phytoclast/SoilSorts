@@ -352,5 +352,5 @@ s$Site<-ifelse(s$Site %in% "Not",
                                                            grepl('ist', s$taxsubgrp),'F144BY504ME','F144BY501ME'))))))
                ,s$Site)
 
-
+write.csv(s,'fy2021-refresh/s.144B.csv', row.names = F)
 #s <- merge(s.lmu, s, by='muiid')
