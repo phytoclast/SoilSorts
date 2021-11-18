@@ -302,18 +302,18 @@ anyuplandsoilscomplex <- unique(s[s$Water_Table >=50 & s$majcompflag %in% 'TRUE'
 
 s$Site<-ifelse(s$Site %in% "Not",
                ifelse(s$Water_Table <=25 & !s$muiid %in%  anyuplandsoilscomplex,
-                      ifelse(s$Water_Table <= 0 &
-                               (grepl("ists",s$taxsubgrp)|grepl("Histosols",s$compname)) &
-                               !grepl('terric',s$taxsubgrp) & !grepl('limnic',s$taxsubgrp),
+                      ifelse(grepl('ponded',s$muname)| s$muname %in% c('Fresh water marsh', 'Muck') |
+                               (s$Water_Table <= 0 & (grepl("ists",s$taxsubgrp)|grepl("Histosols",s$compname)) &
+                               !grepl('terric',s$taxsubgrp) & !grepl('limnic',s$taxsubgrp)),
                              'Open Wetlands','Forested Wetlands'),s$Site),s$Site)
                
 s$Site<-ifelse(s$Site %in% "Open Wetlands",
-               ifelse(grepl('euic',s$taxclname),'F144BY210ME','F144BY230ME'),s$Site) 
+               ifelse(grepl('euic',tolower(s$taxclname)) | (s$T50_pH > 4.5 & !grepl('dysic',tolower(s$taxclname))) ,'F144BY210ME','F144BY230ME'),s$Site) 
 
 verypoorlycomplex <- unique(s[s$drainagecl %in% 'very poorly' & s$majcompflag %in% 'TRUE',]$muiid)
 
 s$Site<-ifelse(s$Site %in% "Forested Wetlands",
-               ifelse(grepl("histosols",tolower(s$taxclname)),'F144BY302ME',
+               ifelse(s$taxorder %in% 'histosols','F144BY302ME',
                       ifelse(grepl('fine,',tolower(s$taxclname)),'F144BY304ME',
                              ifelse(grepl('sand',tolower(s$taxclname)),'F144BY303ME',
                                     ifelse((grepl('complex',s$muname) & s$muiid %in% verypoorlycomplex)|s$drainagecl %in% 'very poorly','F144BY301ME','F144BY305ME'))))
@@ -338,11 +338,10 @@ s$Site<-ifelse(s$Site %in% "Not",
 
 
 #4 deep soils ----
-
 s$Site<-ifelse(s$Site %in% "Not",
                ifelse((grepl('^sand',tolower(s$taxclname))&s$T50_sand>50)|s$T50_sand>70,
                       ifelse(s$Water_Table > 100, 'F144BY601ME', 'F144BY602ME'),
-                      ifelse((grepl('^[fine,|^fine-silty]',tolower(s$taxclname))&s$T150_clay>10)|s$T150_clay>20,
+                      ifelse((grepl('^fine,|^fine-silty]',tolower(s$taxclname))&s$T150_clay>10)|s$T150_clay>20,
                              ifelse(s$Water_Table <= 50, 'F144BY401ME', 'F144BY402ME'),
                              ifelse((s$carbdepth <= 150 & (s$T50_pH > 6.5 & is.na(s$T50_pH))) | (s$carbdepth <= 100 & (s$T50_pH > 6 | is.na(s$T50_pH))),
                                     ifelse(s$Water_Table <= 50, 'F144BY507ME', 'F144BY506ME'),
