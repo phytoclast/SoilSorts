@@ -136,7 +136,7 @@ fc.hz <- unique(subset(fc.hz, select = -c(structgrpname,texture, hzname)))
 spodic <- read.delim("data/Spodics.txt")
 
 # fix null values in particle size for mucky soils ----
-fc.hz$fragvoltot_r <- ifelse(fc.hz$om_r > 25, ifelse(is.na(fc.hz$fragvoltot_r), 0,fc.hz$fragvoltot_r ), fc.hz$fragvoltot_r)
+fc.hz$fragvoltot_r <- ifelse(is.na(fc.hz$fragvoltot_r), 0,fc.hz$fragvoltot_r )
 fc.hz$sandtotal_r <- ifelse(fc.hz$om_r > 25, ifelse(is.na(fc.hz$sandtotal_r), 0,fc.hz$sandtotal_r ), fc.hz$sandtotal_r)
 fc.hz$silttotal_r <- ifelse(fc.hz$om_r > 25, ifelse(is.na(fc.hz$silttotal_r), 0,fc.hz$silttotal_r ), fc.hz$silttotal_r)
 fc.hz$claytotal_r <- ifelse(fc.hz$om_r > 25, ifelse(is.na(fc.hz$claytotal_r), 0,fc.hz$claytotal_r ), fc.hz$claytotal_r)
@@ -146,13 +146,18 @@ fc.hz.notnull$h50b <- ifelse(fc.hz.notnull$hzdepb_r > 50, 50, fc.hz.notnull$hzde
 fc.hz.notnull$h50t <- ifelse(fc.hz.notnull$hzdept_r > 50, 50, fc.hz.notnull$hzdept_r)
 fc.hz.notnull$h50k <- fc.hz.notnull$h50b - fc.hz.notnull$h50t
 fc.hz.notnull$h50sandk <- fc.hz.notnull$h50k * fc.hz.notnull$sandtotal_r
+fc.hz.notnull$h50clayk <- fc.hz.notnull$h50k * fc.hz.notnull$claytotal_r
+fc.hz.notnull$h50siltk <- fc.hz.notnull$h50k * fc.hz.notnull$silttotal_r
+fc.hz.notnull$h50fragk <- fc.hz.notnull$h50k * fc.hz.notnull$fragvoltot_r
+fc.hz.notnull$h50omk <- fc.hz.notnull$h50k * fc.hz.notnull$om_r
+fc.hz.notnull$h50awck <- fc.hz.notnull$h50k * fc.hz.notnull$awc_r
 fc.hz.notnull$pH <- ifelse(!is.na(fc.hz.notnull$ph1to1h2o_r) & fc.hz.notnull$ph1to1h2o_r > 0, fc.hz.notnull$ph1to1h2o_r,
                            ifelse(!is.na(fc.hz.notnull$ph01mcacl2_r) & fc.hz.notnull$ph01mcacl2_r > 0,fc.hz.notnull$ph01mcacl2_r,NA))
 fc.hz.notnull$h50phk <- fc.hz.notnull$pH * fc.hz.notnull$h50k
 
-fc.hz.sum <- aggregate(fc.hz.notnull[,c('h50sandk', 'h50phk', 'h50k')], by=list(fc.hz.notnull$coiid), FUN = 'sum' )
+fc.hz.sum <- aggregate(fc.hz.notnull[,c('h50fragk','h50sandk','h50siltk','h50clayk', 'h50omk', 'h50awck', 'h50phk', 'h50k')], by=list(fc.hz.notnull$coiid), FUN = 'sum' )
 
-colnames(fc.hz.sum) <- c('coiid', 'T50_sand', 'T50_pH', 'h50k')
+colnames(fc.hz.sum) <- c('coiid', 'T50_frag','T50_sand', 'T50_silt', "T50_clay", 'T50_OM','T50_AWC','T50_pH', 'h50k')
 x <- (as.data.frame(fc.hz.sum[,1]))
 colnames(x)<- 'coiid'
 fc.hz50.total <- cbind(x, fc.hz.sum[,2:ncol(fc.hz.sum)]/fc.hz.sum$h50k)
@@ -163,10 +168,12 @@ fc.hz.notnull$h150k <- fc.hz.notnull$h150b - fc.hz.notnull$h150t
 fc.hz.notnull$h150sandk <- fc.hz.notnull$h150k * fc.hz.notnull$sandtotal_r
 fc.hz.notnull$h150clayk <- fc.hz.notnull$h150k * fc.hz.notnull$claytotal_r
 fc.hz.notnull$h150omk <- fc.hz.notnull$h150k * fc.hz.notnull$om_r
+fc.hz.notnull$h150siltk <- fc.hz.notnull$h150k * fc.hz.notnull$silttotal_r
+fc.hz.notnull$h150fragk <- fc.hz.notnull$h150k * fc.hz.notnull$fragvoltot_r
+fc.hz.notnull$h150awck <- fc.hz.notnull$h150k * fc.hz.notnull$awc_r
+fc.hz.sum <- aggregate(fc.hz.notnull[,c('h150fragk','h150sandk', 'h150siltk','h150clayk', 'h150omk', 'h150awck', 'h150k')], by=list(fc.hz.notnull$coiid), FUN = 'sum' )
 
-fc.hz.sum <- aggregate(fc.hz.notnull[,c('h150sandk', 'h150clayk', 'h150omk', 'h150k')], by=list(fc.hz.notnull$coiid), FUN = 'sum' )
-
-colnames(fc.hz.sum) <- c('coiid','T150_sand', 'T150_clay', 'T150_OM', 'h150k' )
+colnames(fc.hz.sum) <- c('coiid','T150_frag', 'T150_sand', 'T150_silt', 'T150_clay', 'T150_OM', 'T150_AWC', 'h150k' )
 x <- (as.data.frame(fc.hz.sum[,1]))
 colnames(x)<- 'coiid'
 fc.hz150.total <- cbind(x, fc.hz.sum[,2:ncol(fc.hz.sum)]/fc.hz.sum$h150k)
@@ -202,8 +209,10 @@ compsorts <- merge(comp[,c('coiid', 'majcompflag','comppct_r' ,'compname', 'taxo
 compsorts <- merge(compsorts,fc.hz.bedrock.min, by='coiid', all.x = T )
 compsorts$carbdepth <- ifelse(is.na(compsorts$carbdepth), 250, compsorts$carbdepth)
 compsorts$rockdepth <- ifelse(is.na(compsorts$rockdepth), 250, compsorts$rockdepth)
-compsorts <- merge(compsorts,fc.hz150.total[,c('coiid', 'T150_sand', 'T150_clay',   'T150_OM')] , by='coiid', all.x = T )
-compsorts <- merge(compsorts,fc.hz50.total[,c('coiid', 'T50_sand', 'T50_pH')] , by='coiid', all.x = T )
+compsorts <- merge(compsorts,fc.hz50.total[,c('coiid', 'T50_frag','T50_sand','T50_silt','T50_clay','T50_OM', 'T50_AWC', 'T50_pH')] , by='coiid', all.x = T )
+compsorts <- merge(compsorts,fc.hz150.total[,c('coiid', 'T150_frag','T150_sand','T150_silt', 'T150_clay','T150_OM', 'T150_AWC')] , by='coiid', all.x = T )
+compsorts$T150_AWC <- ifelse(compsorts$rockdepth > 150,150,compsorts$rockdepth)*compsorts$T150_AWC
+compsorts$T50_AWC <- ifelse(compsorts$rockdepth > 50,50,compsorts$rockdepth)*compsorts$T50_AWC
 compsorts <- merge(compsorts, cm.flood, by='coiid', all.x = T )
 compsorts$flood <- ifelse(is.na(compsorts$flood), 'none', 'flood')
 compsorts <- merge(compsorts, fc.hz.humic.max, by='coiid', all.x = T )
@@ -331,15 +340,17 @@ s$Site<-ifelse(s$Site %in% "Not",
 #4 deep soils ----
 
 s$Site<-ifelse(s$Site %in% "Not",
-               ifelse(grepl('^sand',tolower(s$taxclname)),
+               ifelse((grepl('^sand',tolower(s$taxclname))&s$T50_sand>50)|s$T50_sand>70,
                       ifelse(s$Water_Table > 100, 'F144BY601ME', 'F144BY602ME'),
-                      ifelse(grepl('^[fine,|^fine-silty]',tolower(s$taxclname)),
+                      ifelse((grepl('^[fine,|^fine-silty]',tolower(s$taxclname))&s$T150_clay>10)|s$T150_clay>20,
                              ifelse(s$Water_Table <= 50, 'F144BY401ME', 'F144BY402ME'),
-                             ifelse((s$carbdepth <= 150 & (s$T50_pH > 6.5 & is.na(s$T50_pH)) | (s$carbdepth <= 100 & (s$T50_pH > 6 | is.na(s$T50_pH))),
-                                     ifelse(s$Water_Table <= 50, 'F144BY507ME', 'F144BY506ME'),
-                                     ifelse(grepl('loamy.* over .*sand',tolower(s$taxclname)),'F144BY505ME',
-                                            ifelse(s$Water_Table <= 50,
-                             ,s$Site)
-                             
+                             ifelse((s$carbdepth <= 150 & (s$T50_pH > 6.5 & is.na(s$T50_pH))) | (s$carbdepth <= 100 & (s$T50_pH > 6 | is.na(s$T50_pH))),
+                                    ifelse(s$Water_Table <= 50, 'F144BY507ME', 'F144BY506ME'),
+                                    ifelse(grepl('loam.* over .*sand',tolower(s$taxclname)),'F144BY505ME',
+                                           ifelse(s$Water_Table <= 50,ifelse(s$slope_r >=5,'F144BY502ME','F144BY503ME'),
+                                                  ifelse(grepl('hum', s$taxsubgrp) | grepl('oll', s$taxsubgrp) |
+                                                           grepl('ist', s$taxsubgrp),'F144BY504ME','F144BY501ME'))))))
+               ,s$Site)
+
 
 #s <- merge(s.lmu, s, by='muiid')
