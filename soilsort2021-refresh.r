@@ -133,7 +133,7 @@ colnames(pmlist) <- c("coiid", "pmorigin2")
 selectpm2 <- pmlist[pmlist$coiid %in% 272581,]
 
 fc.hz <- unique(subset(fc.hz, select = -c(structgrpname,texture, hzname)))
-spodic <- read.delim("data/Spodics.txt")
+spodic <- read.delim("fy2021-refresh/Spodics.txt")
 
 # fix null values in particle size for mucky soils ----
 fc.hz$fragvoltot_r <- ifelse(is.na(fc.hz$fragvoltot_r), 0,fc.hz$fragvoltot_r )
