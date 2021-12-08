@@ -67,6 +67,9 @@ pm <- readRDS(file='fy2021-refresh/pm.RDS')
 # saveRDS(gm, file='fy2021-refresh/gm.RDS')
 gm <- readRDS(file='fy2021-refresh/gm.RDS')
 
+# leg <- get_legend_from_NASIS(SS=F)
+# saveRDS(leg, file='fy2021-refresh/leg.RDS')
+leg <- readRDS(file='fy2021-refresh/leg.RDS')
 
 # mu <- get_component_correlation_data_from_NASIS_db(SS=F)
 # saveRDS(mu, file='fy2021-refresh/mu.RDS')
@@ -234,7 +237,7 @@ compsorts$humicdepth <- ifelse(is.na(compsorts$humicdepth), 0, compsorts$humicde
 compsorts <- merge(compsorts, fc.hz.ec.max, by='coiid', all.x = T )
 compsorts <- merge(compsorts,fc.site[,c('coiid', 'pmkind', 'pmorigin', 'landform_string')] , by='coiid', all.x = T )
 compsorts <- merge(comp[,c('dmuiid','coiid')],compsorts, by='coiid' )
-compsorts <- merge(mu[,c('lmapunitiid','dmuiid','nationalmusym','muname','tgs')], compsorts, by.x = 'dmuiid', by.y = 'dmuiid', all.y = F )
+compsorts <- merge(mu[,c('areasymbol','areaname','lmapunitiid','dmuiid','nationalmusym','muname','tgs')], compsorts, by.x = 'dmuiid', by.y = 'dmuiid', all.y = F )
 #fix pmorigin
 compsorts <- merge(compsorts, pmlist, by='coiid', all.x=TRUE)
 compsorts$pmorigin <- as.character(compsorts$pmorigin)
@@ -268,7 +271,7 @@ summarydrcl <- aggregate(s[,c('drainagecl')], by=list(s$drainagecl, s$hydricrati
 
 s <- merge(mlra.mu, s, by.x = 'northeast_gssurgo30m', by.y = 'lmapunitiid')
 names(s)[names(s) == 'northeast_gssurgo30m'] <- 'lmapunitiid'
-s$MLRA.total <- NULL;s$MLRA.value <- NULL;s$Value <- NULL;s$Count <- NULL
+s$MLRA.total <- NULL;s$MLRA.value <- NULL;s$Value <- NULL;#s$Count <- NULL
 
 
 
@@ -424,4 +427,170 @@ s.nolmapunit<- unique(subset(s, select=-c(lmapunitiid,percentmlra,pmlra,mu.total
 write.csv(s.nolmapunit,'fy2021-refresh/s.139.csv', row.names = F)
 
 
+not139 <- merge(s, usergroup[,c('grpname','dmuiid')], by='dmuiid')
+not139 <- subset(not139,   !grpname %in% '12-BEL Belmont, New York')
 
+write.csv(not139, 'fy2021-refresh/not139.csv', row.names = F)
+
+
+
+## make maps ----
+library(terra)
+library(sf)
+soilgrid <- rast('D:/GIS/SOIL/2021/northeast_gssurgo90m.tif')
+
+mlramap <- sf::read_sf('C:/a/Ecological_Sites/GIS/Ecoregion/RegionalReview_296/CONUS.shp')
+mlra139 <- subset(mlramap, MLRARSYM %in% '139')
+
+extof139 <- ext(mlra139)
+extof139a <- extof139
+for(i in 1:4){
+extof139a[i] <- extof139a[i] + c(-100000, 100000, -100000, 100000)[i]}
+
+rast139 <- crop(soilgrid, extof139a)
+
+rast139[rast139 == 172128] <- 0
+rast139[rast139 %in% c(170831, 170342)] <- 1
+rast139[!rast139 %in% c(0,1)] <- -1
+plot(rast139)
+
+listlmu <- s.reserve[s.reserve$MLRARSYM %in% '139' & s.reserve$ofbest <50, 'lmapunitiid']
+rast139 <- crop(soilgrid, extof139a)
+rast139[rast139 %in% listlmu] <- 1
+rast139[!rast139 %in% c(0,1)] <- -1
+
+usergrouplmuid <- merge(s.reserve, usergroup[,c('grpname','dmuiid')], by='dmuiid')
+groupsummary <- unique(usergrouplmuid[usergrouplmuid$MLRARSYM %in% '139' & usergrouplmuid$ofbest > 99 & usergrouplmuid$affinity > 50,]$grpname)
+
+
+rast139 <- crop(soilgrid, extof139a)
+for (i in 1:length(groupsummary)){#i=3
+  listlmu <- usergrouplmuid[usergrouplmuid$MLRARSYM %in% '139' & usergrouplmuid$ofbest > 99 & usergrouplmuid$affinity > 00 & usergrouplmuid$grpname %in% groupsummary[i],'lmapunitiid']
+  rast139[rast139 %in% listlmu] <- i
+};rast139[!rast139 %in% 1:length(groupsummary)] <- -1
+plot(rast139)
+writeRaster(rast139, 'fy2021-refresh/rast139a.tif', overwrite=T)
+
+###missing 99 ----
+library(terra)
+library(sf)
+missing99 <- c(889672, 889676, 889672, 889676, 251810, 272002, 272006, 272010, 245294, 251839, 251839, 245295, 271358, 271359, 271364, 245074, 1846465, 1846467, 1846507, 248050, 889689, 889689, 245247, 245248, 1846530, 1846533, 2723039, 1846544, 1846547, 251979, 2723040, 2723038, 2723040, 246258, 924405, 923986, 924405, 1846596, 271434, 271435, 271986, 271986, 271436, 271438, 271440, 271440, 271440, 245329, 245329, 245334, 245334, 923985, 924021, 923987, 1846615, 1846622, 1846626, 1846628, 1846629, 1846618, 1847686, 1847692, 1847679, 271474, 245349, 924160, 2106604, 245351, 245351, 252324, 271532, 271533, 271534, 271535, 924320, 245369, 245369, 1183800, 1183800, 252409, 924032, 924404, 924404, 924419, 889724, 889724, 252459, 1847000, 271540, 271542, 271546, 271548, 275725, 272064, 271926, 272064, 272066, 2088059, 2088063, 2088064, 275725, 275726, 275727, 275728, 272136, 245366, 245366, 245367, 1847015, 1847015, 271975, 272078, 2088124, 924652, 271466, 271563, 245382, 271566)
+
+soilgrid <- rast('D:/GIS/SOIL/2021/northeast_gssurgo90m.tif')
+
+mlramap <- sf::read_sf('C:/a/Ecological_Sites/GIS/Ecoregion/RegionalReview_296/CONUS.shp')
+mlra99 <- subset(mlramap, MLRARSYM %in% '99')
+
+extof99 <- ext(mlra99)
+extof99a <- extof99
+for(i in 1:4){
+  extof99a[i] <- extof99a[i] + c(-100000, 100000, -100000, 100000)[i]}
+
+
+listlmu <- s.reserve[s.reserve$coiid %in% missing99, 'lmapunitiid']
+
+
+rast99 <- crop(soilgrid, extof99a)
+
+rast99[rast99 %in% listlmu] <- 1
+rast99[!rast99 %in% c(0,1)] <- -1
+plot(rast99)
+usergrouplmuid <- merge(s.reserve, usergroup[,c('grpname','dmuiid')], by='dmuiid')
+groupsummary <- unique(usergrouplmuid[usergrouplmuid$coiid %in%  missing99,]$grpname)
+usergrouplmuid <- subset(usergrouplmuid, )
+
+rast99 <- crop(soilgrid, extof99a)
+for (i in 1:length(groupsummary)){#i=3
+  listlmu <- usergrouplmuid[usergrouplmuid$grpname %in% groupsummary[i] & usergrouplmuid$coiid %in% missing99,'lmapunitiid']
+  rast99[rast99 %in% listlmu] <- i
+};rast99[!rast99 %in% 1:length(groupsummary)] <- -1
+plot(rast99)
+writeRaster(rast99, 'fy2021-refresh/rast99.tif', overwrite=T)
+
+mlrasummary <- unique(usergrouplmuid[usergrouplmuid$coiid %in%  missing99 & usergrouplmuid$ofbest >99,]$MLRARSYM)
+rast99 <- crop(soilgrid, extof99a)
+for (i in 1:length(mlrasummary)){#i=3
+  listlmu <- usergrouplmuid[usergrouplmuid$MLRARSYM %in% mlrasummary[i] & usergrouplmuid$coiid %in% missing99 & usergrouplmuid$ofbest >99,'lmapunitiid']
+  rast99[rast99 %in% listlmu] <- i
+};rast99[!rast99 %in% 1:length(mlrasummary)] <- -1
+plot(rast99)
+writeRaster(rast99, 'fy2021-refresh/rast99a.tif', overwrite=T)
+
+
+## what GRR/FLI needs to add ----
+library(terra)
+library(sf)
+soilgrid <- rast('D:/GIS/SOIL/2021/northeast_gssurgo90m.tif')
+
+mlramap <- sf::read_sf('C:/a/Ecological_Sites/GIS/Ecoregion/RegionalReview_296/CONUS.shp')
+extof9799 <- subset(mlramap, MLRARSYM %in% c('97','98','99','94A','94C'))
+
+extof9799 <- ext(extof9799)
+extof9799a <- extof9799
+for(i in 1:4){
+  extof9799a[i] <- extof9799a[i] + c(-100000, 100000, -100000, 100000)[i]}
+
+
+
+
+listlmu <- s.reserve[s.reserve$MLRARSYM %in% c('97','98','99','94A','94C') & s.reserve$ofbest ==100, 'lmapunitiid']
+
+
+
+usergrouplmuid <- merge(s.reserve, usergroup[,c('grpname','dmuiid')], by='dmuiid')
+groupsummary <- unique(usergrouplmuid[usergrouplmuid$MLRARSYM %in% c('97','98','99','94A','94C') & usergrouplmuid$ofbest ==100 & !usergrouplmuid$grpname %in% 
+                                        c('12-GRR Grand Rapids, Michigan','12-GRR Projects','12-GRR MLRA MU/DMU',
+                                          '12-FLI Projects','12-FLI Flint, Michigan'),]$grpname)
+
+
+rast9799 <- crop(soilgrid, extof9799a)
+
+for (i in 1:length(groupsummary)){#i=3
+  listlmu <- usergrouplmuid[usergrouplmuid$MLRARSYM %in% c('97','98','99','94A','94C') & usergrouplmuid$ofbest ==100 & usergrouplmuid$grpname %in% groupsummary[i],'lmapunitiid']
+  rast9799[rast9799 %in% listlmu] <- i
+};rast9799[!rast9799 %in% 1:length(groupsummary)] <- -1
+plot(rast9799)
+
+writeRaster(rast9799, 'fy2021-refresh/rast9799.tif', overwrite=T)
+
+listGRRnew <- subset(usergrouplmuid, MLRARSYM %in% c('97','98','99','94A','94C') & ofbest ==100 & grpname %in% groupsummary)
+write.csv(listGRRnew, 'fy2021-refresh/listGRRnew.csv')
+
+## what GRR/FLI needs to subtract ----
+library(terra)
+library(sf)
+soilgrid <- rast('D:/GIS/SOIL/2021/northeast_gssurgo90m.tif')
+
+mlramap <- sf::read_sf('C:/a/Ecological_Sites/GIS/Ecoregion/RegionalReview_296/CONUS.shp')
+extof9799 <- subset(mlramap, MLRARSYM %in% c('97','98','99','94A','94C'))
+
+extof9799 <- ext(extof9799)
+extof9799a <- extof9799
+for(i in 1:4){
+  extof9799a[i] <- extof9799a[i] + c(-100000, 100000, -100000, 100000)[i]}
+
+
+
+
+listlmu <- s.reserve[!s.reserve$MLRARSYM %in% c('97','98','99','94A','94C') & s.reserve$ofbest ==100, 'lmapunitiid']
+
+
+
+usergrouplmuid <- merge(s.reserve, usergroup[,c('grpname','dmuiid')], by='dmuiid')
+groupsummary <- unique(usergrouplmuid[!usergrouplmuid$MLRARSYM %in% c('97','98','99','94A','94C') & usergrouplmuid$ofbest ==100 & usergrouplmuid$grpname %in% 
+                                        c('12-GRR Grand Rapids, Michigan','12-GRR Projects','12-GRR MLRA MU/DMU',
+                                          '12-FLI Projects','12-FLI Flint, Michigan'),]$grpname)
+
+
+rast9799 <- crop(soilgrid, extof9799a)
+
+for (i in 1:length(groupsummary)){#i=3
+  listlmu <- usergrouplmuid[!usergrouplmuid$MLRARSYM %in% c('96','97','98','99','94A','94C') & usergrouplmuid$ofbest ==100 & usergrouplmuid$grpname %in% groupsummary[i],'lmapunitiid']
+  rast9799[rast9799 %in% listlmu] <- i
+};rast9799[!rast9799 %in% 1:length(groupsummary)] <- -1
+plot(rast9799)
+
+writeRaster(rast9799, 'fy2021-refresh/rast9799a.tif', overwrite=T)
+
+listGRRreject <- subset(usergrouplmuid, !MLRARSYM %in% c('96','97','98','99','94A','94C') & ofbest ==100 & grpname %in% groupsummary)
+write.csv(listGRRreject, 'fy2021-refresh/listGRRreject.csv')
