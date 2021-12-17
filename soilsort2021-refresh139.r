@@ -49,8 +49,8 @@ mlrabestlink <-  subset(mlra.mu, ofbest > 99)
 
 ######################################----
 #usergroup <- get_group_from_table("datamapunit")
-#saveRDS(usergroup, 'fy2021-refresh/usergroup.RDS')
-usergroup <- readRDS("fy2021-refresh/usergroup.RDS")
+#saveRDS(usergroup, 'fy2021-refresh/usergroup20211215.RDS')
+usergroup <- readRDS("fy2021-refresh/usergroup20211215.RDS")
 # comp <- get_component_data_from_NASIS_db(SS=F)
 # saveRDS(comp, file='fy2021-refresh/comp.RDS')
 comp <- readRDS("fy2021-refresh/comp.RDS")
@@ -283,7 +283,7 @@ s <- s.reserve
 mlra139.missing <- read.csv('fy2021-refresh/mlra139missingesd.csv'); colnames(mlra139.missing) <- c('lmukey','compname')
 #s <- merge(s,mlra139.missing, by.x = c('lmapunitiid','compname'), by.y = c('lmukey','compname'), all.y = TRUE)
 #s <- subset(s,  majcompflag %in% 'TRUE' & ofbest > 99)
-s <- subset(s, MLRARSYM %in% '139' & majcompflag %in% 'TRUE' & ofbest > 99)
+s <- subset(s, majcompflag %in% 'TRUE' & ofbest > 99)
 
 s.mlrasummary <- aggregate(s$MLRARSYM, by=list(s$MLRARSYM), FUN='length')
 #soil sort for MLRA 139 ----
@@ -420,11 +420,14 @@ s$Site<-ifelse(s$Site %in% "Bedrock",
 #7 Muck________________________________________________________
 s$Site<-ifelse(s$Site %in% "Muck",
                ifelse(!is.na(s$T50_pH), ifelse(s$T50_pH < 5.0, "F139XY014OH", "F139XY013OH"), ifelse(grepl('dysic',s$taxclname), "F139XY014OH", "F139XY013OH")),s$Site)
+
+
 unplaced <- subset(s, is.na(Site))
 s.nolmapunit<- unique(subset(s, select=-c(lmapunitiid,percentmlra,pmlra,mu.total)))
+s.139.owned <- merge(s, usergroup[,c('grpname','dmuiid')], by='dmuiid')
+s.139.owned <- subset(s.139.owned, grpname %in% '12-BEL Belmont, New York')
 
-
-write.csv(s.nolmapunit,'fy2021-refresh/s.139.csv', row.names = F)
+write.csv(s.139.owned,'fy2021-refresh/s.139.csv', row.names = F)
 
 
 not139 <- merge(s, usergroup[,c('grpname','dmuiid')], by='dmuiid')
@@ -454,18 +457,18 @@ rast139[rast139 %in% c(170831, 170342)] <- 1
 rast139[!rast139 %in% c(0,1)] <- -1
 plot(rast139)
 
-listlmu <- s.reserve[s.reserve$MLRARSYM %in% '139' & s.reserve$ofbest <50, 'lmapunitiid']
+listlmu <- s.reserve[s.reserve$MLRARSYM %in% '139' & s.reserve$ofbest <50 & !is.na(s.reserve$taxorder), 'lmapunitiid']
 rast139 <- crop(soilgrid, extof139a)
 rast139[rast139 %in% listlmu] <- 1
 rast139[!rast139 %in% c(0,1)] <- -1
 
 usergrouplmuid <- merge(s.reserve, usergroup[,c('grpname','dmuiid')], by='dmuiid')
-groupsummary <- unique(usergrouplmuid[usergrouplmuid$MLRARSYM %in% '139' & usergrouplmuid$ofbest > 99 & usergrouplmuid$affinity > 50,]$grpname)
+groupsummary <- unique(usergrouplmuid[usergrouplmuid$MLRARSYM %in% '139' & usergrouplmuid$ofbest > 99 & usergrouplmuid$affinity > 50& !is.na(s.reserve$taxorder),]$grpname)
 
 
 rast139 <- crop(soilgrid, extof139a)
 for (i in 1:length(groupsummary)){#i=3
-  listlmu <- usergrouplmuid[usergrouplmuid$MLRARSYM %in% '139' & usergrouplmuid$ofbest > 99 & usergrouplmuid$affinity > 00 & usergrouplmuid$grpname %in% groupsummary[i],'lmapunitiid']
+  listlmu <- usergrouplmuid[usergrouplmuid$MLRARSYM %in% '139' & usergrouplmuid$ofbest > 99 & usergrouplmuid$affinity > 00 & usergrouplmuid$grpname %in% groupsummary[i] & !is.na(s.reserve$taxorder),'lmapunitiid']
   rast139[rast139 %in% listlmu] <- i
 };rast139[!rast139 %in% 1:length(groupsummary)] <- -1
 plot(rast139)
@@ -594,3 +597,45 @@ writeRaster(rast9799, 'fy2021-refresh/rast9799a.tif', overwrite=T)
 
 listGRRreject <- subset(usergrouplmuid, !MLRARSYM %in% c('96','97','98','99','94A','94C') & ofbest ==100 & grpname %in% groupsummary)
 write.csv(listGRRreject, 'fy2021-refresh/listGRRreject.csv')
+
+
+
+
+missing140 <- c(1384984, 539438, 539439, 539440, 539441, 539442, 539443, 539444, 539445, 539446, 539463, 539585, 539464, 539465, 539466, 539467, 539468, 539469, 539308, 539309, 539310, 1948970, 1948989, 539485, 296492, 296493, 296494, 296756, 539416, 539549, 539550, 539552, 539553, 539554, 539410, 539411, 539412, 539413, 1948979, 1948980, 539414, 539415, 539416, 539557, 539558, 539559, 539560, 1883685, 1883684, 299795, 299796, 299797, 539425, 294862, 539564, 539565, 539566, 296492, 296493, 296494, 539581, 539582, 539583, 539585, 539431, 539433, 539434)
+
+
+
+
+
+s.comp <- subset(s.reserve, !is.na(s.reserve$taxorder), select=c(MLRARSYM, compname, Count))
+s.comp$compname <- stringr::str_to_lower(s.comp$compname)
+s.comp$compname <- stringr::str_to_title(s.comp$compname)
+s.comp <- aggregate(list(Count=s.comp$Count), by=list(MLRARSYM=s.comp$MLRARSYM, compname=s.comp$compname), FUN='sum')
+
+c <- aggregate(list(c=s.comp$Count), by=list(MLRARSYM=s.comp$MLRARSYM), FUN='sum')
+MLRA.total <- subset(MLRA.total, total > 1000000)
+s.comp <-  merge(s.comp, MLRA.total, by='MLRARSYM')
+s.comp$percentmlra <- s.comp$Count/s.comp$total*100
+comp.total <- aggregate(list(ctotal=s.comp$percentmlra), by=list(compname=s.comp$compname), FUN='sum')
+s.comp <-  merge(s.comp, comp.total, by='compname')
+s.comp$affinity <- round(s.comp$percentmlra/s.comp$ctotal *100, 2)
+
+write.csv(s.comp, 'fy2021-refresh/s.comp.affinity.csv', row.names = F)
+
+# missing 139 ----
+
+missing139 <- c(251531, 2238292, 2205085, 779586, 1393103, 322943, 776812, 244596, 2743334, 324700, 244608, 2746156, 774529, 788245, 788245, 788248, 324304, 322974, 367609, 324312, 788165, 816450, 816458, 1328682, 249237, 249238, 249239, 249240, 249241, 249242, 249243, 776576, 244680, 244683, 244686, 244691, 245094, 244696, 244699, 324516, 249246, 2189931, 2163155, 324517, 324518, 2238289, 2238289, 245100, 324518, 245100, 776581, 324519, 324520, 324521, 324522, 245101, 324522, 249260, 2383530, 2383534, 2414568, 245105, 2192932, 2173937, 2192933, 890479, 2383580, 2383580, 2383580, 791576, 2204950, 2204950, 2484849, 2305132, 2305132, 245113, 245113, 895392, 895401, 1239181, 245114, 324547, 324548, 245116, 245116, 249287, 249286, 249287, 816305, 788227, 816305, 251629, 788166, 2379293, 1328675, 2383564, 2383567, 2383553, 244763, 244764, 244765, 244766  )
+usergrouplmuid <- merge(s, usergroup[,c('grpname','dmuiid')], by='dmuiid')
+missing139 <-  subset(usergrouplmuid, coiid %in% missing139)
+missing139 <- subset(missing139, ofbest == 100)
+write.csv(missing139, 'fy2021-refresh/missing139.csv', row.names = F)
+
+orphans <- data.frame(cbind(
+  lmukey = c(192629,187357,192688, 186374, 193342, 189435, 186776, 187220, 3015048, 169588, 2633031, 187401),
+esiid = c('R097XA024MI','R096XY002MI','R097XA024MI', 'R098XA002MI','R096XY002MI','R096XY002MI','F099XY010MI','F099XY010MI','F099XY010MI','F099XY010MI', 'F139XY010OH', 'F099XY010MI')
+
+))
+
+orphans <- merge(orphans, s.reserve[s.reserve$majcompflag %in% 'TRUE',c('lmapunitiid','dmuiid', 'muiid', 'coiid', 'compname')], by.x='lmukey', by.y = 'lmapunitiid')
+
+
