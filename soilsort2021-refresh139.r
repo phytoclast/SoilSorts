@@ -629,7 +629,7 @@ usergrouplmuid <- merge(s, usergroup[,c('grpname','dmuiid')], by='dmuiid')
 missing139 <-  subset(usergrouplmuid, coiid %in% missing139)
 missing139 <- subset(missing139, ofbest == 100)
 write.csv(missing139, 'fy2021-refresh/missing139.csv', row.names = F)
-
+#mostly great lakes marsh ----
 orphans <- data.frame(cbind(
   lmukey = c(192629,187357,192688, 186374, 193342, 189435, 186776, 187220, 3015048, 169588, 2633031, 187401),
 esiid = c('R097XA024MI','R096XY002MI','R097XA024MI', 'R098XA002MI','R096XY002MI','R096XY002MI','F099XY010MI','F099XY010MI','F099XY010MI','F099XY010MI', 'F139XY010OH', 'F099XY010MI')
