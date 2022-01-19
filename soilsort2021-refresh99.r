@@ -324,7 +324,7 @@ rm(compsorts, fc.hz.bedrock,  fc.hz.bedrock.min, fc.hz.carb, fc.hz50.total, fc.h
 
 summarydrcl <- aggregate(s[,c('drainagecl')], by=list(s$drainagecl, s$hydricrating,s$Water_Table), FUN = 'length')
 
-s <- merge(mlra.mu, s, by.x = 'muiid', by.y = 'muiid')
+s <- merge(mlra.mu, s, by.x = 'dmuiid', by.y = 'dmuiid')
 
 
 
