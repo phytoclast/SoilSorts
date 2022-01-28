@@ -364,7 +364,7 @@ s$Site<-ifelse(s$Site %in% "98A",
                       
                       
                       ifelse(s$Water_Table>=50,"F098XA003MI","F098XA004MI"),
-                      ifelse((s$Water_Table<0 & s$T150_OM >=20)|((grepl("Histic",s$taxsubgrp)|grepl("Histosols",s$compname)|grepl("ists",s$taxsubgrp)|grepl("ists",s$taxclname))& s$Water_Table<=0),"Muck",
+                      ifelse((s$Water_Table<0 & s$T150_OM >=20)|((grepl("^histic",s$taxsubgrp)|grepl("Histosols",s$compname)|grepl("ists",s$taxsubgrp)|grepl("ists",s$taxclname))& s$Water_Table<=0),"Muck",
                              ifelse(s$rockdepth < 150 & s$Water_Table >100,"Bedrock","98A")))
                ,s$Site)
 #3 Sand-Till---------------_____________________________________________________________  
@@ -414,10 +414,10 @@ s$Site<-ifelse(s$Site %in% c("S4 Sandy Plains"),
 #                ,s$Site)
 #acidic
 s$Site<-ifelse(s$Site %in% c("S1 Wet Sandy Depression"),
-               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5), "F098XA018MI",'F098XA020MI'), s$Site)
+               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.8 & s$carbdepth > 200), "F098XA018MI",'F098XA020MI'), s$Site)
 
 s$Site<-ifelse(s$Site %in% c("S2 Sandy Depression","S3 Moist Sandy Plains"),
-               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5), "F098XA017MI",'F098XA019MI'), s$Site)
+               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.8 & s$carbdepth > 200  & s$T50_sand > 70), "F098XA017MI",'F098XA019MI'), s$Site)
 
 
 #4B Tills________________________________________________________
@@ -480,7 +480,7 @@ s$Site<-ifelse(s$Site %in% "98B",
                         (grepl("flood",s$landform_string)& (grepl("fluv",s$taxsubgrp)|grepl("psam",s$taxsubgrp)|grepl("cumu",s$taxsubgrp)))|
                         s$flood %in% 'flood',
                       ifelse(s$Water_Table>=50,"F098XB025IN","F098XB026IN"),
-                      ifelse((s$Water_Table<0 & s$T150_OM >=20)|((grepl("Histic",s$taxsubgrp)|grepl("Histosols",s$compname)|grepl("ists",s$taxsubgrp)|grepl("ists",s$taxclname))& s$Water_Table<=0),"Muck",
+                      ifelse((s$Water_Table<0 & s$T150_OM >=20)|((grepl("^histic",s$taxsubgrp)|grepl("Histosols",s$compname)|grepl("ists",s$taxsubgrp)|grepl("ists",s$taxclname))& s$Water_Table<=0),"Muck",
                              ifelse(s$rockdepth < 150 & s$Water_Table >100,"Bedrock","98B")))
                ,s$Site)
 #3 Sand-Till---------------_____________________________________________________________  
@@ -496,8 +496,8 @@ s$Site<-ifelse(s$Site %in% "98B",
                    "Acid","Calcareous"))
                ,s$Site)
 
-#4A Sandy________________________________________________________
-s$Site<-ifelse(s$Site %in% "Sandy",
+#4B Sandy________________________________________________________
+s$Site<-ifelse(s$Site %in% c("Sandy"),
                ifelse(s$Water_Table<=25,"S1 Wet Sandy Depression",
                       ifelse(s$Water_Table<=50,"S2 Sandy Depression",
                              ifelse(s$Water_Table<=100,"S3 Moist Sandy Plains",
@@ -508,17 +508,23 @@ s$Site<-ifelse(s$Site %in% "Sandy",
 s$Site<-ifelse(s$Site %in% c("S5 Sandy Slopes","S4 Sandy Plains"), 'F098XB030IN',s$Site)
 
 s$Site<-ifelse(s$Site %in% c("S1 Wet Sandy Depression"),
-               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5), "F098XB032IN",'R098XB034IN'), s$Site)
+               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.8 & s$carbdepth > 200), "F098XB032IN",'R098XB034IN'), s$Site)
 
 s$Site<-ifelse(s$Site %in% c("S2 Sandy Depression","S3 Moist Sandy Plains"),
-               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5), "R098XB033IN",'F098XB031IN'), s$Site)
+               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.8 & s$carbdepth > 200), "R098XB031IN",'F098XB033IN'), s$Site)
 
 
 #4B Tills________________________________________________________
-s$Site<-ifelse(s$Site %in% c("Calcareous","Acid"),
-               ifelse(s$Water_Table<=25,"F098XA012MI",
-                      ifelse(s$Water_Table<=50,"F098XA011MI",
-                             ifelse(s$Water_Table<=100,"F098XA011MI",
+s$Site<-ifelse(s$Site %in% c("Calcareous"),
+               ifelse(s$Water_Table<=25,"R098XB034IN",
+                      ifelse(s$Water_Table<=50,"R098XB033IN",
+                             ifelse(s$Water_Table<=100,"R098XB033IN",
+                                    ifelse(s$slope_r >=15,"F098XA022MI", "check for prairie"))))
+               ,s$Site)
+s$Site<-ifelse(s$Site %in% c("Acid"),
+               ifelse(s$Water_Table<=25,"F098XB032IN",
+                      ifelse(s$Water_Table<=50,"F098XB031IN",
+                             ifelse(s$Water_Table<=100,"F098XB031IN",
                                     ifelse(s$slope_r >=15,"F098XA022MI", "check for prairie"))))
                ,s$Site)
 #prairie & (s$LRU %in% c('98A', '98A1', '98B', '108',  '110', '111C', '111B'))

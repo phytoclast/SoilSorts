@@ -44,7 +44,7 @@ mlra.best <- aggregate(list(best=mlra.mu$affinity), by= list(dmuiid = mlra.mu$dm
 mlra.mu <- merge(mlra.mu, mlra.best, by.x='dmuiid', by.y='dmuiid')
 mlra.mu$ofbest <- mlra.mu$affinity / mlra.mu$best *100
 
-mlra.mu <-  unique(subset(mlra.mu, ofbest > 99, select =c(dmuiid, MLRA)))
+mlra.mu <-  unique(subset(mlra.mu, ofbest > 0, select =c(affinity, ofbest, dmuiid, MLRA)))
 
 #establish dominant LRU within MLRA ----
 lru.label <- read.csv('fy2021-refresh/lrufeaturelabels.csv')
@@ -98,12 +98,12 @@ lru.mu <- merge(lru.mu, lru.mu.total, by=c('dmuiid','MLRA'))
 lru.mu$lruaffinity <- lru.mu$percentlru/lru.mu$percentlrutotal*100
 lru.best <- aggregate(list(best=lru.mu$lruaffinity), by= list(MLRA = lru.mu$MLRA, dmuiid = lru.mu$dmuiid), FUN ='max')
 lru.mu <- merge(lru.mu, lru.best, by=c('dmuiid','MLRA'))
-lru.mu <- subset(lru.mu, lruaffinity/best >= 0.99, select=c(dmuiid, MLRA, LRU))
+lru.mu <- subset(lru.mu, lruaffinity/best >= 0, select=c(lruaffinity,dmuiid, MLRA, LRU))
 
 mlra.mu <- merge(mlra.mu, lru.mu, by=c('dmuiid', 'MLRA'), all.x = T)
 ######################################----
 #usergroup <- get_group_from_table("datamapunit")
-#saveRDS(usergroup, 'fy2021-refresh/usergroup20220104.RDS')
+#saveRDS(usergroup, 'fy2021-refresh/usergroup20220119.RDS')
 usergroup <- readRDS("fy2021-refresh/usergroup20220119.RDS")
 # comp <- get_component_data_from_NASIS_db(SS=F)
 # saveRDS(comp, file='fy2021-refresh/comp.RDS')
@@ -330,178 +330,30 @@ s <- merge(mlra.mu, s, by.x = 'dmuiid', by.y = 'dmuiid')
 
 
 s.reserve <- s
-write.csv(s, 'fy2021-refresh/s.csv')
 
 s <- s.reserve
-s <- subset(s, MLRA %in% '97')
+#s <- subset(s, MLRA %in% '98')
 
 
 
-#soil sort for MLRA 97 ----
+#soil sort for MLRA 139 ----
 #0 clear sites______________________________________________________________
 s$Site<-"Not"
-
-
-
-#1 Lake and beaches ----
-s$Site<-ifelse(s$Site %in% "Not",
-               ifelse(s$muname %in% c("Water","water") & s$compname %in% c("Water","water"),"Water",
-                      ifelse(s$compname %in% c("Beaches","Lake beach","Lake bluffs", "Dune land")| s$muname %in% c("Beach and Dune sand","Stony lake beaches","Dune land","Sand dunes"),"R097XA001MI","Not"))
-               ,s$Site)
-
-#Establish LRU
-s$Site<-ifelse(s$Site %in% "Not",ifelse(s$LRU %in% c("97A"),'97A','97B'),s$Site)
-
-
 #___________________________________                
-s$Site<-ifelse(s$Site %in% "97A",
-               ifelse(s$muname %in% c("flooded") | s$compname %in% c("Alluvial land")|
+s$Site<-ifelse(s$muname %in% c("flooded") | s$compname %in% c("Alluvial land")|
                         (grepl("flood",s$landform_string)& (grepl("fluv",s$taxsubgrp)|grepl("psam",s$taxsubgrp)|grepl("cumu",s$taxsubgrp)))|
-                        s$flood %in% 'flood', 
-                      
-                      
-                      ifelse(s$Water_Table>=50,"F097XA025MI","F097XA027MI"),
+                        s$flood %in% 'flood', 'Floodplain',
                       ifelse((s$Water_Table<0 & s$T150_OM >=20)|((grepl("^histic",s$taxsubgrp)|grepl("Histosols",s$compname)|grepl("ists",s$taxsubgrp)|grepl("ists",s$taxclname))& s$Water_Table<=0),"Muck",
                              ifelse(s$rockdepth < 150 & s$Water_Table >100,"Bedrock",s$Site)))
-               ,s$Site)
-#3 Sand-Till---------------_____________________________________________________________  
-s$Site<-ifelse(s$Site %in% "97A",
-               ifelse(
-                 (((s$T150_sand >= 80 & s$T50_sand >= 70)|(s$T50_sand >= 80)|(s$T150_clay < 20 & s$T50_pH < 6 & grepl('ult', s$taxsubgrp)))), "Sandy",
-                 ifelse(
-                          (
-                            (s$T50_pH < 5.5 & s$carbdepth > 150 & !grepl('oll',s$taxsubgrp)) |
-                              (s$T50_pH < 6 & s$carbdepth > 100 & grepl('frag',s$taxsubgrp)) |
-                              grepl('ult', s$taxsubgrp)|grepl('dysic', s$taxsubgrp)|grepl('dystru', s$taxsubgrp)
-                          ),
-                        "Acid","Calcareous"))
-               ,s$Site)
-
-#4A Sandy________________________________________________________
-s$Site<-ifelse(s$Site %in% "Sandy",
-               ifelse(s$Water_Table<=25,"S1 Wet Sandy Depression",
-                      ifelse(s$Water_Table<=50,"S2 Sandy Depression",
-                             ifelse(s$Water_Table<=100,"S3 Moist Sandy Plains",
-                                    ifelse(s$slope_r >=15,"S5 Sandy Slopes","S4 Sandy Plains"))))
-               ,s$Site)
-
-s$Site<-ifelse(s$Site %in% c("S5 Sandy Slopes"), 'F097XA010MI',s$Site)
-
-s$Site<-ifelse(s$Site %in% c("S4 Sandy Plains"),'F097XA004MI',s$Site)
-
-s$Site<-ifelse(s$Site %in% c("S1 Wet Sandy Depression"),
-               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.8 & s$carbdepth > 200  & s$T50_sand > 70), "F097XA007MI",'F097XA008MI'), s$Site)
-
-s$Site<-ifelse(s$Site %in% c("S2 Sandy Depression","S3 Moist Sandy Plains"),
-               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.8 & s$carbdepth > 200  & s$T50_sand > 70), "F097XA006MI",'F097XA012MI'), s$Site)
-
-
-#4B Tills________________________________________________________
-s$Site<-ifelse(s$Site %in% c("Calcareous","Acid"),
-               ifelse(s$Water_Table<=25,"F097XA023MI",
-                      ifelse(s$Water_Table<=50,"F097XA022MI",
-                             ifelse(s$Water_Table<=100,"F097XA022MI",
-                                    ifelse(s$slope_r >=15,"F097XA017MI", "F097XA018MI"))))
-               ,s$Site)
-
-#6 Bedrock________________________________________________________
-# s$Site<-ifelse(s$Site %in% "Bedrock",
-#                ifelse(grepl("sandstone", s$pmorigin)|grepl("sandstone", s$pmkind)|(grepl("shale", s$pmkind) & s$carbdepth > 200 & s$T50_pH < 5.5)|(is.na(s$pmorigin) & s$T50_pH < 6 & s$T150_sand >= 70), 'F098XA023MI',s$Site),s$Site)   
-# 
-# s$Site<-ifelse(s$Site %in% "Bedrock",
-#                ifelse(grepl("limestone", s$pmorigin)|grepl("dolomite", s$pmorigin)|grepl("limestone", s$pmkind)|grepl("dolomite", s$pmkind)|(grepl("shale", s$pmkind) & s$carbdepth < 150 & s$T50_pH >= 6)| (is.na(s$pmorigin) & grepl('oll', s$taxsubgrp)), 'F098XA024MI',s$Site),s$Site) 
-#                       
-#7 Muck________________________________________________________
-s$Site<-ifelse(s$Site %in% "Muck",
-               ifelse(!is.na(s$T50_pH) & s$T50_pH < 5.0, "F097XA031MI",ifelse(grepl('dysic',s$taxclname), "F097XA031MI", "F097XA030MI"))
-               ,s$Site)
-
-
-
-
-#98B
-s$Site<-ifelse(s$Site %in% "97B",
-               ifelse(s$muname %in% c("flooded") | s$compname %in% c("Alluvial land")|
-                        (grepl("flood",s$landform_string)& (grepl("fluv",s$taxsubgrp)|grepl("psam",s$taxsubgrp)|grepl("cumu",s$taxsubgrp)))|
-                        s$flood %in% 'flood',
-                      ifelse(s$Water_Table>=50,"F097XB044IN","F097XB049IN"),
-                      ifelse((s$Water_Table<0 & s$T150_OM >=20)|((grepl("^histic",s$taxsubgrp)|grepl("Histosols",s$compname)|grepl("ists",s$taxsubgrp)|grepl("ists",s$taxclname))& s$Water_Table<=0),"Muck",
-                             ifelse(s$rockdepth < 150 & s$Water_Table >100,"Bedrock",s$Site)))
-               ,s$Site)
-#3 Sand-Till---------------_____________________________________________________________  
-s$Site<-ifelse(s$Site %in% "97B",
-               ifelse(
-                 (((s$T150_sand >= 80 & s$T50_sand >= 70)|(s$T50_sand >= 80)|(s$T150_clay < 20 & s$T50_pH < 6 & grepl('ult', s$taxsubgrp)))), "Sandy",
-                 ifelse(
-                   (
-                     (s$T50_pH < 5.5 & s$carbdepth > 150 & !grepl('oll',s$taxsubgrp)) |
-                       (s$T50_pH < 6 & s$carbdepth > 100 & grepl('frag',s$taxsubgrp)) |
-                       grepl('ult', s$taxsubgrp)|grepl('dysic', s$taxsubgrp)|grepl('dystru', s$taxsubgrp)
-                   ),
-                   "Acid","Calcareous"))
-               ,s$Site)
-
-#4A Sandy________________________________________________________
-s$Site<-ifelse(s$Site %in% "Sandy",
-               ifelse(s$Water_Table<=25,"S1 Wet Sandy Depression",
-                      ifelse(s$Water_Table<=50,"S2 Sandy Depression",
-                             ifelse(s$Water_Table<=100,"S3 Moist Sandy Plains",
-                                    ifelse(s$slope_r >=15,"S5 Sandy Slopes","S4 Sandy Plains"))))
-               ,s$Site)
-
-
-s$Site<-ifelse(s$Site %in% c("S5 Sandy Slopes"), 'F097XB040IN',s$Site)
-
-s$Site<-ifelse(s$Site %in% c("S4 Sandy Plains"),'F097XB033IN',s$Site)
-
-s$Site<-ifelse(s$Site %in% c("S1 Wet Sandy Depression"),
-               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.8 & s$carbdepth > 200  & s$T50_sand > 70), "F097XA007MI",'R097XB036IN'), s$Site)
-
-s$Site<-ifelse(s$Site %in% c("S2 Sandy Depression","S3 Moist Sandy Plains"),
-               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.8 & s$carbdepth > 200  & s$T50_sand > 70), "F097XA006MI",'F097XB035IN'), s$Site)
-
-
-#4B Tills________________________________________________________
-s$Site<-ifelse(s$Site %in% c("Calcareous","Acid"),
-               ifelse(s$Water_Table<=25,"R097XB047IL",
-                      ifelse(s$Water_Table<=50,"R097XB046IL",
-                             ifelse(s$Water_Table<=100,"R097XB046IL",
-                                    ifelse(s$slope_r >=15,"F097XB041IN", "R097XB046IL"))))
-               ,s$Site)
-
-
+               
 
 #7 Muck________________________________________________________
 s$Site<-ifelse(s$Site %in% "Muck",
-               ifelse(!is.na(s$T50_pH) & s$T50_pH < 5.0, "F097XA031MI",ifelse(grepl('dysic',s$taxclname), "F097XA031MI", "R097XB051IL"))
+               ifelse(!is.na(s$T50_pH) & s$T50_pH < 5.0, "Acidic Peaty Depression",ifelse(grepl('dysic',s$taxclname), "Acidic Peaty Depression", "Mucky Depression"))
                ,s$Site)
 
+mlradmus <- unique(s[s$MLRA %in% c('98','97','99') & s$Site %in% 'Mucky Depression' & s$majcompflag %in% 'TRUE',]$dmuiid)
+s1 <- subset(s, dmuiid %in% mlradmus)
+usergrouplmuid <- merge(s1, usergroup[,c('grpname','dmuiid')], by='dmuiid')
+write.csv(usergrouplmuid, 'fy2021-refresh/mlramucks.csv', row.names = F)
 
-
-#Back dunes = Plainfield sand, dunes
-
-s$Site<-ifelse(grepl('Plainfield sand, dunes',s$muname) | s$nationalmusym %in% c('67pg','67w8'), 'F097XA002MI',s$Site)
-s$Site<-ifelse(s$nationalmusym %in% c('5d5y', '94r3'), 'F097XB003IN',s$Site)
-
-
-
-
-
-
-
-
-
-
-
-
-usergrouplmuid <- merge(s, usergroup[,c('grpname','dmuiid')], by='dmuiid')
-write.csv(usergrouplmuid, 'fy2021-refresh/mlra97sorts.csv', row.names = F)
-
-orphans <- data.frame(cbind(
-  lmukey = c(192629,187357,192688, 186374, 193342, 189435, 186776, 187220, 3015048, 169588, 2633031, 187401),
-  esiid = c('R097XA024MI','R096XY002MI','R097XA024MI', 'R098XA002MI','R096XY002MI','R096XY002MI','F099XY010MI','F099XY010MI','F099XY010MI','F099XY010MI', 'F139XY010OH', 'F099XY010MI')
-  
-))
-
-orphans <- merge(orphans, s.reserve[s.reserve$majcompflag %in% 'TRUE',c('lmapunitiid','dmuiid', 'muiid', 'coiid', 'compname')], by.x='lmukey', by.y = 'lmapunitiid')
-write.csv(orphans,'fy2021-refresh/orphans.csv', row.names = F)
