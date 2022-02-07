@@ -554,6 +554,7 @@ s$Site111 <- ifelse(s$Site111 %in% "Not", ifelse(grepl("Histosols",s$compname)|g
 s$Site111 <- ifelse(s$Site111 %in% "Muck", ifelse(grepl("terric",s$taxsubgrp)|grepl("terric",s$taxclname),"R111DY001IN",s$Site111),s$Site111)
 s$Site111 <- ifelse(s$Site111 %in% "Muck", ifelse(grepl("limnic",s$taxsubgrp)|grepl("timnic",s$taxclname),"R111DY001IN", "R111DY002IN"),s$Site111)
 
+s$Site111<-ifelse(s$Site111 %in% "Not", ifelse(s$rockdepth < 150, 'bedrock', s$Site111), s$Site111)
 
 #3 lacustrine Parent Material  --------------------------------------------------------- 
 s$Site111<-ifelse(s$Site111 %in% "Not",
@@ -570,16 +571,8 @@ s$Site111<-ifelse(s$Site111 %in% "alluvium",
                   ifelse(s$drainagecl %in% c("very poorly", "poorly","somewhat poorly"), 'F111DY003IN', 'F111DY004IN')
                   , s$Site111)
 
-#4 bedrock Parent Material  --------------------------------------------------------- 
-s$Site111<-ifelse(s$Site111 %in% "Not",
-                  ifelse(s$rockdepth < 200, 'bedrock', s$Site111), s$Site111)
 
-s$Site111<-ifelse(s$Site111 %in% "bedrock",
-                  ifelse(grepl("Mollisols",s$compname)|grepl("olls",s$taxsubgrp)|grepl("olls",s$taxclname), 'Dark Bedrock Prairie',
-                         ifelse(s$drainagecl %in% c("very poorly", "poorly", "somewhat poorly"), 'Mesic Bedrock Forest', 'Dry Bedrock Forest'))
-                  , s$Site111)
-
-#5 outwash Parent Material  --------------------------------------------------------- 
+#4 outwash Parent Material  --------------------------------------------------------- 
 s$Site111<-ifelse(s$Site111 %in% "Not",
                   ifelse(grepl("outwash",s$pmkind)|grepl("fluv",s$pmkind), 'outwash', s$Site111), s$Site111)
 
@@ -588,7 +581,7 @@ s$Site111<-ifelse(s$Site111 %in% "outwash",
                          ifelse(s$drainagecl %in% c("moderately well ", "somewhat poorly"),'F111CY009IN','R111CY010IN'))
                   , s$Site111)
 
-#6 till Parent Material  --------------------------------------------------------- 
+#5 till Parent Material  --------------------------------------------------------- 
 s$Site111<-ifelse(s$Site111 %in% "Not",
                   ifelse(grepl("till",s$pmkind)|grepl("drift",s$pmkind), 'till', s$Site111), s$Site111)
 
@@ -596,7 +589,7 @@ s$Site111<-ifelse(s$Site111 %in% "till",
                   ifelse(s$drainagecl %in% c("very poorly", "poorly"),'R111CY005IN',
                          ifelse(s$slope_r > 4 & !(grepl('humic',s$taxsubgrp) | grepl('mollic',s$taxsubgrp) | grepl('olls',s$taxsubgrp)),'F111CY007IN','R111CY006IN'))
                   , s$Site111)
-#7 Sand Parent Material  --------------------------------------------------------- 
+#6 Sand Parent Material  --------------------------------------------------------- 
 s$Site111<-ifelse(s$Site111 %in% "Not",
                   ifelse(s$T50_sand > 70, 'sand', s$Site111), s$Site111)
 
@@ -607,5 +600,147 @@ s$Site111<-ifelse(s$Site111 %in% "sand",
 
 s.111D <- subset(s, MLRA %in% '111D')
 
+#7 bedrock Parent Material  --------------------------------------------------------- 
+s$Site111<-ifelse(s$Site111 %in% "Not",
+                  ifelse(s$rockdepth < 200 | grepl("residuum",s$pmkind), 'bedrock', s$Site111), s$Site111)
+
+s$Site111<-ifelse(s$Site111 %in% "bedrock",
+                  ifelse(s$rockdepth < 100, ifelse(s$rockdepth < 50, 'F111DY022IN', 'F111DY023IN'),'F111DY024IN')
+                  , s$Site111)
+
 write.csv(s.111D, 'fy2021-refresh/mlra111D_sorts.csv', row.names = F)
+
+
+
+ES111D.list <- list(F111DY003IN = c('Washtenaw', 'Wakeland', 'Vincennes', 'Tice', 'Southwest', 'Sloan', 'Shoals', 'Sawabash', 'Saranac', 'Rockmill', 'Petrolia', 'Henshaw', 'Comfrey', 'Cohoctah', 'Ceresco', 'Brouillett', 'Beaucoup', 'Algiers'),
+F111DY004IN = c('Uniontown, Stringley, Stonelick, Sligo, Rossburg, Ross, Pinevillage, Ouiatenon, Moundhaven, Medway, Lobdell, Lash, Lanier, Landes, Jules, Huntsville, Hononegah, Gessie, Genesee, Elkinsville, Eel, Coblen, Chatterton, Chagrin, Beckville, Battleground, Armiesburg, Allison'),
+F111DY005IN = c('Yeddo', 'Reesville', 'Haskins', 'Evansville', 'Clermont', 'Blount', 'Blanchester'),
+F111DY008IN = c('Treaty', 'Selma', 'Secondcreek', 'Pewamo', 'Pella', 'Millsdale', 'Lisbon', 'Kokomo', 'Cyclone', 'Cope', 'Chalmers', 'Brookston', 'Ashkum'),
+F111DY009IN = c('Westboro', 'Sugarvalley', 'Schaffer', 'Randolph', 'Mitiwanga', 'Hoosierville', 'Fincastle', 'Crosier', 'Crosby'),
+F111DY010IN = c('Xenia', 'Wynn', 'Williamstown', 'Wapahani', 'Tuscola', 'Thrifton', 'Strawn', 'Senachwine', 'Russell', 'Rossmoyne', 'Rockfield', 'Ritchey', 'Riddles', 'Richardville', 'Rawson', 'Rainsville', 'Ozaukee', 'Morningsun', 'Morley', 'Milton', 'Miamian', 'Miami', 'Manlove', 'Loudonville', 'Losantville', 'Jonesboro', 'Hickory', 'Hennepin', 'Glynwood', 'Edenton', 'Crouse', 'Cincinnati', 'Celina', 'Cadiz', 'Bonnell', 'Birkbeck', 'Ava'),
+F111DY013IN = c('Zipp', 'Patton', 'Montgomery', 'Milford', 'Belleville'),
+F111DY014IN = c('Del Rey', 'Haubstadt'),
+F111DY015IN = c('Whitson', 'Sable', 'Ragsdale', 'Edwardsville'),
+F111DY016IN = c('Muren', 'Iva', 'Alford'),
+F111DY017IN = c('Whitaker', 'Waynetown', 'Thackery', 'Taggart', 'Starks', 'Sleeth', 'Shadeland', 'Markland', 'Libre', 'Kendall', 'Homer', 'Fitchville'),
+F111DY018IN = c('Williamsburg', 'Wawaka', 'Spinks', 'Sparta', 'Sisson', 'Silverwood', 'Rush', 'Parke', 'Oshtemo', 'Ormas', 'Ockley', 'Negley', 'Mudlavia', 'Martinsville', 'Kosciusko', 'Kendallville', 'Kalamazoo', 'Fox', 'Eldean', 'Coloma', 'Casco', 'Camden', 'Boyer', 'Angatoka'),
+F111DY022IN = c('Weikert', 'Opequon', 'Gasconade', 'Fairmount', 'Corydon'),
+F111DY023IN = c('Newglarus', 'Lumberton', 'Judyville', 'Gosport', 'Fairmount', 'Eden', 'Cates', 'Bratton', 'Berks', 'Adeland'),
+F111DY024IN = c('Woolper', 'Switzerland', 'Pate', 'Morrisville', 'Loudon', 'Lawshe', 'Grayford', 'Carmel', 'Boston'),
+F111DY025IN = c('Ayrshire'),
+R111DY001IN = c('Wallkill', 'Palms', 'Muskego', 'Linwood', 'Adrian', 'Ackerman'),
+R111DY002IN = c('Houghton'),
+R111DY006IN = c(),
+R111DY007IN = c('Tecumseh', 'Sidell', 'Linkville', 'Jasper'),
+R111DY011IN = c('Wingate', 'Toronto', 'Throckmorton', 'Octagon', 'Montmorenci', 'Mellott', 'Markham'),
+R111DY012IN = c('Williamsport', 'Varna', 'Symerton', 'Raub', 'Parr', 'Odell', 'Elliott', 'Dana', 'Corwin'),
+R111DY019IN = c('Seafield', 'Mulvey', 'Millbrook', 'Longlois', 'Glenhall', 'Desker', 'Bowes', 'Billett'),
+R111DY020IN = c('Westland', 'Sebewa', 'Rensselaer', 'Peotone', 'Millgrove', 'Mahalasville', 'Mahalaland', 'Lafayette', 'Harpster', 'Gilford', 'Gilboa', 'Free', 'Dunham', 'Drummer', 'Darroch', 'Crane', 'Brenton', 'Andres'),
+R111DY026IN = c('Ade'),
+R111DY027IN = c('Princeton', 'Chelsea', 'Alvin'))
+
+for(i in 1:length(ES111D.list)){
+  ES111D.df0 <- as.data.frame(merge(names(ES111D.list[i]),ES111D.list[i])); colnames(ES111D.df0) <- c('ES','Series')
+  if(i == 1){ES111D <- ES111D.df0}else{ES111D <- rbind(ES111D.df0, ES111D)}};rm(ES111D.df0) 
+
+s.111D <- merge(ES111D, s,  by.x = 'Series', by.y = 'compname', all.y = T)
+s.111D <- subset(s.111D, MLRA %in% '111D')
+
+write.csv(s.111D, 'fy2021-refresh/mlra111D_sorts.csv', row.names = F)
+
+
+#111E ----
+
+ES111E.list <- list(
+  
+  F111EY101OH = c('Sebring', 'Minster', 'Milford', 'Luray', 'Lenawee', 'Colwood', 'Bono'),
+  F111EY102OH = c('Tuscola', 'Shinrock', 'Mentor', 'Kibbie', 'Glenford', 'Fitchville'),
+  F111EY201OH = c('Sloan', 'Saranac'),
+  F111EY202OH = c('Rossburg', 'Medway'),
+  F111EY203OH = c('Shoals', 'Orrville', 'Newark', 'Killbuck', 'Holly'),
+  F111EY204OH = c('Tioga', 'Lobdell', 'Lindside', 'Genesee', 'Chagrin'),
+  F111EY301OH = c('Smothers', 'Mitiwanga'),
+  F111EY302OH = c('Rarden', 'Milton', 'Loudonville', 'Latham', 'Heverlo', 'Brecksville'),
+  F111EY403OH = c('Sleeth', 'Olmsted', 'Jimtown', 'Digby', 'Bogart'),
+  F111EY404OH = c('Wheeling', 'Spinks', 'Oshtemo', 'Ockley', 'Martinsville', 'Haney', 'Gallman', 'Fox', 'Chili', 'Bixler'),
+  F111EY501OH = c('Pewamo', 'Mermill', 'Marengo', 'Condit'),
+  F111EY502OH = c('Tiro', 'Hyatts', 'Haskins', 'Bennington'),
+  F111EY503OH = c('Lykens', 'Lybrand', 'Kendallville', 'Hennepin', 'Centerburg', 'Cardington', 'Amanda', 'Alexandria'),
+  R111EY001OH = c('Wallkill', 'Linwood'),
+  R111EY002OH = c('Olentangy', 'Muskego'),
+  R111EY003OH = c('Pinnebog', 'Carlisle'),
+  R111EY401OH = c('Westland', 'Millgrove'),
+  R111EY402OH = c('Wilmer Variant')
+)
+
+for(i in 1:length(ES111D.list)){
+  ES111E.df0 <- as.data.frame(merge(names(ES111E.list[i]),ES111E.list[i])); colnames(ES111E.df0) <- c('ES','Series')
+  if(i == 1){ES111E <- ES111E.df0}else{ES111E <- rbind(ES111E.df0, ES111E)}};rm(ES111E.df0) 
+
+s.111E <- merge(ES111E, s,  by.x = 'Series', by.y = 'compname', all.y = T)
+s.111E <- subset(s.111E, MLRA %in% '111E')
+
+write.csv(s.111E, 'fy2021-refresh/mlra111E_sorts.csv', row.names = F)
+
+#114A ----
+
+ES114A.list <- list(
+  
+  F114AY101IN = c('Luray', 'McGary', 'Montgomery', 'Peoga', 'Sebring', 'Zipp'),
+  F114AY102IN = c('Bartle', 'Dubois', 'Haubstadt', 'Otwell', 'Pekin'),
+  F114AY103IN = c('Glenford', 'Elkinsville', 'Markland', 'Mentor', 'Millstone', 'Shircliff'),
+  F114AY203IN = c(''),
+  F114AY204IN = c('Algiers', 'Chagrin', 'Cuba', 'Eel', 'Genesee', 'Gessie', 'Hatfiled', 'Haymond', 'Jules', 'Lanier', 'Lobdell', 'Medway', 'Mondhaven', 'Newark', 'Oldenburg', 'Ross', 'Sciotoville', 'Steff', 'Stonelick', 'Wilbur', 'Wirt'),
+  F114AY302IN = c('Deputy', 'Gilpin', 'Jennings', 'Jessietown', 'Loudon', 'Loudonville', 'Mechanicburg', 'Rarden Scottsburg Trappist', 'Weddel', 'Whitcomb'),
+  F114AY305IN = c('Caneyville', 'Carmel', 'Crider', 'Eden', 'Edenton', 'Juessup Morrisville', 'Switzerland', 'Zenas'),
+  F114AY404IN = c('Alford', 'Chetwynd', 'Chili', 'Libre', 'Medona', 'Negley', 'Ninevah', 'Parke', 'Pike', 'Rainsboro', 'Sardinia', 'Vallonia', 'Williamsburg'),
+  F114AY501IN = c('Atlas', 'Avonburg', 'Blanchester', 'Clermont', 'Cobbsfork'),
+  F114AY502IN = c('Blocher', 'Cincinnati', 'Homewood', 'Jonesboro', 'Nabb', 'Nicely', 'Rossmoyne', 'Ryker', 'Titusville'),
+  F114AY504IN = c('Bonnell', 'Grayford', 'Hickory', 'Ryker', 'Weisburg'),
+  F114AY802IN = c('Ayrshire', 'Bloomfield', 'Bobtown', 'Priceton'),
+  
+)
+
+for(i in 1:length(ES114A.list)){
+  ES114A.df0 <- as.data.frame(merge(names(ES114A.list[i]),ES114A.list[i])); colnames(ES114A.df0) <- c('ES','Series')
+  if(i == 1){ES114A <- ES114A.df0}else{ES114A <- rbind(ES114A.df0, ES114A)}};rm(ES114A.df0) 
+
+s.114A <- merge(ES114A, s,  by.x = 'Series', by.y = 'compname', all.y = T)
+s.114A <- subset(s.114A, MLRA %in% '114A')
+
+write.csv(s.114A, 'fy2021-refresh/mlra114A_sorts.csv', row.names = F)
+
+
+#114B ----
+
+ES114B.list <- list(
+  
+  F114BY103IN = c('Floraville', 'Lakaskia', 'McGary', 'Montgomery', 'Okaw', 'Patton', 'Peoga', 'Wagner', 'Zipp'),
+  F114BY104IN = c('Bartle', 'Colp', 'Dubois', 'Elkinsville', 'Hurst', 'Greybrook', 'Haubstadt', 'Millstadt', 'Markland', 'Otwell', 'Olephant', 'Potterville', 'Redbud', 'Stubenville'),
+  F114BY203IN = c('Atkins', 'Beaucoup', 'Birds', 'Bonnie', 'Coffeen', 'Colo', 'Holton', 'Orion', 'Otter', 'Petrolia', 'Shoals', 'Stendal', 'Tice', 'Titus', 'Wabash', 'Wakeland', 'Wilhite'),
+  F114BY204IN = c('Armiesburg', 'Beanblossum', 'Chagrin', 'Cuba', 'Eel', 'Elkinsville', 'Genesee', 'Haymond', 'Huntsville', 'Landes', 'Lindside', 'Lobell', 'McAdoo', 'Moundhaven', 'Nolin', 'Oldenburg', 'Pekin', 'Ross', 'Steff', 'Stonelick', 'Terril', 'Wilbur', 'Wirt'),
+  F114BY302IN = c('Grayford', 'Ryker', 'Stinesville', 'Wellston'),
+  F114BY403IN = c('Whitaker', 'Taggart', 'Rensselaer', 'Roby', 'Lyles', 'Kendall', 'Geff'),
+  F114BY404IN = c('Ridgeway', 'Rend', 'Pike', 'Parke', 'Ockley', 'Negley', 'Martinsville', 'Gallimore', 'Chetwynd', 'Campton', 'Camden'),
+  F114BY502IN = c('Vigo', 'Hoosierville', 'Lieber', 'Blair'),
+  F114BY503IN = c('Arney', 'Ava', 'Cincinnati', 'Elco', 'Grantfork', 'Hickory', 'Solsberry', 'Shakamak'),
+  F114BY801IN = c('Princeton', 'Bloomfield', 'Ayrshire', 'Alvin'),
+  F114BY803IN = c('Bunkum', 'Cory', 'Iva'),
+  F114BY804IN = c('Alford', 'Homen', 'Hosmer', 'Menfro', 'Muren', 'Rumen', 'Winfield'),
+  F114BY805IL = c('Marine', 'Pierron', 'Burksville', 'Rushville'),
+  R114BY901IN = c('Biddle', 'Coulterville', 'Darmstadt', 'Fosterburg', 'Piasa', 'Tamalco', 'Huey'),
+  R114BY902IN = c('Bethalto', 'Cowden', 'Edwardsville', 'Herrick', 'Hoyleton', 'Keller', 'Mascoutah', 'Shiloh', 'Oconee', 'Virden'),
+  R114BY903IN = c('Aviston', 'Douglas', 'Elston', 'Harrison', 'Meadowbank', 'Pana', 'Waupecan', 'Wakenda', 'Wea', 'Velma'),
+  
+)
+
+for(i in 1:length(ES114B.list)){
+  ES114B.df0 <- as.data.frame(merge(names(ES114B.list[i]),ES114B.list[i])); colnames(ES114B.df0) <- c('ES','Series')
+  if(i == 1){ES114B <- ES114B.df0}else{ES114B <- rbind(ES114B.df0, ES114B)}};rm(ES114B.df0) 
+
+s.114B <- merge(ES114B, s,  by.x = 'Series', by.y = 'compname', all.y = T)
+s.114B <- subset(s.114B, MLRA %in% '114B')
+
+write.csv(s.114B, 'fy2021-refresh/mlra114B_sorts.csv', row.names = F)
+
 
