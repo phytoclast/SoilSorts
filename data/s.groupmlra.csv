@@ -1,0 +1,465 @@
+"MLRARSYM","grpname","count"
+"101","12-BEL Belmont, New York",2315059
+"101","12-BEL Projects",614216
+"101","12-PAS Paul Smiths, New York",25483115
+"101","12-TOL Points",66
+"101","12-TOL Tolland, Connecticut",6311
+"101","Standard Calculations",26609
+"101","Standard Map Units",83614
+"101","State Office NY - Region 6",3010
+"101","State Office PA - Region 6",798
+"108","11-AUR Aurora, Illinois",11146197
+"108","11-JUE Juneau, Wisconsin",648458
+"108","11-MAN Marion, Illinois",1427987
+"108","11-SPR Springfield, Illinois",5302000
+"108","12-IND Indianapolis, Indiana",268298
+"108","Illinois",1543
+"110","11-AUR Aurora, Illinois",19739375
+"110","11-FIN Findlay, Ohio",515
+"110","11-JUE Juneau, Wisconsin",67566
+"110","11-MAN Marion, Illinois",306
+"110","11-SPR Springfield, Illinois",112138
+"110","12-FIN Findlay, Ohio",118921
+"110","12-GRR Grand Rapids, Michigan",267169
+"110","12-GRR MLRA MU/DMU",19896
+"110","12-IND Indianapolis, Indiana",559865
+"110","Illinois",2902
+"111A","12-FIN Findlay, Ohio",258296
+"111A","12-GRR Grand Rapids, Michigan",111
+"111A","12-IND Indianapolis, Indiana",31059180
+"111A","6-MAT Correlated MLRA Data",27060
+"111A","6-MAT Marietta, Ohio",218027
+"111A","6-OWN Correlated MLRA Data",4866
+"111A","6-OWN Owensboro, Kentucky",13987
+"111A","State Office IN - Region 6",62
+"111A","State Office OH - Region 6",2371
+"111B","11-AUR Aurora, Illinois",1895
+"111B","11-FIN Findlay, Ohio",53284
+"111B","12-BEL Belmont, New York",60018
+"111B","12-FIN Findlay, Ohio",30015432
+"111B","12-FLI Flint, Michigan",358921
+"111B","12-GRR Grand Rapids, Michigan",597490
+"111B","12-IND Indianapolis, Indiana",808400
+"111B","6-MAT Marietta, Ohio",9540
+"111C","11-AUR Aurora, Illinois",264736
+"111C","11-FIN Findlay, Ohio",401869
+"111C","12-FIN Findlay, Ohio",7030194
+"111C","12-GRR Grand Rapids, Michigan",1503094
+"111C","12-GRR MLRA MU/DMU",4221
+"111C","12-IND Indianapolis, Indiana",952253
+"111D","11-AUR Aurora, Illinois",34319
+"111D","11-FIN Findlay, Ohio",10494
+"111D","11-MAN Marion, Illinois",4866
+"111D","12-FIN Findlay, Ohio",314294
+"111D","12-GRR Grand Rapids, Michigan",9280
+"111D","12-IND Indianapolis, Indiana",14749677
+"111D","6-OWN Correlated MLRA Data",20247
+"111D","6-OWN Owensboro, Kentucky",89581
+"111D","State Office OH - Region 6",139163
+"111E","12-BEL Belmont, New York",571805
+"111E","12-FIN Findlay, Ohio",7087114
+"111E","12-FLI Flint, Michigan",20
+"111E","12-GRR Grand Rapids, Michigan",12066
+"111E","12-IND Indianapolis, Indiana",1158374
+"111E","6-MAT Correlated MLRA Data",35061
+"111E","6-MAT Marietta, Ohio",24818
+"111E","State Office OH - Region 6",79564
+"113","11-AUR Aurora, Illinois",128649
+"113","11-JUE Juneau, Wisconsin",1059
+"113","11-MAN Marion, Illinois",11669350
+"113","11-SPR Springfield, Illinois",81035
+"113","11-UNI Union, Missouri",17501
+"113","6-OWN Correlated MLRA Data",1249
+"113","6-OWN Owensboro, Kentucky",2455
+"113","7-MIL MLRA MU/DMU",6704
+"113","Illinois",1878
+"113","State Office IL - Region 6",101378
+"114A","11-MAN Marion, Illinois",1127595
+"114A","12-GRR Grand Rapids, Michigan",973
+"114A","12-IND Indianapolis, Indiana",8038751
+"114A","6-MAT Correlated MLRA Data",2237
+"114A","6-MAT Marietta, Ohio",9924
+"114A","6-OWN Correlated MLRA Data",167936
+"114A","6-OWN Owensboro, Kentucky",376919
+"114A","6-OWN Owensboro, KY POINT",732
+"114A","State Office IN - Region 6",111654
+"114A","State Office OH - Region 6",121465
+"114B","11-AUR Aurora, Illinois",225176
+"114B","11-JUE Juneau, Wisconsin",1568
+"114B","11-MAN Marion, Illinois",9634938
+"114B","11-SPR Springfield, Illinois",1223469
+"114B","11-UNI Union, Missouri",334290
+"114B","12-IND Indianapolis, Indiana",6237504
+"114B","6-MAT Marietta, Ohio",2356
+"114B","6-OWN Correlated MLRA Data",320702
+"114B","6-OWN Owensboro, Kentucky",656696
+"114B","6-OWN Owensboro, KY POINT",69
+"114B","7-MIL MLRA MU/DMU",85696
+"114B","Illinois",1316
+"114B","State Office IL - Region 6",105239
+"114B","State Office IN - Region 6",431487
+"114B","State Office KY - Region 6",125
+"115","11-AUR Aurora, Illinois",375835
+"115","11-JUE Juneau, Wisconsin",3474
+"115","11-MAN Marion, Illinois",13675595
+"115","11-SPR Springfield, Illinois",1654433
+"115","11-UNI Union, Missouri",1548665
+"115","12-IND Indianapolis, Indiana",866136
+"115","6-OWN Correlated MLRA Data",197437
+"115","6-OWN Owensboro, Kentucky",115752
+"115","7-MIL MLRA MU/DMU",579746
+"115","Illinois",3857
+"115","State Office IL - Region 6",125566
+"115","State Office IN - Region 6",310839
+"115","State Office KY - Region 6",2148
+"120A","11-AUR Aurora, Illinois",58123
+"120A","11-MAN Marion, Illinois",559938
+"120A","11-UNI Union, Missouri",83604
+"120A","12-IND Indianapolis, Indiana",2904
+"120A","6-COO Correlated MLRA Data",129589
+"120A","6-OWN Correlated MLRA Data",12950375
+"120A","6-OWN Owensboro, Kentucky",297042
+"120A","6-OWN Owensboro, KY POINT",99560
+"120A","7-MIL MLRA MU/DMU",333397
+"120A","Illinois",612
+"120A","State Office IL - Region 6",2634510
+"120A","State Office IN - Region 6",1404
+"120A","State Office KY - Region 6",8674040
+"120B","11-MAN Marion, Illinois",272787
+"120B","12-IND Indianapolis, Indiana",194284
+"120B","6-MAT Marietta, Ohio",3526
+"120B","6-OWN Correlated MLRA Data",2218830
+"120B","6-OWN Owensboro, Kentucky",1244994
+"120B","6-OWN Owensboro, KY POINT",29265
+"120B","State Office IN - Region 6",2961232
+"120B","State Office KY - Region 6",2028
+"120C","12-IND Indianapolis, Indiana",326036
+"120C","6-OWN Correlated MLRA Data",790276
+"120C","6-OWN Owensboro, Kentucky",1245920
+"120C","6-OWN Owensboro, KY POINT",50625
+"120C","State Office IN - Region 6",506368
+"120C","State Office KY - Region 6",86
+"121","12-IND Indianapolis, Indiana",1258633
+"121","6-LON Correlated MLRA Data",9698
+"121","6-MAT Correlated MLRA Data",108370
+"121","6-MAT Marietta, Ohio",10972
+"121","6-OWN Correlated MLRA Data",14795210
+"121","6-OWN Owensboro, Kentucky",891202
+"121","6-OWN Owensboro, KY POINT",17622
+"121","Standard Map Units",18284
+"121","State Office IN - Region 6",610423
+"121","State Office KY - Region 6",11263210
+"121","State Office OH - Region 6",1436988
+"122","11-AUR Aurora, Illinois",24
+"122","11-MAN Marion, Illinois",188
+"122","12-IND Indianapolis, Indiana",40041
+"122","6-CLI Correlated MLRA Data",13366
+"122","6-COO Cookeville, Tennessee",1197286
+"122","6-COO Cookeville, TN POINT",2567
+"122","6-COO Correlated MLRA Data",16305317
+"122","6-LON Correlated MLRA Data",24870
+"122","6-MAT Marietta, Ohio",5787
+"122","6-NOR Correlated MLRA Data",1191353
+"122","6-NOR Normal, Alabama",83571
+"122","6-OWN Correlated MLRA Data",2797639
+"122","6-OWN Owensboro, Kentucky",458559
+"122","6-OWN Owensboro, KY POINT",504877
+"122","7-MER MLRA MU/DMU",93
+"122","7-MIL MLRA MU/DMU",9782
+"122","7-TUP MLRA MU/DMU",361796
+"122","Standard Map Units",22568
+"122","State Office IN - Region 6",2332785
+"122","State Office KY - Region 6",19297695
+"122","State Office TN - Region 6",13159323
+"123","6-COO Cookeville, Tennessee",778257
+"123","6-COO Correlated MLRA Data",7966830
+"123","6-NOR Correlated MLRA Data",29951
+"123","6-NOR Normal, Alabama",169459
+"123","State Office TN - Region 6",8022352
+"124","12-BEL Belmont, New York",669883
+"124","12-FIN Findlay, Ohio",44485
+"124","12-IND Indianapolis, Indiana",1269080
+"124","6-LON Correlated MLRA Data",706370
+"124","6-LON London, Kentucky",310826
+"124","6-MAT Correlated MLRA Data",15611010
+"124","6-MAT Marietta, Ohio",988536
+"124","6-MOR Correlated MLRA Data",476317
+"124","6-MOR Morgantown, WV",280291
+"124","6-OWN Correlated MLRA Data",37404
+"124","6-OWN Owensboro, Kentucky",10833
+"124","State Office KY - Region 6",5851037
+"124","State Office OH - Region 6",8427876
+"124","State Office PA - Region 6",1351897
+"124","State Office WV - Region 6",1650
+"125","6-CLI Clinton, Tennessee",5599
+"125","6-CLI Correlated MLRA Data",2159250
+"125","6-COO Cookeville, Tennessee",1461
+"125","6-COO Correlated MLRA Data",1624579
+"125","6-LON Correlated MLRA Data",1584287
+"125","6-LON Correlated MLRA Data WV",548933
+"125","6-LON London, Kentucky",712283
+"125","6-MAT Correlated MLRA Data",190928
+"125","6-MAT Correlated MLRA Data WV",328984
+"125","6-MOR Correlated MLRA Data",33812
+"125","6-MOR Correlated MLRA Data WV",171685
+"125","6-NOR Correlated MLRA Data",379
+"125","6-OWN Correlated MLRA Data",98992
+"125","State Office KY - Region 6",3692668
+"125","State Office TN - Region 6",2542203
+"125","State Office VA - Region 6",250952
+"125","State Office WV - Region 6",5181460
+"126","12-BEL Belmont, New York",11373
+"126","6-LON Correlated MLRA Data",2433
+"126","6-LON Correlated MLRA Data WV",25599
+"126","6-MAT Correlated MLRA Data",20832962
+"126","6-MAT Correlated MLRA Data WV",7690667
+"126","6-MAT Marietta, Ohio",960957
+"126","6-MOR Correlated MLRA Data",259098
+"126","6-MOR Correlated MLRA Data WV",340439
+"126","6-MOR Morgantown, WV",52420
+"126","State Office KY - Region 6",536203
+"126","State Office OH - Region 6",5954714
+"126","State Office PA - Region 6",2861245
+"126","State Office WV - Region 6",10392349
+"127","12-BEL Belmont, New York",209855
+"127","12-BEL Potter PA",24486
+"127","12-BEL Projects",250650
+"127","6-MAT Correlated MLRA Data",1549764
+"127","6-MAT Correlated MLRA Data WV",171338
+"127","6-MAT Marietta, Ohio",33036
+"127","6-MIL Correlated MLRA Data",506739
+"127","6-MIL Correlated MLRA Data WV",1207953
+"127","6-MIL Mill Hall, Pennsylvania",10804
+"127","6-MOR Correlated MLRA Data",10914902
+"127","6-MOR Correlated MLRA Data WV",4587296
+"127","6-MOR Morgantown, WV",5164346
+"127","State Office MD - Region 6",1733130
+"127","State Office NY - Region 6",478956
+"127","State Office PA - Region 6",13275763
+"127","State Office VA - Region 6",233579
+"127","State Office WV - Region 6",14490313
+"128","3-GRE Greensboro, North Carol",72563
+"128","6-CLI Correlated MLRA Data",231286
+"128","6-LON London, Kentucky",270
+"128","6-MIL Correlated MLRA Data",4199
+"128","6-MIL Correlated MLRA Data WV",97
+"128","6-MOR Correlated MLRA Data WV",18554
+"128","State Office VA - Region 6",2072866
+"128","State Office WV - Region 6",470674
+"130A","12-TOL Tolland, Connecticut",920
+"130A","3-FRE Frederick, Maryland",1453565
+"130A","3-GRE Greensboro, North Carol",1390726
+"130A","6-CLI Correlated MLRA Data",2230
+"130A","6-MIL Correlated MLRA Data",163856
+"130A","6-MIL Mill Hall, Pennsylvania",3193
+"130A","SSR6 Administration",37796
+"130A","State Office MD - Region 6",166448
+"130A","State Office PA - Region 6",477260
+"130A","State Office VA - Region 6",2206827
+"130A","State Office WV - Region 6",68934
+"130B","3-GRE Greensboro, North Carol",1162
+"130B","6-CLI Correlated MLRA Data",23843
+"130B","State Office VA - Region 6",554291
+"131A","11-AUR Aurora, Illinois",45634
+"131A","11-MAN Marion, Illinois",42956
+"131A","11-UNI Union, Missouri",60772
+"131A","6-OWN Correlated MLRA Data",17102
+"131A","6-OWN Owensboro, Kentucky",34822
+"131A","7-MIL MLRA MU/DMU",119459
+"131A","State Office IL - Region 6",15874
+"133A","3-FRE Frederick, Maryland",106559
+"133A","3-RIC Richmond, Virginia",18
+"133C","6-COO Cookeville, Tennessee",1076
+"133C","6-COO Correlated MLRA Data",43762
+"133C","6-NOR Correlated MLRA Data",255036
+"133C","6-NOR Normal, Alabama",166
+"133C","7-MER MLRA MU/DMU",12152
+"133C","7-MIL MLRA MU/DMU",54854
+"133C","7-TUP MLRA MU/DMU",2841628
+"133C","State Office TN - Region 6",1124502
+"134","11-AUR Aurora, Illinois",14604
+"134","11-MAN Marion, Illinois",5424
+"134","6-COO Cookeville, Tennessee",2168
+"134","6-COO Correlated MLRA Data",125
+"134","6-OWN Correlated MLRA Data",172299
+"134","6-OWN Owensboro, Kentucky",18597
+"134","7-MER MLRA MU/DMU",2515
+"134","7-MIL MLRA MU/DMU",2589834
+"134","7-TUP MLRA MU/DMU",570327
+"134","Illinois",17
+"134","State Office IL - Region 6",374895
+"134","State Office KY - Region 6",131944
+"134","State Office TN - Region 6",57915
+"136","3-FRE Frederick, Maryland",1415887
+"136","3-GRE Greensboro, North Carol",3058921
+"136","State Office VA - Region 6",59929
+"139","12-BEL Belmont, New York",31909388
+"139","12-FIN Findlay, Ohio",232674
+"139","12-FLI Flint, Michigan",45
+"139","12-GRR Grand Rapids, Michigan",8957
+"139","12-IND Indianapolis, Indiana",22113
+"139","12-PAS Paul Smiths, New York",2852
+"139","6-MAT Correlated MLRA Data",378895
+"139","6-MAT Marietta, Ohio",13060
+"139","6-MIL Mill Hall, Pennsylvania",369
+"139","6-MOR Correlated MLRA Data",532237
+"139","6-MOR Morgantown, WV",141378
+"139","State Office NY - Region 6",107350
+"139","State Office OH - Region 6",93623
+"139","State Office PA - Region 6",574680
+"140","12-BEL Belmont, New York",55728722
+"140","12-BEL MLRA MU/DMU",14832
+"140","12-BEL Potter PA",354767
+"140","12-BEL Projects",3124739
+"140","12-PAS Paul Smiths, New York",2837863
+"140","12-TOL Tolland, Connecticut",804241
+"140","3-FRE Frederick, Maryland",24752
+"140","3-HAM Hammonton, New Jersey",745
+"140","6-MIL Correlated MLRA Data",45292
+"140","6-MIL Mill Hall, Pennsylvania",17833
+"140","6-MOR Correlated MLRA Data",52590
+"140","6-MOR Morgantown, WV",44047
+"140","Standard Map Units",558
+"140","State Office NY - Region 6",328979
+"140","State Office PA - Region 6",683565
+"141","12-BEL Belmont, New York",1970
+"141","12-PAS Paul Smiths, New York",3391450
+"142","12-DFX Dover-Foxcroft, Maine",1590556
+"142","12-DFX Projects",53
+"142","12-PAS MLRA MU/DMU",8636
+"142","12-PAS Paul Smiths, New York",17243875
+"142","12-STJ Saint Johnsbury, VT",397215
+"142","12-TOL Tolland, Connecticut",670895
+"142","Standard Map Units",3463
+"143","12-BEL Belmont, New York",1146
+"143","12-DFX Dover-Foxcroft, Maine",9102901
+"143","12-DFX MLRA MU/DMU",23622
+"143","12-DFX Points",26965
+"143","12-DFX Projects",38795
+"143","12-PAS MLRA MU/DMU",686710
+"143","12-PAS Paul Smiths, New York",26111447
+"143","12-STJ MLRA MU/DMU",366764
+"143","12-STJ Saint Johnsbury, VT",59072157
+"143","12-TOL Points",144
+"143","12-TOL Tolland, Connecticut",775666
+"143","Standard Map Units",20340
+"144A","12-BEL Belmont, New York",1792854
+"144A","12-DFX Dover-Foxcroft, Maine",2305765
+"144A","12-DFX Points",710
+"144A","12-DFX Projects",107409
+"144A","12-PAS Paul Smiths, New York",1191576
+"144A","12-STJ Saint Johnsbury, VT",464074
+"144A","12-TOL MLRA MU/DMU",3718
+"144A","12-TOL Points",24851
+"144A","12-TOL Projects",30148
+"144A","12-TOL Tolland, Connecticut",49138295
+"144A","3-FRE Frederick, Maryland",283470
+"144A","3-HAM Hammonton, New Jersey",89042
+"144A","6-MIL Correlated MLRA Data",21
+"144A","State Office PA - Region 6",784
+"144B","12-DFX Dover-Foxcroft, Maine",48882136
+"144B","12-DFX MLRA MU/DMU",140367
+"144B","12-DFX Points",102980
+"144B","12-DFX Projects",245758
+"144B","12-PAS Paul Smiths, New York",91325
+"144B","12-STJ MLRA MU/DMU",59669
+"144B","12-STJ Saint Johnsbury, VT",12449673
+"144B","12-TOL Points",7058
+"144B","12-TOL Projects",187
+"144B","12-TOL Tolland, Connecticut",3284959
+"145","12-DFX Dover-Foxcroft, Maine",901000
+"145","12-DFX MLRA MU/DMU",211
+"145","12-DFX Points",504
+"145","12-DFX Projects",1475
+"145","12-STJ Saint Johnsbury, VT",123204
+"145","12-TOL Projects",345
+"145","12-TOL Tolland, Connecticut",4522861
+"146","12-DFX Dover-Foxcroft, Maine",932559
+"146","12-DFX MLRA MU/DMU",7029
+"146","12-STJ Saint Johnsbury, VT",4221200
+"147","12-BEL Belmont, New York",242362
+"147","12-BEL Projects",4340
+"147","12-TOL Tolland, Connecticut",367991
+"147","3-FRE Frederick, Maryland",84020
+"147","3-HAM Hammonton, New Jersey",19650
+"147","6-CLI Correlated MLRA Data",8806
+"147","6-MIL Correlated MLRA Data",11965164
+"147","6-MIL Correlated MLRA Data WV",1706651
+"147","6-MIL Mill Hall, Pennsylvania",1312912
+"147","6-MOR Correlated MLRA Data",165568
+"147","6-MOR Correlated MLRA Data WV",6563
+"147","6-MOR Morgantown, WV",169752
+"147","SSR6 Administration",136477
+"147","State Office MD - Region 6",1287431
+"147","State Office PA - Region 6",23567881
+"147","State Office VA - Region 6",11713360
+"147","State Office WV - Region 6",5376738
+"148","12-BEL Belmont, New York",291
+"148","12-TOL Points",479
+"148","12-TOL Tolland, Connecticut",774703
+"148","3-FRE Frederick, Maryland",27900850
+"148","3-GRE Greensboro, North Carol",459143
+"148","3-HAM Hammonton, New Jersey",552923
+"148","3-RIC Richmond, Virginia",306173
+"148","6-MIL Correlated MLRA Data",46969
+"148","6-MIL Mill Hall, Pennsylvania",1452
+"148","State Office PA - Region 6",3281470
+"148","State Office VA - Region 6",585683
+"149A","12-TOL Tolland, Connecticut",137019
+"149A","3-FRE Frederick, Maryland",1730884
+"149A","3-GRE Greensboro, North Carol",5680
+"149A","3-HAM Hammonton, New Jersey",7613977
+"149A","3-HAM Hammonton, NJ MSSO",23105
+"149A","3-RIC Richmond, Virginia",227890
+"149A","6-MIL Mill Hall, Pennsylvania",77
+"149A","State Office PA - Region 6",298909
+"149B","12-TOL MLRA MU/DMU",663163
+"149B","12-TOL Points",195379
+"149B","12-TOL Projects",76937
+"149B","12-TOL Tolland, Connecticut",6669352
+"153B","3-HAM Hammonton, New Jersey",6683
+"153B","3-HAM Hammonton, NJ MSSO",109
+"153C","3-FRE Frederick, Maryland",109522
+"153C","3-HAM Hammonton, New Jersey",5535072
+"153C","3-HAM Hammonton, NJ MSSO",374750
+"153D","12-TOL Tolland, Connecticut",32359
+"153D","3-FRE Frederick, Maryland",208988
+"153D","3-HAM Hammonton, New Jersey",15384466
+"153D","3-HAM Hammonton, NJ MSSO",317168
+"94A","12-FLI Flint, Michigan",19870257
+"94A","12-FLI Projects",1289926
+"94A","12-GRR Grand Rapids, Michigan",4187544
+"94C","12-FLI Flint, Michigan",8702498
+"94C","12-FLI Projects",157550
+"94C","12-GRR Grand Rapids, Michigan",1268833
+"95A","11-AUR Aurora, Illinois",112963
+"95A","11-JUE Juneau, Wisconsin",94477
+"95A","11-SPR Springfield, Illinois",370
+"96","12-FLI Flint, Michigan",538266
+"96","12-FLI Projects",52083
+"96","12-GRR Grand Rapids, Michigan",10926447
+"97","11-AUR Aurora, Illinois",494995
+"97","11-FIN Findlay, Ohio",394
+"97","12-FIN Findlay, Ohio",27662
+"97","12-GRR Grand Rapids, Michigan",9396353
+"97","12-GRR MLRA MU/DMU",53655
+"97","12-IND Indianapolis, Indiana",21831
+"97","Illinois",95
+"98","11-AUR Aurora, Illinois",1828799
+"98","11-FIN Findlay, Ohio",33743
+"98","11-JUE Juneau, Wisconsin",7989
+"98","11-SPR Springfield, Illinois",22480
+"98","12-FIN Findlay, Ohio",2277203
+"98","12-FLI Flint, Michigan",1791558
+"98","12-GRR Grand Rapids, Michigan",41488788
+"98","12-GRR MLRA MU/DMU",262406
+"98","12-GRR Projects",65880
+"98","12-IND Indianapolis, Indiana",130053
+"98","Illinois",338
+"99","11-FIN Findlay, Ohio",2382
+"99","12-BEL Belmont, New York",137241
+"99","12-FIN Findlay, Ohio",834571
+"99","12-FLI Flint, Michigan",35016580
+"99","12-GRR Grand Rapids, Michigan",1507478
+"99","12-IND Indianapolis, Indiana",7983
+"99","6-MAT Marietta, Ohio",1305
