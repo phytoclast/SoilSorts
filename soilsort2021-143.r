@@ -396,44 +396,45 @@ s$Site<-ifelse(s$Site %in% "Forested Wetlands",
                       ifelse(grepl('fine,',tolower(s$taxclname)),'F144BY304ME','F144BY303ME'),'F143XY304ME')),s$Site)
                  
 #3 cryic soils ----
-s$Site <- ifelse(grepl('cry',tolower(s$taxsubgrp))|s$tgs <12 & is.na(s$taxsubgrp)|s$tgs <9,
-                 ifelse(s$tgs <12 & s$rockdepth <50| s$tgs <9,'alpineF143XY901ME',
-                        ifelse(s$rockdepth <50,'stuntedF143XY902ME','subalpineF143XY903ME')),s$Site)
+s$Site <- ifelse(grepl('cry',tolower(s$taxsubgrp))|s$tgs2 <12 & is.na(s$taxsubgrp)|s$tgs2 <9,
+                 ifelse((s$tgs2 <11.5 & (s$rockdepth <50 | s$compname %in% c('Rubble land', 'Rock outcrop')))| s$tgs2 <9.5,'F143XY901ME',
+                        ifelse(s$rockdepth <50 | s$compname %in% c('Rubble land', 'Rock outcrop'),'F143XY902ME','F143XY903ME')),s$Site)
                         
                  
-               
-
 
 
 #4 shallow soils ----
-deepsoilcomplex <- unique(s[s$rockdepth > 60 & s$majcompflag %in% 'TRUE' & !s$compname %in% c('Rock outcrop'),]$muiid)
-mediumsoilcomplex <- unique(s[s$rockdepth > 30 & s$majcompflag %in% 'TRUE' & !s$compname %in% c('Rock outcrop'),]$muiid)
+shallowsoilcomplex <- unique(s[s$rockdepth <= 50 & s$majcompflag %in% 'TRUE',]$muiid)
+deepsoilcomplex <- unique(s[s$rockdepth > 50 & s$majcompflag %in% 'TRUE',]$muiid)
+
 
 s$Site<-ifelse(s$Site %in% "Not",
-               ifelse(s$compname %in% c('Rock outcrop'),'F144BY801ME',
-                      ifelse(s$rockdepth < 100,
-                             ifelse(s$taxorder %in% 'histosols', 'F144BY704ME',
-                                    ifelse(grepl('lime',s$pmorigin) |  grepl('dolo',s$pmorigin) | (is.na(s$pmorigin) & s$carbdepth < 150), 'F144BY705ME',
-                                           ifelse(s$rockdepth < 30 & !s$muiid %in% mediumsoilcomplex,'F144BY706ME',
-                                                  ifelse(s$rockdepth < 60 & !s$muiid %in% deepsoilcomplex,'F144BY701ME',
-                                                         ifelse(grepl('hum', s$taxsubgrp) | grepl('oll', s$taxsubgrp) |
-                                                                  grepl('ist', s$taxsubgrp),'F144BY703ME','F144BY702ME'))))),s$Site))
+               ifelse(s$compname %in% c('Rock outcrop'),'F143XY801ME',
+                      ifelse(s$muiid %in% shallowsoilcomplex,
+                             ifelse(s$taxorder %in% 'histosols' & s$rockdepth < 100, 'F143XY704ME',
+                                    ifelse(!s$muiid %in% shallowsoilcomplex,'F143XY701ME',
+                                           ifelse(grepl('hum',s$taxsubgrp) | s$T150_OM >=20,'F143XY703ME', 'F143XY702ME'))),s$Site))
                ,s$Site)
+
+
+
+
+
+                                    
+                                    
+                                    
 
 
 #5 deep soils ----
 s$Site<-ifelse(s$Site %in% "Not",
                ifelse((grepl('^sand',tolower(s$taxclname))&s$T50_sand>50)|s$T50_sand>70,
-                      ifelse(s$Water_Table > 100, 'F144BY601ME', 'F144BY602ME'),
-                      ifelse((grepl('^fine,|^fine-silty]',tolower(s$taxclname))&s$T150_clay>10)|s$T150_clay>20,
-                             ifelse(s$Water_Table <= 50, 'F144BY401ME', 'F144BY402ME'),
-                             ifelse((s$carbdepth <= 150 & (s$T50_pH > 6.5 & !is.na(s$T50_pH))) | (s$carbdepth <= 100 & (s$T50_pH > 6 | is.na(s$T50_pH))) | (grepl('eutr', s$taxsubgrp) & (s$T50_pH > 5.5 | is.na(s$T50_pH))),
-                                    ifelse(s$Water_Table <= 50, 'F144BY507ME', 'F144BY506ME'),
-                                    ifelse(grepl('loam.* over .*sand',tolower(s$taxclname)),'F144BY505ME',
-                                           ifelse(s$Water_Table <= 50,ifelse(s$slope_r >=5,'F144BY502ME','F144BY503ME'),
+                      ifelse(s$Water_Table > 100, 'F143XY601ME', 'F143XY602ME'),
+                      ifelse((grepl('^fine,|^fine-silty]',tolower(s$taxclname))&s$T150_clay>10)|s$T150_clay>20,'F143XY401ME',
+                                    ifelse(grepl('loam.* over .*sand',tolower(s$taxclname)),'F143XY505ME',
+                                           ifelse(s$Water_Table <= 50,ifelse(s$slope_r >=5,'F143XY502ME','F143XY503ME'),
                                                   ifelse(grepl('hum', s$taxsubgrp) | grepl('oll', s$taxsubgrp) |
-                                                           grepl('ist', s$taxsubgrp),'F144BY504ME','F144BY501ME'))))))
+                                                           grepl('ist', s$taxsubgrp),'F143XY504ME','F143XY501ME')))))
                ,s$Site)
 
 
-write.csv(s,'fy2021-refresh/s.144B.csv', row.names = F)
+write.csv(s,'fy2021-refresh/s.143.csv', row.names = F)
