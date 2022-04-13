@@ -490,7 +490,7 @@ s$Site111<-ifelse(s$Site111 %in% "Not",
 #2  Mucks ---------------------------------------------------------               
 s$Site111 <- ifelse(s$Site111 %in% "Not", ifelse(grepl("Histosols",s$compname)|grepl("ists",s$taxsubgrp)|grepl("ists",s$taxclname)|grepl("histic",s$taxsubgrp)|grepl("organic",s$pmkind),"Muck",s$Site111),s$Site111)
 
-s$Site111 <- ifelse(s$Site111 %in% "Muck", ifelse(grepl("terric",s$taxsubgrp)|grepl("terric",s$taxclname)|grepl("epts",s$taxsubgrp) ,"R111CY012IN",s$Site111),s$Site111)
+s$Site111 <- ifelse(s$Site111 %in% "Muck", ifelse(grepl("terric",s$taxsubgrp)|grepl("thapto",s$taxsubgrp)|grepl("terric",s$taxclname)|grepl("epts",s$taxsubgrp) ,"R111CY012IN",s$Site111),s$Site111)
 s$Site111 <- ifelse(s$Site111 %in% "Muck", ifelse(grepl("limnic",s$taxsubgrp)|grepl("limnic",s$taxclname)|grepl("epts",s$taxsubgrp) ,"R111CY011IN", "R111CY013IN"),s$Site111)
 
 
