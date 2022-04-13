@@ -407,35 +407,35 @@ s$Site111<-ifelse(s$Site111 %in% "till",
 #111A ----
 
 ES111A.list <- list(
-F111AY001IN = c('Palms', 'Linwood', 'Adrian'),
-R111AY002IN = c('Warners', 'Wallkill', 'Muskego', 'Martisco', 'Edwards', 'Benadum'),
-F111AY003IN = c('Houghton', 'Carlisle'),
-F111AY004IN = c('Aetna', 'Algiers', 'Banlic', 'Bartle', 'Beaucoup', 'Bellcreek', 'Ceresco', 'Cohoctah', 'Euclid', 'Evansville', 'Henshaw', 'Holton', 'Orrville', 'Piopolis', 'Rockmill', 'Saranac', 'Shoals', 'Sloan', 'Southwest', 'Stendal', 'Vincennes', 'Wakeland', 'Washtenaw', 'Wilhite', 'Henshaw Variant', 'Shoals Variant', 'Sloan Variant'), # add 'Henshaw Variant', 'Shoals Variant', 'Sloan Variant'
-F111AY005IN = c('Wirt', 'Wilbur', 'Uniontown', 'Tremont', 'Stonelick', 'Steff', 'Skidmore', 'Sardinia', 'Rossburg', 'Ross', 'Romeo', 'Pekin', 'Otwell', 'Oldenburg', 'Moundhaven', 'Millstone', 'Medway', 'Lobdell', 'Lash', 'Lanier', 'Landes', 'Kinn', 'Haymond', 'Gessie', 'Genesee', 'Elkinsville', 'Eel', 'Dearborn', 'Cuba', 'Clifty', 'Chagrin', 'Beckville', 'Armiesburg', 'Abscota Variant', 'Medway Variant', 'Riverwash', 'Ross Variant'),# add 'Abscota Variant', 'Medway Variant', 'Riverwash', 'Ross Variant'
-F111AY006IN = c('Wetzel', 'Reesville', 'Nappanee', 'Haskins', 'Condit', 'Blount'),
-F111AY007IN = c('Treaty', 'Sidell', 'Pewamo', 'Millsdale', 'Marengo', 'Kokomo', 'Cyclone', 'Brookston'),
-F111AY008IN = c('Westboro', 'Vigo', 'Sugarvalley', 'Schaffer', 'Randolph', 'Pyrmont', 'Fincastle', 'Crosby', 'Cobbsfork', 'Bennington', 'Avonburg', 'Randolph variant'), #add 'Randolph variant'
-F111AY009IN = c('Xenia', 'Wynn', 'Williamstown', 'Wapahani', 'Tuscola', 'Thrifton', 'Tarlton', 'Strawn', 'Senachwine', 'Ryker', 'Russell', 'Rossmoyne', 'Rockfield', 'Ritchey', 'Rawson', 'Rainsville', 'Nabb', 'Morningsun', 'Morley', 'Mississinewa', 'Milton', 'Miamian', 'Miami', ' Lybrand', 'Loudonville', 'Losantville', 'Lewisburg', 'Hickory', 'Hennepin', 'Glynwood', 'Cliftycreek', 'Cincinnati', 'Celina', 'Cardington', 'Cana', 'Bonnell', 'Blocher', 'Birkbeck', 'Ava', 'Amanda', 'Alexandria', 'Kendallville', 'Cana Variant', 'Celina Variant', 'Miamian Variant', 'Milton variant'),# add 'Kendallville', 'Cana Variant', 'Celina Variant', 'Miamian Variant', 'Milton variant'
-R111AY010IN = c('Raub', 'Odell', 'Dana', 'Corwin'),
-F111AY011IN = c('Zipp', 'Peoga', 'Paulding', 'Patton', 'Montgomery', 'Minster', 'Milford', 'Latty'),
-F111AY012IN = c('Wyatt', 'Tyler', 'Shinrock', 'Omulga', 'Mentor', 'McGary', 'Markland', 'Lauer', 'Haubstadt', 'Glenford', 'Fulton', 'Dubois', 'Del Rey', 'Del Rey Variant'), # add 'Del Rey', 'Del Rey Variant'
-F111AY013IN = c('Sable', 'Ragsdale', 'Muren', 'Iva', 'Alford'),
-F111AY014IN = c('Whitaker', 'Waynetown', 'Thackery', 'Taggart', 'Starks', 'Sleeth', 'Shadeland', 'Savona', 'Roby', 'Rainsboro', 'Libre', 'Ionia', 'Homer', 'Haney', 'Fitchville', 'Digby', 'Thackery Variant'), # add 'Thackery Variant'
-F111AY015IN = c('Williamsburg', 'Wawaka', 'Spargus', 'Sisson', 'Shelocta', 'Rush', 'Pike', 'Parke', 'Ockley', 'Negley', 'Muncie', 'Mountpleasant', 'Martinsville', 'Gallman', 'Fox', 'Eldean', 'Chili', 'Chetwynd', 'Casco', 'Camden', 'Belmore'),
-R111AY016IN = c('Westland', 'Sebewa', 'Rensselaer', 'Pella', 'Millgrove', 'Mahalasville', 'Lippincott', 'Kane', 'Dunham', 'Drummer', 'Crane'),
-R111AY017IN = c('Wea', 'Waupecan', 'Warsaw', 'Tippecanoe', 'Rodman', 'Plattville', 'Nineveh', 'Lorenzo', 'Lickcreek', 'Eldean', 'Donnelsville', 'Warsaw Variant', 'Wea Variant'), # add 'Warsaw Variant', 'Wea Variant'
-F111AY018IN = c('Weikert', 'Rohan', 'Opequon', 'Gasconade', 'Corydon','Fairmount', 'Rock outcrop'),#add 'Fairmount', 'Rock outcrop'
-F111AY019IN = c('Muskingum', 'Lily', 'Latham', 'Jessietown', 'Gilwood', 'Gilpin', 'Edenton', 'Eden', 'Dekalb', 'Caneyville', 'Brownstown', 'Bratton', 'Berks'),
-F111AY020IN = c('Zenas', 'Zanesville', 'Wrays', 'Westmoreland', 'Wellston', 'Wellrock', 'Tarhollow', 'Stonehead', 'Muscatatuck', 'Grayford', 'Cruze', 'Coolville', 'Carmel', 'Brownsville', 'Boston'),
-F111AY021IN = c('Lyles', 'Bobtown', 'Ayrshire', 'Aquents'),
-F111AY022IN = c('Princeton', 'Boyer', 'Bloomfield', 'Alvin')
+  F111AY001IN = c('Palms', 'Linwood', 'Adrian'),
+  R111AY002IN = c('Warners', 'Wallkill', 'Muskego', 'Martisco', 'Edwards', 'Benadum'),
+  F111AY003IN = c('Houghton', 'Carlisle'),
+  F111AY004IN = c('Aetna', 'Algiers', 'Banlic', 'Bartle', 'Beaucoup', 'Bellcreek', 'Ceresco', 'Cohoctah', 'Euclid', 'Evansville', 'Henshaw', 'Holton', 'Orrville', 'Piopolis', 'Rockmill', 'Saranac', 'Shoals', 'Sloan', 'Southwest', 'Stendal', 'Vincennes', 'Wakeland', 'Washtenaw', 'Wilhite', 'Henshaw Variant', 'Shoals Variant', 'Sloan Variant'), # add 'Henshaw Variant', 'Shoals Variant', 'Sloan Variant'
+  F111AY005IN = c('Wirt', 'Wilbur', 'Uniontown', 'Tremont', 'Stonelick', 'Steff', 'Skidmore', 'Sardinia', 'Rossburg', 'Ross', 'Romeo', 'Pekin', 'Otwell', 'Oldenburg', 'Moundhaven', 'Millstone', 'Medway', 'Lobdell', 'Lash', 'Lanier', 'Landes', 'Kinn', 'Haymond', 'Gessie', 'Genesee', 'Elkinsville', 'Eel', 'Dearborn', 'Cuba', 'Clifty', 'Chagrin', 'Beckville', 'Armiesburg', 'Abscota Variant', 'Medway Variant', 'Riverwash', 'Ross Variant'),# add 'Abscota Variant', 'Medway Variant', 'Riverwash', 'Ross Variant'
+  F111AY006IN = c('Wetzel', 'Reesville', 'Nappanee', 'Haskins', 'Condit', 'Blount'),
+  F111AY007IN = c('Treaty', 'Sidell', 'Pewamo', 'Millsdale', 'Marengo', 'Kokomo', 'Cyclone', 'Brookston'),
+  F111AY008IN = c('Westboro', 'Vigo', 'Sugarvalley', 'Schaffer', 'Randolph', 'Pyrmont', 'Fincastle', 'Crosby', 'Cobbsfork', 'Bennington', 'Avonburg', 'Randolph variant'), #add 'Randolph variant'
+  F111AY009IN = c('Xenia', 'Wynn', 'Williamstown', 'Wapahani', 'Tuscola', 'Thrifton', 'Tarlton', 'Strawn', 'Senachwine', 'Ryker', 'Russell', 'Rossmoyne', 'Rockfield', 'Ritchey', 'Rawson', 'Rainsville', 'Nabb', 'Morningsun', 'Morley', 'Mississinewa', 'Milton', 'Miamian', 'Miami', ' Lybrand', 'Loudonville', 'Losantville', 'Lewisburg', 'Hickory', 'Hennepin', 'Glynwood', 'Cliftycreek', 'Cincinnati', 'Celina', 'Cardington', 'Cana', 'Bonnell', 'Blocher', 'Birkbeck', 'Ava', 'Amanda', 'Alexandria', 'Kendallville', 'Cana Variant', 'Celina Variant', 'Miamian Variant', 'Milton variant'),# add 'Kendallville', 'Cana Variant', 'Celina Variant', 'Miamian Variant', 'Milton variant'
+  R111AY010IN = c('Raub', 'Odell', 'Dana', 'Corwin'),
+  F111AY011IN = c('Zipp', 'Peoga', 'Paulding', 'Patton', 'Montgomery', 'Minster', 'Milford', 'Latty'),
+  F111AY012IN = c('Wyatt', 'Tyler', 'Shinrock', 'Omulga', 'Mentor', 'McGary', 'Markland', 'Lauer', 'Haubstadt', 'Glenford', 'Fulton', 'Dubois', 'Del Rey', 'Del Rey Variant'), # add 'Del Rey', 'Del Rey Variant'
+  F111AY013IN = c('Sable', 'Ragsdale', 'Muren', 'Iva', 'Alford'),
+  F111AY014IN = c('Whitaker', 'Waynetown', 'Thackery', 'Taggart', 'Starks', 'Sleeth', 'Shadeland', 'Savona', 'Roby', 'Rainsboro', 'Libre', 'Ionia', 'Homer', 'Haney', 'Fitchville', 'Digby', 'Thackery Variant'), # add 'Thackery Variant'
+  F111AY015IN = c('Williamsburg', 'Wawaka', 'Spargus', 'Sisson', 'Shelocta', 'Rush', 'Pike', 'Parke', 'Ockley', 'Negley', 'Muncie', 'Mountpleasant', 'Martinsville', 'Gallman', 'Fox', 'Eldean', 'Chili', 'Chetwynd', 'Casco', 'Camden', 'Belmore'),
+  R111AY016IN = c('Westland', 'Sebewa', 'Rensselaer', 'Pella', 'Millgrove', 'Mahalasville', 'Lippincott', 'Kane', 'Dunham', 'Drummer', 'Crane'),
+  R111AY017IN = c('Wea', 'Waupecan', 'Warsaw', 'Tippecanoe', 'Rodman', 'Plattville', 'Nineveh', 'Lorenzo', 'Lickcreek', 'Eldean', 'Donnelsville', 'Warsaw Variant', 'Wea Variant'), # add 'Warsaw Variant', 'Wea Variant'
+  F111AY018IN = c('Weikert', 'Rohan', 'Opequon', 'Gasconade', 'Corydon','Fairmount', 'Rock outcrop'),#add 'Fairmount', 'Rock outcrop'
+  F111AY019IN = c('Muskingum', 'Lily', 'Latham', 'Jessietown', 'Gilwood', 'Gilpin', 'Edenton', 'Eden', 'Dekalb', 'Caneyville', 'Brownstown', 'Bratton', 'Berks'),
+  F111AY020IN = c('Zenas', 'Zanesville', 'Wrays', 'Westmoreland', 'Wellston', 'Wellrock', 'Tarhollow', 'Stonehead', 'Muscatatuck', 'Grayford', 'Cruze', 'Coolville', 'Carmel', 'Brownsville', 'Boston'),
+  F111AY021IN = c('Lyles', 'Bobtown', 'Ayrshire', 'Aquents'),
+  F111AY022IN = c('Princeton', 'Boyer', 'Bloomfield', 'Alvin')
 )
 
 
 
 for(i in 1:length(ES111A.list)){
-ES111A.df0 <- as.data.frame(merge(names(ES111A.list[i]),ES111A.list[i])); colnames(ES111A.df0) <- c('ES','Series')
-if(i == 1){ES111A <- ES111A.df0}else{ES111A <- rbind(ES111A.df0, ES111A)}};rm(ES111A.df0) 
+  ES111A.df0 <- as.data.frame(merge(names(ES111A.list[i]),ES111A.list[i])); colnames(ES111A.df0) <- c('ES','Series')
+  if(i == 1){ES111A <- ES111A.df0}else{ES111A <- rbind(ES111A.df0, ES111A)}};rm(ES111A.df0) 
 
 s.111A <- merge(ES111A, s,  by.x = 'Series', by.y = 'compname', all.y = T)
 s.111A <- subset(s.111A, MLRA %in% '111A')
@@ -446,26 +446,26 @@ write.csv(s.111A, 'fy2021-refresh/mlra111A_sorts.csv', row.names = F)
 #
 
 ES111B.list <- list(
-  F111BY101IN = c('Bono', 'Bono variant', 'Coesse', 'Colwood', 'Hoytville', 'Latty', 'Lenawee', 'Luray', 'Martisco Variant', 'Maumee', 'McGuffey', 'Mermill', 'Milford', 'Minster', 'Montgomery', 'Muskego', 'Olentangy', 'Patton', 'Patton Variant', 'Paulding', 'Pella', 'Pewamo', 'Rensselaer', 'Roundhead', 'Sebring', 'Southwest', 'Toledo', 'Willette'),
-  F111BY102IN = c('Berrien', 'Cygnet', 'Darroch', 'Del Rey', 'Fitchville', 'Fulton', 'Glenford', 'Haskins', 'Henshaw', 'Houcktown', 'Jenera', 'Kibbie', 'McGary', 'Nappanee', 'Ottokee', 'Rimer', 'Seward', 'Shawtown', 'Shinrock', 'Shinrock', 'till substratum', 'Sisson', 'Tuscola', 'Vaughnsville', 'Ypsi'),
-  F111BY201IN = c('Tice', 'Sloan', 'Saranac', 'Harrod', 'Glendora', 'Cohoctah', 'Ceresco', 'Bellcreek', 'Wallkill'),
-  F111BY202IN = c('Spencerville', 'Rossburg', 'Ross', 'Medway', 'Landes', 'Armiesburg', 'Lash', 'Lickcreek'),
-  F111BY203IN = c('Washtenaw', 'Wabasha', 'Shoals', 'Orrville', 'Newark', 'Defiance', 'Coesse', 'Algiers', 'Griffin'),
+  F111BY101IN = c('Paulding','Bono', 'Bono variant', 'Coesse', 'Colwood', 'Hoytville', 'Latty', 'Lenawee', 'Luray',  'Maumee', 'McGuffey', 'Mermill', 'Milford', 'Minster', 'Montgomery', 'Olentangy', 'Patton', 'Patton Variant', 'Paulding', 'Pella',  'Rensselaer', 'Roundhead', 'Sebring', 'Southwest', 'Toledo'),
+  F111BY102IN = c('Tiro','Steamburg','Seward','Selfridge','Lykens', 'Houcktown','Berrien', 'Cygnet', 'Darroch', 'Del Rey', 'Fitchville', 'Fulton', 'Glenford', 'Houcktown', 'Jenera', 'Kibbie', 'McGary', 'Nappanee', 'Ottokee', 'Rimer', 'Seward', 'Shawtown', 'Shinrock', 'Shinrock', 'till substratum', 'Tuscola', 'Vaughnsville', 'Ypsi'),
+  F111BY201IN = c('Wabasha',  'Sloan', 'Saranac', 'Glendora', 'Cohoctah', 'Ceresco', 'Bellcreek', 'Wallkill'),
+  F111BY202IN = c('Tice','Henshaw', 'Harrod', 'Spencerville', 'Rossburg', 'Ross', 'Medway', 'Landes', 'Armiesburg', 'Lash', 'Lickcreek'),
+  F111BY203IN = c('Washtenaw', 'Shoals', 'Orrville', 'Newark', 'Defiance',  'Algiers', 'Griffin'),
   F111BY204IN = c('Tioga', 'Stonelick', 'Nolin', 'Lobdell', 'Lindside', 'Knoxdale', 'Gessie', 'Genesee', 'Flatrock', 'Eel', 'Chagrin'),
-  F111BY302IN = c('Randolph'),
-  F111BY303IN = c('Weikert', 'Ritchey', 'Newglarus', 'Milton', 'Latham', 'Heverlo', 'Eleva', 'Castalia', 'Brecksville', 'Biglick', 'Berks'),
-  F111BY403IN = c('Whitaker', 'Stone', 'Sleeth', 'Riverdale', 'Matherton', 'Jimtown', 'Homer', 'Digby', 'Bogart', 'Aptakisic'),
-  F111BY404IN = c('Thackery', 'Sisson', 'Scioto', 'Rush', 'Riverdale', 'Oshtemo', 'Ormas', 'Ockley', 'Muncie', 'Martinsville', 'Leoni', 'Kosciusko', 'Kalamazoo', 'Ionia', 'Haney', 'Gallman', 'Fox', 'Eldean', 'Chili', 'Casco', 'Bronson', 'Boyer', 'Belmore', 'Brems', 'Chelsea','Otisville', 'Plainfield', 'Spinks'),
-  F111BY501IN = c('Wolcott', 'Wetzel', 'Pewamo', 'Paulding', 'Pandora', 'Mermill', 'Kokomo', 'Brookston', 'Berville', 'Barry', 'Alvada'),
-  F111BY502IN = c('Tiro', 'Rimer', 'Nappanee', 'Metamora', 'Markton', 'Macomb', 'Locke', 'Lamberjack', 'Haskins', 'Elliott', 'Crosier', 'Conover', 'Capac', 'Blount', 'Aubbeenaubbee', 'Bennington', 'Crosby'),
-  F111BY503IN = c('Williamstown', 'Wawasee', 'Strawn', 'Steamburg', 'Shawtown', 'Seward', 'Russell', 'Riddles', 'Rawson', 'Parr', 'Pacer', 'Owosso', 'Mortimer', 'Morley', 'Mississinewa', 'Miami', 'Metea', 'Marlette', 'Lykens', 'Lybrand', 'Kidder', 'Kendallville', 'Houcktown', 'Hillsdale', 'Hennepin', 'Glynwood', 'Cadmus', 'Amanda', 'Miamian'),
-  R111BY001IN = c('Roundhead', 'Palms', 'Olentangy', 'Ogden', 'McGuffey', 'Linwood', 'Kerston', 'Adrian', 'Tawas'),
-  R111BY002IN = c('Warners', 'Rollin', 'Muskego', 'Martisco', 'Edwards'),
+  F111BY302IN = c('Randolph', 'Prout'),
+  F111BY303IN = c('Weikert', 'Ritchey', 'Newglarus', 'Milton', 'Latham', 'Heverlo', 'Eleva', 'Brecksville', 'Biglick', 'Berks'),
+  F111BY403IN = c('Morocco', 'Lamberjack', 'Whitaker', 'Sleeth', 'Riverdale',  'Jimtown', 'Homer', 'Digby', 'Bogart', 'Aptakisic'),
+  F111BY404IN = c('Pacer','Matherton','Thackery', 'Sisson', 'Scioto', 'Rush', 'Riverdale', 'Oshtemo', 'Ormas', 'Ockley', 'Muncie', 'Martinsville', 'Leoni', 'Kosciusko', 'Kalamazoo', 'Ionia', 'Haney', 'Gallman', 'Fox', 'Eldean', 'Chili', 'Casco', 'Bronson', 'Boyer', 'Belmore', 'Brems', 'Chelsea','Otisville', 'Plainfield', 'Spinks'),
+  F111BY501IN = c('Treaty','Stone','Wolcott', 'Wetzel', 'Pewamo', 'Pandora', 'Kokomo', 'Brookston', 'Berville', 'Barry', 'Alvada'),
+  F111BY502IN = c('Metamora', 'Markton', 'Macomb', 'Locke', 'Haskins', 'Elliott', 'Crosier', 'Conover', 'Capac', 'Blount', 'Aubbeenaubbee', 'Bennington', 'Crosby'),
+  F111BY503IN = c('Wawaka', 'Wapahani', 'St. Clair', 'Muncie', 'Williamstown', 'Wawasee', 'Strawn',  'Russell', 'Riddles', 'Rawson', 'Parr', 'Owosso', 'Mortimer', 'Morley', 'Mississinewa', 'Miami', 'Metea', 'Marlette', 'Lybrand', 'Kidder', 'Kendallville',  'Hillsdale', 'Hennepin', 'Glynwood', 'Cadmus', 'Amanda', 'Miamian'),
+  R111BY001IN = c('Willette','McGuffey','Roundhead', 'Palms', 'Olentangy', 'Ogden',  'Linwood', 'Kerston', 'Adrian', 'Tawas'),
+  R111BY002IN = c('Martisco Variant','Warners', 'Rollin', 'Muskego', 'Martisco', 'Edwards'),
   R111BY003IN = c('Napoleon', 'Houghton', 'Carlisle', 'Boots'),
-  R111BY301IN = c('Millsdale', 'Joliet', 'Dunbridge', 'Channahon', 'Fries'),
-  R111BY401IN = c('Westland', 'Sebewa', 'Rensselaer', 'Pella', 'Millgrove', 'Lippincott', 'Gilford', 'Colwood', 'Granby'),
+  R111BY301IN = c('Castalia', 'Millsdale', 'Joliet', 'Dunbridge', 'Channahon', 'Fries'),
+  R111BY401IN = c('Westland', 'Sebewa', 'Rensselaer', 'Millgrove', 'Lippincott', 'Gilford', 'Granby'),
   R111BY402IN = c('Wasepi', 'Warsaw', 'Rodman', 'Nineveh', 'Kane', 'Crane')
- )
+)
 for(i in 1:length(ES111B.list)){
   ES111B.df0 <- as.data.frame(merge(names(ES111B.list[i]),ES111B.list[i])); colnames(ES111B.df0) <- c('ES','Series')
   if(i == 1){ES111B <- ES111B.df0}else{ES111B <- rbind(ES111B.df0, ES111B)}};rm(ES111B.df0) 
@@ -506,7 +506,7 @@ s$Site111<-ifelse(s$Site111 %in% "Not",
                   ifelse(grepl("alluvium",s$pmkind), 'alluvium', s$Site111), s$Site111)
 
 s$Site111<-ifelse(s$Site111 %in% "alluvium",
-                  ifelse(s$drainagecl %in% c("very poorly", "poorly", 'somewhat poorly'), 'F111CY014IN', 'F111CY015IN')
+                  ifelse(s$drainagecl %in% c("very poorly", "poorly", "somewhat poorly"), 'F111CY014IN', 'F111CY015IN')
                   , s$Site111)
 
 #4 bedrock Parent Material  --------------------------------------------------------- 
@@ -521,15 +521,18 @@ s$Site111<-ifelse(s$Site111 %in% "alluvium",
 
 #6 till Parent Material  --------------------------------------------------------- 
 s$Site111<-ifelse(s$Site111 %in% "Not",
-                  ifelse(grepl("till",s$pmkind)|grepl("drift",s$pmkind)| s$landform_string %in% 'pothole & till plain', 'till', s$Site111), s$Site111)
+                  ifelse((grepl("till",s$pmkind) & !grepl("fluv",s$pmkind) & !grepl("outwash",s$pmkind))|
+                           (grepl("drift",s$pmkind) & !grepl("fluv",s$pmkind) & !grepl("outwash",s$pmkind))|
+                           s$landform_string %in% 'pothole & till plain',
+                         'till', s$Site111), s$Site111)
 
 s$Site111<-ifelse(s$Site111 %in% "till",
                   ifelse(s$drainagecl %in% c("very poorly", "poorly"),'R111CY005IN',
-                         ifelse(s$slope_r > 4 & !(grepl('humic',s$taxsubgrp) | grepl('mollic',s$taxsubgrp) | grepl('olls',s$taxsubgrp)),'F111CY007IN','R111CY006IN'))
+                         ifelse(!(grepl('humic',s$taxsubgrp) | grepl('ollic',s$taxsubgrp) | grepl('olls',s$taxsubgrp)),'F111CY007IN','R111CY006IN'))
                   , s$Site111)
 #7 Sand Parent Material  --------------------------------------------------------- 
 s$Site111<-ifelse(s$Site111 %in% "Not",
-                  ifelse(s$T50_sand > 70 | grepl('sand',s$pmkind), 'sand', s$Site111), s$Site111)
+                  ifelse(s$T50_sand >= 70 & (s$T150_sand >= 80 | grepl('sand',s$pmkind))| s$T50_sand >= 80, 'sand', s$Site111), s$Site111)
 
 s$Site111<-ifelse(s$Site111 %in% "sand",
                   ifelse(s$drainagecl %in% c("very poorly", "poorly"),'R111CY002IN',
@@ -552,10 +555,10 @@ seriessites <- c('R111CY010IN:Alvin', 'not:Aquolls', 'not:Beaches', 'F111CY009IN
 # s$Site111<-ifelse(grepl("^F111C", Site111)|grepl("^R111C", Site111),
 #                   ifelse(s$compname %in% c(),'R111CY001IN'
 #                          , s$Site111), s$Site111)
-                         
-                         
-                         
-                         
+
+
+
+
 
 
 
@@ -648,32 +651,32 @@ s$Site111<-ifelse(s$Site111 %in% "bedrock",
 
 
 ES111D.list <- list(F111DY003IN = c('Washtenaw', 'Wakeland', 'Vincennes', 'Tice', 'Southwest', 'Sloan', 'Shoals', 'Sawabash', 'Saranac', 'Rockmill', 'Petrolia', 'Henshaw', 'Comfrey', 'Cohoctah', 'Ceresco', 'Brouillett', 'Beaucoup', 'Algiers'),
-F111DY004IN = c('Uniontown', 'Stringley', 'Stonelick', 'Sligo', 'Rossburg', 'Ross', 'Pinevillage', 'Ouiatenon', 'Moundhaven', 'Medway', 'Lobdell', 'Lash', 'Lanier', 'Landes', 'Jules', 'Huntsville', 'Hononegah', 'Gessie', 'Genesee', 'Elkinsville', 'Eel', 'Coblen', 'Chatterton', 'Chagrin', 'Beckville', 'Battleground', 'Armiesburg', 'Allison', 'Allison', 'Armiesburg', 'Battleground', 'Beckville'),
-F111DY005IN = c('Yeddo', 'Reesville', 'Haskins', 'Evansville', 'Clermont', 'Blount', 'Blanchester'),
-F111DY008IN = c('Treaty', 'Selma', 'Secondcreek', 'Pewamo', 'Pella', 'Millsdale', 'Lisbon', 'Kokomo', 'Cyclone', 'Cope', 'Chalmers', 'Brookston', 'Ashkum'),
-F111DY009IN = c('Westboro', 'Sugarvalley', 'Schaffer', 'Randolph', 'Mitiwanga', 'Hoosierville', 'Fincastle', 'Crosier', 'Crosby'),
-F111DY010IN = c('Xenia', 'Wynn', 'Williamstown', 'Wapahani', 'Tuscola', 'Thrifton', 'Strawn', 'Senachwine', 'Russell', 'Rossmoyne', 'Rockfield', 'Ritchey', 'Riddles', 'Richardville', 'Rawson', 'Rainsville', 'Ozaukee', 'Morningsun', 'Morley', 'Milton', 'Miamian', 'Miami', 'Manlove', 'Loudonville', 'Losantville', 'Jonesboro', 'Hickory', 'Hennepin', 'Glynwood', 'Edenton', 'Crouse', 'Cincinnati', 'Celina', 'Cadiz', 'Bonnell', 'Birkbeck', 'Ava'),
-F111DY013IN = c('Zipp', 'Patton', 'Montgomery', 'Milford', 'Belleville'),
-F111DY014IN = c('Del Rey', 'Haubstadt'),
-F111DY015IN = c('Whitson', 'Sable', 'Ragsdale', 'Edwardsville'),
-F111DY016IN = c('Muren', 'Iva', 'Alford'),
-F111DY017IN = c('Whitaker', 'Waynetown', 'Thackery', 'Taggart', 'Starks', 'Sleeth', 'Shadeland', 'Markland', 'Libre', 'Kendall', 'Homer', 'Fitchville'),
-F111DY018IN = c('Williamsburg', 'Wawaka', 'Spinks', 'Sparta', 'Sisson', 'Silverwood', 'Rush', 'Parke', 'Oshtemo', 'Ormas', 'Ockley', 'Negley', 'Mudlavia', 'Martinsville', 'Kosciusko', 'Kendallville', 'Kalamazoo', 'Fox', 'Eldean', 'Coloma', 'Casco', 'Camden', 'Boyer', 'Angatoka'),
-F111DY022IN = c('Weikert', 'Opequon', 'Gasconade', 'Fairmount', 'Corydon'),
-F111DY023IN = c('Newglarus', 'Lumberton', 'Judyville', 'Gosport', 'Fairmount', 'Eden', 'Cates', 'Bratton', 'Berks', 'Adeland'),
-F111DY024IN = c('Woolper', 'Switzerland', 'Pate', 'Morrisville', 'Loudon', 'Lawshe', 'Grayford', 'Carmel', 'Boston'),
-F111DY025IN = c('Ayrshire'),
-R111DY001IN = c('Wallkill', 'Palms', 'Muskego', 'Linwood', 'Adrian', 'Ackerman'),
-R111DY002IN = c('Houghton','Carlisle'),
-R111DY006IN = c('Lauramie', 'Conover'),
-R111DY007IN = c('Tecumseh', 'Sidell', 'Linkville', 'Jasper'),
-R111DY011IN = c('Wingate', 'Toronto', 'Throckmorton', 'Octagon', 'Montmorenci', 'Mellott', 'Markham'),
-R111DY012IN = c('Williamsport', 'Varna', 'Symerton', 'Raub', 'Parr', 'Odell', 'Elliott', 'Dana', 'Corwin', 'Barce'),
-R111DY019IN = c('Seafield', 'Mulvey', 'Millbrook', 'Longlois', 'Glenhall', 'Desker', 'Bowes', 'Billett'),
-R111DY020IN = c('Westland', 'Sebewa', 'Rensselaer', 'Peotone', 'Millgrove', 'Mahalasville', 'Mahalaland', 'Lafayette', 'Harpster', 'Gilford', 'Gilboa', 'Free', 'Dunham', 'Drummer', 'Darroch', 'Crane', 'Brenton', 'Andres'),
-R111DY021IN = c('Wea', 'Waupecan', 'Warsaw', 'Troxel', 'Totanang', 'Tippecanoe', 'Shipshe', 'Rodman', 'Proctor', 'Plattville', 'Lorenzo', 'Foresman', 'Elston', 'Chetwynd', 'Carmi', 'Barce'),
-R111DY026IN = c('Ade'),
-R111DY027IN = c('Princeton', 'Chelsea', 'Alvin', 'Bloomfield'))
+                    F111DY004IN = c('Uniontown', 'Stringley', 'Stonelick', 'Sligo', 'Rossburg', 'Ross', 'Pinevillage', 'Ouiatenon', 'Moundhaven', 'Medway', 'Lobdell', 'Lash', 'Lanier', 'Landes', 'Jules', 'Huntsville', 'Hononegah', 'Gessie', 'Genesee', 'Elkinsville', 'Eel', 'Coblen', 'Chatterton', 'Chagrin', 'Beckville', 'Battleground', 'Armiesburg', 'Allison', 'Allison', 'Armiesburg', 'Battleground', 'Beckville'),
+                    F111DY005IN = c('Yeddo', 'Reesville', 'Haskins', 'Evansville', 'Clermont', 'Blount', 'Blanchester'),
+                    F111DY008IN = c('Treaty', 'Selma', 'Secondcreek', 'Pewamo', 'Pella', 'Millsdale', 'Lisbon', 'Kokomo', 'Cyclone', 'Cope', 'Chalmers', 'Brookston', 'Ashkum'),
+                    F111DY009IN = c('Westboro', 'Sugarvalley', 'Schaffer', 'Randolph', 'Mitiwanga', 'Hoosierville', 'Fincastle', 'Crosier', 'Crosby'),
+                    F111DY010IN = c('Xenia', 'Wynn', 'Williamstown', 'Wapahani', 'Tuscola', 'Thrifton', 'Strawn', 'Senachwine', 'Russell', 'Rossmoyne', 'Rockfield', 'Ritchey', 'Riddles', 'Richardville', 'Rawson', 'Rainsville', 'Ozaukee', 'Morningsun', 'Morley', 'Milton', 'Miamian', 'Miami', 'Manlove', 'Loudonville', 'Losantville', 'Jonesboro', 'Hickory', 'Hennepin', 'Glynwood', 'Edenton', 'Crouse', 'Cincinnati', 'Celina', 'Cadiz', 'Bonnell', 'Birkbeck', 'Ava'),
+                    F111DY013IN = c('Zipp', 'Patton', 'Montgomery', 'Milford', 'Belleville'),
+                    F111DY014IN = c('Del Rey', 'Haubstadt'),
+                    F111DY015IN = c('Whitson', 'Sable', 'Ragsdale', 'Edwardsville'),
+                    F111DY016IN = c('Muren', 'Iva', 'Alford'),
+                    F111DY017IN = c('Whitaker', 'Waynetown', 'Thackery', 'Taggart', 'Starks', 'Sleeth', 'Shadeland', 'Markland', 'Libre', 'Kendall', 'Homer', 'Fitchville'),
+                    F111DY018IN = c('Williamsburg', 'Wawaka', 'Spinks', 'Sparta', 'Sisson', 'Silverwood', 'Rush', 'Parke', 'Oshtemo', 'Ormas', 'Ockley', 'Negley', 'Mudlavia', 'Martinsville', 'Kosciusko', 'Kendallville', 'Kalamazoo', 'Fox', 'Eldean', 'Coloma', 'Casco', 'Camden', 'Boyer', 'Angatoka'),
+                    F111DY022IN = c('Weikert', 'Opequon', 'Gasconade', 'Fairmount', 'Corydon'),
+                    F111DY023IN = c('Newglarus', 'Lumberton', 'Judyville', 'Gosport', 'Fairmount', 'Eden', 'Cates', 'Bratton', 'Berks', 'Adeland'),
+                    F111DY024IN = c('Woolper', 'Switzerland', 'Pate', 'Morrisville', 'Loudon', 'Lawshe', 'Grayford', 'Carmel', 'Boston'),
+                    F111DY025IN = c('Ayrshire'),
+                    R111DY001IN = c('Wallkill', 'Palms', 'Muskego', 'Linwood', 'Adrian', 'Ackerman'),
+                    R111DY002IN = c('Houghton','Carlisle'),
+                    R111DY006IN = c('Lauramie', 'Conover'),
+                    R111DY007IN = c('Tecumseh', 'Sidell', 'Linkville', 'Jasper'),
+                    R111DY011IN = c('Wingate', 'Toronto', 'Throckmorton', 'Octagon', 'Montmorenci', 'Mellott', 'Markham'),
+                    R111DY012IN = c('Williamsport', 'Varna', 'Symerton', 'Raub', 'Parr', 'Odell', 'Elliott', 'Dana', 'Corwin', 'Barce'),
+                    R111DY019IN = c('Seafield', 'Mulvey', 'Millbrook', 'Longlois', 'Glenhall', 'Desker', 'Bowes', 'Billett'),
+                    R111DY020IN = c('Westland', 'Sebewa', 'Rensselaer', 'Peotone', 'Millgrove', 'Mahalasville', 'Mahalaland', 'Lafayette', 'Harpster', 'Gilford', 'Gilboa', 'Free', 'Dunham', 'Drummer', 'Darroch', 'Crane', 'Brenton', 'Andres'),
+                    R111DY021IN = c('Wea', 'Waupecan', 'Warsaw', 'Troxel', 'Totanang', 'Tippecanoe', 'Shipshe', 'Rodman', 'Proctor', 'Plattville', 'Lorenzo', 'Foresman', 'Elston', 'Chetwynd', 'Carmi', 'Barce'),
+                    R111DY026IN = c('Ade'),
+                    R111DY027IN = c('Princeton', 'Chelsea', 'Alvin', 'Bloomfield'))
 
 for(i in 1:length(ES111D.list)){
   ES111D.df0 <- as.data.frame(merge(names(ES111D.list[i]),ES111D.list[i])); colnames(ES111D.df0) <- c('ES','Series')
@@ -690,23 +693,23 @@ write.csv(s.111D, 'fy2021-refresh/mlra111D_sorts.csv', row.names = F)
 ES111E.list <- list(
   
   F111EY101OH = c('Sebring', 'Minster', 'Milford', 'Luray', 'Lenawee', 'Colwood', 'Bono', 'Canadice', 'Lorain', 'Patton'),
-  F111EY102OH = c('Tuscola', 'Shinrock', 'Mentor', 'Kibbie', 'Glenford', 'Fitchville', 'Canal', 'Caneadea', 'Elnora', 'Henshaw', 'McGary'),
+  F111EY102OH = c('Del Rey', 'Bixler','Tuscola', 'Shinrock', 'Mentor', 'Kibbie', 'Glenford', 'Fitchville', 'Canal', 'Caneadea', 'Elnora', 'Henshaw', 'McGary'),
   F111EY201OH = c('Sloan', 'Saranac', 'Rockmill'),
   F111EY202OH = c('Rossburg', 'Medway'),
-  F111EY203OH = c('Shoals', 'Orrville', 'Newark', 'Killbuck', 'Holly', 'Aetna', 'Algiers', 'Beaucoup', 'Euclid'),
-  F111EY204OH = c('Tioga', 'Lobdell', 'Lindside', 'Genesee', 'Chagrin', 'Eel', 'Gessie', 'Stonelick', 'Tarlton'),
+  F111EY203OH = c('Orrville Variant', 'Shoals', 'Orrville', 'Newark', 'Killbuck', 'Holly', 'Aetna', 'Algiers', 'Beaucoup', 'Euclid'),
+  F111EY204OH = c('Tioga', 'Lobdell', 'Lindside', 'Genesee', 'Chagrin', 'Eel', 'Gessie', 'Stonelick'),
   F111EY301OH = c('Smothers', 'Mitiwanga', 'Prout'),
-  F111EY302OH = c('Rarden', 'Milton', 'Loudonville', 'Latham', 'Heverlo', 'Brecksville', 'Dekalb', 'Germano', 'Gilpin', 'Lordstown', 'Mechanicsburg', 'Steinsburg', 'Wakeman', 'Wellston'),
-  F111EY403OH = c('Sleeth', 'Olmsted', 'Jimtown', 'Digby', 'Bogart'),
-  F111EY404OH = c('Wheeling', 'Spinks', 'Oshtemo', 'Ockley', 'Martinsville', 'Haney', 'Gallman', 'Fox', 'Chili', 'Bixler', 'Belmore', 'Eldean', 'Pike', 'Thackery'),
+  F111EY302OH = c('Colyer Variant', 'Rarden', 'Milton', 'Loudonville', 'Latham', 'Brecksville', 'Dekalb', 'Germano', 'Gilpin', 'Lordstown', 'Mechanicsburg', 'Steinsburg', 'Wakeman', 'Wellston', 'Tarlton'),
+  F111EY403OH = c('Sleeth', 'Jimtown', 'Digby'),
+  F111EY404OH = c('Wheeling', 'Spinks', 'Oshtemo', 'Ockley', 'Martinsville', 'Haney', 'Gallman', 'Fox', 'Chili',  'Belmore', 'Eldean', 'Pike', 'Thackery', 'Bogart'),
   F111EY501OH = c('Pewamo', 'Mermill', 'Marengo', 'Condit'),
   F111EY502OH = c('Tiro', 'Hyatts', 'Haskins', 'Bennington', 'Blount', 'Crosby', 'Elliott', 'Gresham', 'Mahoning'),
-  F111EY503OH = c('Lykens', 'Lybrand', 'Kendallville', 'Hennepin', 'Centerburg', 'Cardington', 'Amanda', 'Alexandria', 'Cincinnati', 'Corwin', 'Crane', 'Geeburg', 'Glynwood', 'Hickory', 'Jeneva', 'Miamian', 'Rawson', 'Thrifton'),
+  F111EY503OH = c('Heverlo','Cana Variant', 'Lykens', 'Lybrand', 'Kendallville', 'Hennepin', 'Centerburg', 'Cardington', 'Amanda', 'Alexandria', 'Cincinnati', 'Corwin',  'Geeburg', 'Glynwood', 'Hickory', 'Jeneva', 'Miamian', 'Rawson', 'Thrifton'),
   R111EY001OH = c('Wallkill', 'Linwood', 'Willette'),
   R111EY002OH = c('Olentangy', 'Muskego'),
   R111EY003OH = c('Pinnebog', 'Carlisle'),
-  R111EY401OH = c('Westland', 'Millgrove'),
-  R111EY402OH = c('Wilmer Variant', 'Warsaw', 'Wea'),
+  R111EY401OH = c('Olmsted', 'Westland', 'Millgrove'),
+  R111EY402OH = c('Crane','Wilmer Variant', 'Warsaw', 'Wea'),
   F111AY013IN = c('Alford')
 )
 
