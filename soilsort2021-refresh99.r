@@ -2,9 +2,6 @@ library(soilDB)
 library(aqp)
 library(plyr)
 library(foreign)
-###2021-12-20
-
-
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 #Andrew Brown wrote this function ----
 library(soilDB)
@@ -21,6 +18,8 @@ get_group_from_table  <- function(target_table = 'datamapunit'){
 mlra <- read.csv('fy2021-refresh/mlragrid.csv')
 mlra.mu <- read.csv('fy2021-refresh/combgrid.csv')
 tgs_zonal <- read.csv('fy2021-refresh/Tgs_zonal2.csv')
+
+
 mlra <- subset(mlra, Count > 100000)
 mu <- readRDS(file='fy2021-refresh/mu.RDS')
 mu_tgs <- merge(unique(mu[,c('lmapunitiid', 'dmuiid')]), tgs_zonal, by.x =  'lmapunitiid', by.y = 'VALUE')
@@ -34,6 +33,19 @@ mlra$MLRA.value <- mlra$Value
 mlra.mu <- merge(mlra[,c('MLRA.value','MLRARSYM', 'MLRA.total')], mlra.mu[,c('Value', 'Count', 'Feature_CONU2', 'northeast_gssurgo30m')], by.x='MLRA.value', by.y='Feature_CONU2')
 mlra.mu <- merge(mlra.mu, unique(mu[,c('lmapunitiid', 'dmuiid')]), by.x='northeast_gssurgo30m', by.y='lmapunitiid')
 mlra.mu$percentmlra <- mlra.mu$Count/mlra.mu$MLRA.total*100
+
+
+#load MLRA ownership 
+mlraowner <- read.csv('data/s.groupmlra.1.csv')
+mlraowner <- subset(mlraowner, officematch %in% 1)
+#usergroup <- get_group_from_table("datamapunit")
+#saveRDS(usergroup, 'fy2021-refresh/usergroup20220408.RDS')
+usergroup <- readRDS("fy2021-refresh/usergroup20220408.RDS")
+mlra.mu <- merge(mlra.mu, usergroup[,c('grpname','dmuiid')], by='dmuiid')
+mlra.mu <- merge(mlra.mu, mlraowner[,c('grpname','MLRARSYM')], by=c('MLRARSYM','grpname'))
+
+
+#calculate total
 mlra.mu.agg <- aggregate(list(pmlra = mlra.mu$percentmlra), by=list(dmuiid = mlra.mu$dmuiid, MLRARSYM = mlra.mu$MLRARSYM), FUN='sum')
 mlra.mu <- merge(mlra.mu, mlra.mu.agg, by=c('dmuiid', 'MLRARSYM'))
 mlra.mu.totals <- aggregate(list(mu.total=mlra.mu.agg$pmlra), by= list(dmu = mlra.mu.agg$dmuiid), FUN ='sum')
@@ -102,9 +114,6 @@ lru.mu <- subset(lru.mu, lruaffinity/best >= 0.99, select=c(dmuiid, MLRA, LRU))
 
 mlra.mu <- merge(mlra.mu, lru.mu, by=c('dmuiid', 'MLRA'), all.x = T)
 ######################################----
-#usergroup <- get_group_from_table("datamapunit")
-#saveRDS(usergroup, 'fy2021-refresh/usergroup20220104.RDS')
-usergroup <- readRDS("fy2021-refresh/usergroup20220104.RDS")
 # comp <- get_component_data_from_NASIS_db(SS=F)
 # saveRDS(comp, file='fy2021-refresh/comp.RDS')
 comp <- readRDS("fy2021-refresh/comp.RDS")
@@ -309,14 +318,14 @@ s$Water_Table <- ifelse(s$hydricrating %in% "no",
                         ifelse(s$drainagecl %in% "moderately well", 100,
                                ifelse(s$drainagecl %in% c("somewhat poorly"), 50,
                                       ifelse(s$drainagecl %in% c("poorly","very poorly","subaqueous"), 25, s$Water_Table))), #for urban soils that lost their hydric status, we will continue to recognize them as former wet ES.
-                               ifelse(s$hydricrating %in% "yes",
-                                      ifelse(s$drainagecl %in% c("very poorly","subaqueous"),0,25),
-                                      ifelse(s$drainagecl %in% c("very poorly","subaqueous"),0,
-                                             ifelse(s$drainagecl %in% "poorly",25,
-                                                    ifelse(s$drainagecl %in% "somewhat poorly",50,
-                                                           ifelse(s$drainagecl %in% "moderately well",100,
-                                                                  250))))))
-                        
+                        ifelse(s$hydricrating %in% "yes",
+                               ifelse(s$drainagecl %in% c("very poorly","subaqueous"),0,25),
+                               ifelse(s$drainagecl %in% c("very poorly","subaqueous"),0,
+                                      ifelse(s$drainagecl %in% "poorly",25,
+                                             ifelse(s$drainagecl %in% "somewhat poorly",50,
+                                                    ifelse(s$drainagecl %in% "moderately well",100,
+                                                           250))))))
+
 
 
 rm(compsorts, fc.hz.bedrock,  fc.hz.bedrock.min, fc.hz.carb, fc.hz50.total, fc.hz.carb.min, fc.hz.notnull, fc.hz.sum, fc.hz150.total, cm.flood, fc.hz.humic.max, fc.hz.humic, fc.hz.mineral )
@@ -325,6 +334,7 @@ rm(compsorts, fc.hz.bedrock,  fc.hz.bedrock.min, fc.hz.carb, fc.hz50.total, fc.h
 summarydrcl <- aggregate(s[,c('drainagecl')], by=list(s$drainagecl, s$hydricrating,s$Water_Table), FUN = 'length')
 
 s <- merge(mlra.mu, s, by.x = 'dmuiid', by.y = 'dmuiid')
+s <- merge(s, usergroup[,c('grpname','dmuiid')], by='dmuiid')
 
 
 
