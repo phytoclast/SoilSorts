@@ -1,6 +1,7 @@
 library(soilDB)
 library(aqp)
 library(plyr)
+library(dplyr)
 library(foreign)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 #Andrew Brown wrote this function ----
@@ -33,8 +34,12 @@ mlra$MLRA.value <- mlra$Value
 mlra.mu <- merge(mlra[,c('MLRA.value','MLRARSYM', 'MLRA.total')], mlra.mu[,c('Value', 'Count', 'Feature_CONU2', 'northeast_gssurgo30m')], by.x='MLRA.value', by.y='Feature_CONU2')
 mlra.mu <- merge(mlra.mu, unique(mu[,c('lmapunitiid', 'dmuiid')]), by.x='northeast_gssurgo30m', by.y='lmapunitiid')
 mlra.mu$percentmlra <- mlra.mu$Count/mlra.mu$MLRA.total*100
-
-
+mlra.mu.agg <- aggregate(list(pmlra = mlra.mu$percentmlra), by=list(dmuiid = mlra.mu$dmuiid, MLRARSYM = mlra.mu$MLRARSYM), FUN='sum')
+mlra.mu <- merge(mlra.mu, mlra.mu.agg, by=c('dmuiid', 'MLRARSYM'))
+mlra.mu.totals <- aggregate(list(mu.total=mlra.mu.agg$pmlra), by= list(dmu = mlra.mu.agg$dmuiid), FUN ='sum')
+mlra.mu <- merge(mlra.mu, mlra.mu.totals, by.x='dmuiid', by.y='dmu')
+mlra.mu$affinity <- mlra.mu$pmlra/mlra.mu$mu.total * 100
+mlra.mu$MLRA <- mlra.mu$MLRARSYM
 #load MLRA ownership 
 mlraowner <- read.csv('data/s.groupmlra.1.csv')
 mlraowner <- subset(mlraowner, officematch %in% 1)
@@ -42,19 +47,10 @@ mlraowner <- subset(mlraowner, officematch %in% 1)
 #saveRDS(usergroup, 'fy2021-refresh/usergroup20220408.RDS')
 usergroup <- readRDS("fy2021-refresh/usergroup20220408.RDS")
 mlra.mu <- merge(mlra.mu, usergroup[,c('grpname','dmuiid')], by='dmuiid')
-mlra.mu <- merge(mlra.mu, mlraowner[,c('grpname','MLRARSYM')], by=c('MLRARSYM','grpname'))
-
-
-#calculate total
-mlra.mu.agg <- aggregate(list(pmlra = mlra.mu$percentmlra), by=list(dmuiid = mlra.mu$dmuiid, MLRARSYM = mlra.mu$MLRARSYM), FUN='sum')
-mlra.mu <- merge(mlra.mu, mlra.mu.agg, by=c('dmuiid', 'MLRARSYM'))
-mlra.mu.totals <- aggregate(list(mu.total=mlra.mu.agg$pmlra), by= list(dmu = mlra.mu.agg$dmuiid), FUN ='sum')
-mlra.mu <- merge(mlra.mu, mlra.mu.totals, by.x='dmuiid', by.y='dmu')
-mlra.mu$affinity <- mlra.mu$pmlra/mlra.mu$mu.total * 100
-mlra.mu$MLRA <- mlra.mu$MLRARSYM
-mlra.best <- aggregate(list(best=mlra.mu$affinity), by= list(dmuiid = mlra.mu$dmuiid), FUN ='max')
-mlra.mu <- merge(mlra.mu, mlra.best, by.x='dmuiid', by.y='dmuiid')
-mlra.mu$ofbest <- mlra.mu$affinity / mlra.mu$best *100
+mlra.mu <- merge(mlra.mu, mlraowner[,c('grpname','MLRARSYM','officematch')], by=c('MLRARSYM','grpname'), all.x=T)
+mlra.mu$officeaffinity <- ifelse(mlra.mu$officematch %in% 1, mlra.mu$affinity, 0)
+mlra.mu <- mlra.mu %>% group_by(dmuiid) %>% mutate(best=max(officeaffinity))
+mlra.mu$ofbest <- mlra.mu$officeaffinity/mlra.mu$best*100
 
 mlra.mu <-  unique(subset(mlra.mu, ofbest > 99, select =c(dmuiid, MLRA)))
 
@@ -113,6 +109,7 @@ lru.mu <- merge(lru.mu, lru.best, by=c('dmuiid','MLRA'))
 lru.mu <- subset(lru.mu, lruaffinity/best >= 0.99, select=c(dmuiid, MLRA, LRU))
 
 mlra.mu <- merge(mlra.mu, lru.mu, by=c('dmuiid', 'MLRA'), all.x = T)
+
 ######################################----
 # comp <- get_component_data_from_NASIS_db(SS=F)
 # saveRDS(comp, file='fy2021-refresh/comp.RDS')
@@ -407,9 +404,9 @@ s$Site111<-ifelse(s$Site111 %in% "till",
 #111A ----
 
 ES111A.list <- list(
-  F111AY001IN = c('Palms', 'Linwood', 'Adrian'),
+  R111AY001IN = c('Palms', 'Linwood', 'Adrian'),
   R111AY002IN = c('Warners', 'Wallkill', 'Muskego', 'Martisco', 'Edwards', 'Benadum'),
-  F111AY003IN = c('Houghton', 'Carlisle'),
+  R111AY003IN = c('Houghton', 'Carlisle'),
   F111AY004IN = c('Aetna', 'Algiers', 'Banlic', 'Bartle', 'Beaucoup', 'Bellcreek', 'Ceresco', 'Cohoctah', 'Euclid', 'Evansville', 'Henshaw', 'Holton', 'Orrville', 'Piopolis', 'Rockmill', 'Saranac', 'Shoals', 'Sloan', 'Southwest', 'Stendal', 'Vincennes', 'Wakeland', 'Washtenaw', 'Wilhite', 'Henshaw Variant', 'Shoals Variant', 'Sloan Variant'), # add 'Henshaw Variant', 'Shoals Variant', 'Sloan Variant'
   F111AY005IN = c('Wirt', 'Wilbur', 'Uniontown', 'Tremont', 'Stonelick', 'Steff', 'Skidmore', 'Sardinia', 'Rossburg', 'Ross', 'Romeo', 'Pekin', 'Otwell', 'Oldenburg', 'Moundhaven', 'Millstone', 'Medway', 'Lobdell', 'Lash', 'Lanier', 'Landes', 'Kinn', 'Haymond', 'Gessie', 'Genesee', 'Elkinsville', 'Eel', 'Dearborn', 'Cuba', 'Clifty', 'Chagrin', 'Beckville', 'Armiesburg', 'Abscota Variant', 'Medway Variant', 'Riverwash', 'Ross Variant'),# add 'Abscota Variant', 'Medway Variant', 'Riverwash', 'Ross Variant'
   F111AY006IN = c('Wetzel', 'Reesville', 'Nappanee', 'Haskins', 'Condit', 'Blount'),
@@ -428,7 +425,7 @@ ES111A.list <- list(
   F111AY019IN = c('Muskingum', 'Lily', 'Latham', 'Jessietown', 'Gilwood', 'Gilpin', 'Edenton', 'Eden', 'Dekalb', 'Caneyville', 'Brownstown', 'Bratton', 'Berks'),
   F111AY020IN = c('Zenas', 'Zanesville', 'Wrays', 'Westmoreland', 'Wellston', 'Wellrock', 'Tarhollow', 'Stonehead', 'Muscatatuck', 'Grayford', 'Cruze', 'Coolville', 'Carmel', 'Brownsville', 'Boston'),
   F111AY021IN = c('Lyles', 'Bobtown', 'Ayrshire', 'Aquents'),
-  F111AY022IN = c('Princeton', 'Boyer', 'Bloomfield', 'Alvin')
+  R111AY022IN = c('Princeton', 'Boyer', 'Bloomfield', 'Alvin')
 )
 
 
