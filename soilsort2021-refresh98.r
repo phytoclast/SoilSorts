@@ -1,6 +1,7 @@
 library(soilDB)
 library(aqp)
 library(plyr)
+library(dplyr)
 library(foreign)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 #Andrew Brown wrote this function ----
@@ -33,8 +34,12 @@ mlra$MLRA.value <- mlra$Value
 mlra.mu <- merge(mlra[,c('MLRA.value','MLRARSYM', 'MLRA.total')], mlra.mu[,c('Value', 'Count', 'Feature_CONU2', 'northeast_gssurgo30m')], by.x='MLRA.value', by.y='Feature_CONU2')
 mlra.mu <- merge(mlra.mu, unique(mu[,c('lmapunitiid', 'dmuiid')]), by.x='northeast_gssurgo30m', by.y='lmapunitiid')
 mlra.mu$percentmlra <- mlra.mu$Count/mlra.mu$MLRA.total*100
-
-
+mlra.mu.agg <- aggregate(list(pmlra = mlra.mu$percentmlra), by=list(dmuiid = mlra.mu$dmuiid, MLRARSYM = mlra.mu$MLRARSYM), FUN='sum')
+mlra.mu <- merge(mlra.mu, mlra.mu.agg, by=c('dmuiid', 'MLRARSYM'))
+mlra.mu.totals <- aggregate(list(mu.total=mlra.mu.agg$pmlra), by= list(dmu = mlra.mu.agg$dmuiid), FUN ='sum')
+mlra.mu <- merge(mlra.mu, mlra.mu.totals, by.x='dmuiid', by.y='dmu')
+mlra.mu$affinity <- mlra.mu$pmlra/mlra.mu$mu.total * 100
+mlra.mu$MLRA <- mlra.mu$MLRARSYM
 #load MLRA ownership 
 mlraowner <- read.csv('data/s.groupmlra.1.csv')
 mlraowner <- subset(mlraowner, officematch %in% 1)
@@ -42,19 +47,10 @@ mlraowner <- subset(mlraowner, officematch %in% 1)
 #saveRDS(usergroup, 'fy2021-refresh/usergroup20220408.RDS')
 usergroup <- readRDS("fy2021-refresh/usergroup20220408.RDS")
 mlra.mu <- merge(mlra.mu, usergroup[,c('grpname','dmuiid')], by='dmuiid')
-mlra.mu <- merge(mlra.mu, mlraowner[,c('grpname','MLRARSYM')], by=c('MLRARSYM','grpname'))
-
-
-#calculate total
-mlra.mu.agg <- aggregate(list(pmlra = mlra.mu$percentmlra), by=list(dmuiid = mlra.mu$dmuiid, MLRARSYM = mlra.mu$MLRARSYM), FUN='sum')
-mlra.mu <- merge(mlra.mu, mlra.mu.agg, by=c('dmuiid', 'MLRARSYM'))
-mlra.mu.totals <- aggregate(list(mu.total=mlra.mu.agg$pmlra), by= list(dmu = mlra.mu.agg$dmuiid), FUN ='sum')
-mlra.mu <- merge(mlra.mu, mlra.mu.totals, by.x='dmuiid', by.y='dmu')
-mlra.mu$affinity <- mlra.mu$pmlra/mlra.mu$mu.total * 100
-mlra.mu$MLRA <- mlra.mu$MLRARSYM
-mlra.best <- aggregate(list(best=mlra.mu$affinity), by= list(dmuiid = mlra.mu$dmuiid), FUN ='max')
-mlra.mu <- merge(mlra.mu, mlra.best, by.x='dmuiid', by.y='dmuiid')
-mlra.mu$ofbest <- mlra.mu$affinity / mlra.mu$best *100
+mlra.mu <- merge(mlra.mu, mlraowner[,c('grpname','MLRARSYM','officematch')], by=c('MLRARSYM','grpname'), all.x=T)
+mlra.mu$officeaffinity <- ifelse(mlra.mu$officematch %in% 1, mlra.mu$affinity, 0)
+mlra.mu <- mlra.mu %>% group_by(dmuiid) %>% mutate(best=max(officeaffinity))
+mlra.mu$ofbest <- mlra.mu$officeaffinity/mlra.mu$best*100
 
 mlra.mu <-  unique(subset(mlra.mu, ofbest > 99, select =c(dmuiid, MLRA)))
 
@@ -520,7 +516,7 @@ s$Site<-ifelse(s$Site %in% c("S1 Wet Sandy Depression"),
                ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.8 & s$carbdepth > 200), "F098XB032IN",'R098XB034IN'), s$Site)
 
 s$Site<-ifelse(s$Site %in% c("S2 Sandy Depression","S3 Moist Sandy Plains"),
-               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.8 & s$carbdepth > 200), "R098XB031IN",'F098XB033IN'), s$Site)
+               ifelse(grepl('Spod', s$taxorder)|grepl('Spod', s$taxsubgrp)|grepl('spod', s$taxorder)|grepl('spod', s$taxsubgrp)|grepl('ult', s$taxsubgrp)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.5)|(!grepl('oll', s$taxsubgrp) & s$T50_pH < 5.8 & s$carbdepth > 200), "F098XB031IN",'R098XB033IN'), s$Site)
 
 
 #4B Tills________________________________________________________
